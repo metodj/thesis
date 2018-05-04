@@ -13,9 +13,6 @@
 
 
 \begin{document}
-\textit{Differetnial privacy: mathematical framework for analysing \textbf{privacy-preserving data publishing and mining}}
-
-
 \section{Uvod - opis teme}
 Dandanes živimo v dobi podatkov. Podjetja ter ustanove zbirajo podatke o svojih uporabnikih in jih nato uporabijo za izboljšanje algoritmov oz. tehnologije. Posledično postaja vse bolj pomembno  vprašanje  varovanja podatkov. Kako omogočiti strokovnjakom in inženirjem dostop do velikih podatkovnih baz, hkrati pa ohraniti zasebnost posameznikov? Kako lahko podjetja uporabijo vse podatke, ki jih zbirajo o svojih uporabnikih, ne da bi s tem ogrozili njihove privatnosti? Obstaja veliko različnih pristopov (najbolj pogoste so t. i. 'metode anonimizacije'), vendar se je izkazalo, da je veliko od teh neprimernih in so izpostavljeni različnim napadom. Še posebej velja izpostaviti t. i. 'background/auxiliary' napad, pri katerem napadalec uporabi dodatno podatkovno bazo za razkritje identite posameznikov v prvotni bazi (Netflix, American health records).  V ta namen se je v zadnjih 15 letih pojavil koncept diferencirane zasebnosti, ki postavlja vprašanje varovanja podatkov v okvir matematične teorije. Vnaša 'naključnost' v podatkovno bazo; odgovori na poizvedbe tako niso več deterministični, ampak so probabilstični. Osnovna ideja je, da se odgovor na poizvedbo ne bo spremenil, če podatki o enem konkretnem posamezniku so ali niso v bazi. Na ta način omogočimo dostop do globalnih lastnosti celotne populacije, zaščitimo pa konkretne informacije o posameznikih. Mnogi vidijo diferencirano zasebnost kot odlično rešitev, uporabljajo jo tudi podjetja kot so Apple in Uber. Na drugi strani pa obstaja tudi precej kritik; ena glavnih izmed njih je, da koncept diferencirane zasebnosti sicer ponuja lepe matematične in teoretične temelje, ni pa zares uporaben v praksi. 
 \newline
@@ -46,7 +43,7 @@ Pomembno je tudi razumevanje, da se diferencirana zasebnost ne ukvarja z zašči
 Drugi primer, ki je pogost dandanes, pa se pojavi pri procesu rudarjenja podatkov (angl. data mining). Podjetja za izboljšanje svoje programske opreme, beležijo skoraj vsako našo potezo na pametnem telefonu ali računalniku. Rezultat so potem npr. sistemi za priporočanje in 'auto-correct' sistem pri tipkanju; torej algoritmi, ki za svoje delovanje potrebujejo velike količine podatkov (da se iz njih "učijo"). Podjetja zajemanje podatkov opravičujejo z izboljšanjem tehnologije. Uporabnikom je tako rečeno, da morajo žrtvovati del zasebnosti za izboljšanje tehnologije, ki jo uporabljajo. Diferencirana zasebnost ponuja možnost, da temu ni tako (v primeru, da se izkaže, da je 'skalabilna'). Tak pristop npr. že uporablja Apple, ki nekatere podatke še preden jih iz naprave (npr. iz iphona) pošlje na centralni server, 'zamaskira' s pomočjo algoritmom, ki slonijo na diferencirani zasebnosti (to so uporabili pri sistemu za predloge 'emojiev' in sistemu za pomoč pri tipkanju). 
 \newline
 \newline
-V prvem delu diplomske naloge se bom posvetil teoretičnemu ozadju. V praksi imamo opravka z različnimi vrstami podatkov, v literaturi pa se diferencirana zasebnost (kot matematični koncept) pogosto definira le za posamezno vrsto podatkov (npr. številske). Predstavil bom model, ki omogoča, da se koncept diferencirane zasebnosti definira v splošnem, tj. za vse vrste podatkov hkrati. V nadaljevanju bo podanih tudi nekaj osnovnih rezultatov, ki izhajajo iz tega modela. V drugem delu, ki je bolj praktične narave... [opis drugega dela: differentially private SGD]
+V prvem delu diplomske naloge se bom posvetil teoretičnemu ozadju. V praksi imamo opravka z različnimi vrstami podatkov, v literaturi pa se diferencirana zasebnost (kot matematični koncept) pogosto definira le za posamezno vrsto podatkov (npr. številske). Predstavil bom model, ki omogoča, da se koncept diferencirane zasebnosti definira v splošnem, tj. za vse vrste podatkov hkrati. V nadaljevanju bo podanih tudi nekaj osnovnih rezultatov, ki izhajajo iz tega modela. V drugem delu bom...
 
 \section{Matematična priprava - definicije, izreki}
 
@@ -104,7 +101,7 @@ Naj bo $(U, \rho)$ poljuben metrični prostor in $D \subseteq U$. Posamezni vnos
 Množico $U$ opremimo z Borelovo $\sigma$ -algebro, označimo jo z $\mathcal{A}_{U}$, ki je najmanjša $\sigma$-algebra, ki vsebuje vse odprte množice v $U$. Tako $\sigma$-algebro generiramo preko metrične topologije. Za lažjo predstavo podajmo grob opis tega postopka. S pomočjo metrike $\rho$ na $U$ lahko definiramo odprte krogle  $B_{r}(x) = \{y \in U\hspace{0.1cm}|\hspace{0.1cm}\rho(x,y) < r\}$. To zadošča, da lahko definiramo bazo topologije, ki je oblike $\mathcal{B} = \{B_{r}(x)\hspace{0.1cm}|\hspace{0.1cm}x \in U, r>0\}$ (povedano drugače, vsak metrični prostor je hkrati topološki prostor oz. metrika nam porodi topologijo). Ko enkrat imamo topologijo  (lahko si jo predstavljamo kot podmnožico potenčne množice $U$, ki vsebuje vse odprte množice v $U$), lahko le-to uporabimo za generiranje Borelove $\sigma$-algebre.
 \newline
 \newline
-$\mathcal{A}_{U}$ nam potem naravno porodi $\mathcal{A}_{D} := \{A \in \mathcal{A}_{U} | A \subset D \}$ na $D$. Predpostavimo tudi, da je $U^n$ (in s tem $D^n$) opremljen s produktno $\sigma$-algebro, ki je generirana prek $\{A_{1} \times ... \times A_{n} | A_{i} \in \mathcal{A}_{U}\}$ in jo označimo z $\mathcal{A}_{U^n}$. [$\pi_{i}$ so merljive] 
+$\mathcal{A}_{U}$ nam potem naravno porodi $\mathcal{A}_{D} := \{A \in \mathcal{A}_{U} | A \subset D \}$ na $D$. Predpostavimo tudi, da je $U^n$ (in s tem $D^n$) opremljen s produktno $\sigma$-algebro, ki je generirana prek $\{A_{1} \times ... \times A_{n} | A_{i} \in \mathcal{A}_{U}\}$ in jo označimo z $\mathcal{A}_{U^n}$. 
 \newline
 \newline
 Tak model podatkovne baze je zelo splošen ($U$ je namreč poljubni metrični prostor) in nam omogoča enotno obravnavo različnih vrst podatkov: numeričnih, kategoričnih in funkcijskih.
@@ -183,8 +180,6 @@ Naj bo $\epsilon > 0$ in $0 \leq \delta \leq 1 $. Odzivni mehanizem je $(\epsilo
 \item Vidimo, da je diferencirana zasebnost koncept, ki se tiče odzivnega mehanizma (in ne npr. podatkov samih). Ideja zadaj je, da se odgovor na naš mehanizem ne sme preveč razlikovati za dve sosednji bazi (drugače povedano, če en posamezen vnos je ali ni v bazi, to ne bo preveč vplivalo na rezultat mehanizma). Na ta način diferencirano zasebni mehanizmi preprečujejo, da bi lahko prišli do sklepov o konkretnih posameznikih. 
 \item Zasebnost opisujemo s parametroma $\epsilon$ in $\delta$ (na začetku se je uporabljal samo $\epsilon$, t. i. stroga diferencirana zasebnost, vendar se je izkazalo, da je tak koncept pogosto preveč restriktiven za implementacijo v praksi; $\delta$ tako zajema verjetnost, da se osnovni mehanizem 'zlomi'). Nižja kot bosta oba parametra, večja bo zasebnost (a tudi manjša natančnost, bolj bodo odgovori na poizvedbe oddaljeni od resničnih). V praksi je tako izziv poiskati najmanjše možne vrednosti za $\epsilon$ in $\delta$, pri kateri je natančnost še vedno dovolj visoka (gre za že omenjen 'trade-off between accuracy and privacy').
 \item Pomembna je tudi \textit{simetričnost} definicije; neenakost mora veljati tudi če zamenjamo vlogi \textbf{d} in \textbf{d'}
-\item $[$ zakaj $e^\epsilon$ in ne $(1+\epsilon)$; computational convenience $]$
-\item $[$ morda omenim in pojasnim katero od naslednjih lastnosti: composability, group privacy, robustness to auxiliary information (glej uvodni del drugega članka) $]$
 \end{itemize}
 
 \textbf{Primer 5} Za boljše razumevanje ponazorimo definicijo še s primerom. Za dano poizvedbo $Q$ izberimo konkretni sosednji bazi \textbf{d}, \textbf{d'} $\in D^n$ in $A\in \mathcal{A}_{Q}$. Označimo $a = \mathbb{P}(X_{Q,\textbf{d}}\in A)$ in $b = \mathbb{P}(X_{Q,\textbf{d'}}\in A)$. Zaradi simetričnosti morata v primeru $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma, veljati obe neenakosti, torej $a \leq e^{\epsilon}b+\delta$ in $b \leq e^{\epsilon}a+\delta$. Obravnavajmo dva primera:
@@ -222,7 +217,16 @@ kjer smo pri obeh enakostih uporabili zveznost verjetnostne mere, pri neenakosti
 \newline
 \textbf{Primer 6} Uporabimo zgornji izrek na konkretnem zgledu. Vzemimo poizvedbo $Q$ z $E_Q = C([0,1])$, torej zavzema vrednosti v prostoru zveznih funkcij. Kot normo vzemimo $||f||_\infty = sup\{|f(t)| : t \in [0,1]\}$ in pripadajočo $\sigma$-algebro $\mathcal{A}_Q$. Naj bo podan še odzivni mehanizem $X_{Q,\textbf{d}}$. $X_{Q,\textbf{d}}(\omega)$ torej leži v $C([0,1])$ za vsak $\omega \in \Omega$.
 \newline
-Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \ldots \leq t_k \leq 1$ in definirajmo preslikavo $ \pi _{t_1,\ldots,t_k}: C([0,1]) \rightarrow \mathbb{R}^k$ kot $$\pi _{t_1,\ldots,t_k}(f) = (f(t_1),\ldots,f(t_2)).$$ Te preslikave so merljive (natančneje $(\mathcal{A}_Q, \mathcal{B}(\mathbb{R}^k))$ merljive) ZAKAJ in zato lahko definiramo $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} = \pi _{t_1,\ldots,t_k} \circ X_{Q,\textbf{d}}$. Opazimo, da je sedaj $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} (\omega) \in \mathbb{R}^k$ za vsak $\omega \in \Omega$. Pokažimo, da če je končno-dimenzionalen mehanizem $X_{Q,\textbf{d}}^{t_1,\ldots,t_k}$ diferencirano zaseben glede na definicijo $\eqref{diferen}$, potem je tudi $X_{Q,\textbf{d}}$ diferencirano zaseben. Najprej opazimo, da iz naše predpostavke sledi, da so opazovani mehanizmi zasebni za množice oblike $A = \pi _{t_1,\ldots,t_k}^{-1}(B)$, kjer je $B$ Borelova množica v $\mathbb{R}^k$: $$\ldots$$ Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in iz izreka DOKAZ sledi, da je $\sigma$-algebra, ki jo te množice generirajo, enaka $\mathcal{A}_Q$ (torej Borelovi $\sigma$-algebri na $C([0,1])$). Po uporabi zgornjega izreka sedaj sledi rezultat.
+Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \ldots \leq t_k \leq 1$ in definirajmo preslikavo $ \pi _{t_1,\ldots,t_k}: C([0,1]) \rightarrow \mathbb{R}^k$ kot $$\pi _{t_1,\ldots,t_k}(f) = (f(t_1),\ldots,f(t_2)).$$ Te preslikave so merljive (natančneje $(\mathcal{A}_Q, \mathcal{B}(\mathbb{R}^k))$ merljive) in zato lahko definiramo $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} = \pi _{t_1,\ldots,t_k} \circ X_{Q,\textbf{d}}$. Opazimo, da je sedaj $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} (\omega) \in \mathbb{R}^k$ za vsak $\omega \in \Omega$. Pokažimo, da če je končno-dimenzionalen mehanizem $X_{Q,\textbf{d}}^{t_1,\ldots,t_k}$ diferencirano zaseben glede na definicijo $\eqref{diferen}$, potem je tudi $X_{Q,\textbf{d}}$ diferencirano zaseben. Najprej opazimo, da iz naše predpostavke sledi, da so opazovani mehanizmi zasebni za množice oblike $A = \pi _{t_1,\ldots,t_k}^{-1}(B)$, kjer je $B$ Borelova množica v $\mathbb{R}^k$: 
+\begin{equation*}
+\begin{split}
+\mathbb{P}(X_{Q,\textbf{d}} \in A) =  \mathbb{P}(X_{Q,\textbf{d}} \in \pi _{t_1,\ldots,t_k}^{-1}(B)) = \mathbb{P}(X_{Q,\textbf{d}}^{t_1,\ldots,t_k} \in B) \leq \\
+ \leq e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d}}^{t_1,\ldots,t_k} \in B) + \delta = e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d}} \in A) + \delta
+\end{split}
+\end{equation*}
+
+
+Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (dokaz tega na tem mestu izpustimo). Po uporabi zgornjega izreka sedaj sledi rezultat.
 \newline
 \newline
 V tem zgledu smo problem preverjanja diferencirane zasebnosti za 'neskončno'-dimenzionalen mehanizem s pomočjo izreka prevedli na končno-dimenzionalen mehanizem. Rezultat je iz teoretičnega vidika zanimiv, nima pa pravega praktičnega pomena, saj je preverjanja pogoja na Borelovi $\sigma$-algebri $\mathbb{R}^k$ še vedno v praksi neizvedljiva naloga.
@@ -279,7 +283,7 @@ Y_{\textbf{d}} (\omega) = (Y_{d_1} (\omega) , ... , Y_{d_n} (\omega)), \tag{5}
 kjer so $Y_{d_i}$ med sabo neodvisne. To nam zagotavlja obstoj marginalnih porazdelitev.  Lahko so $Y_{d_i}$ tudi enako porazdeljene slučajne spremenljivke, ni pa to nujno. Torej je $Y_{\textbf{d}}$ n-dimenzionalen mehanizem, sestavljen po komponentah iz n 1-dimenzionalnih mehanizmov, ki so med seboj neodvisni. 
 \newline
 \newline
-Dodajmo še, da je zgoraj definiran mehanizem, le posebna oblika perturbacije podatkovne baze \eqref{odzivni2} (tu dodatno zahtevamo obstoj marginalnih porazdelitev). JE TO RES, PRAV RAZUMEM? To nam omogoča, da v spodnjem izreku delamo le z identično poizvedbo, torej $Y_{Q, \textbf{d}}=Y_{\textbf{d}}$. Za vse ostale poizvedbe potem rezultat sledi kot posledica izreka v prejšnjem poglavju. 
+\textit{Opomba:} Dodajmo še, da je zgoraj definiran mehanizem, le posebna oblika perturbacije podatkovne baze \eqref{odzivni2} (tu dodatno zahtevamo obstoj marginalnih porazdelitev). To nam omogoča, da v spodnjem izreku delamo le z identično poizvedbo, torej $Y_{Q, \textbf{d}}=Y_{\textbf{d}}$. Za vse ostale poizvedbe potem rezultat sledi kot posledica izreka v prejšnjem poglavju. 
 \newline
 \newline
 \textbf{Izrek 3} Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ Y_d: \Omega \rightarrow U | d \in D\}$. Velja torej
@@ -295,18 +299,15 @@ Dokaz tu izpustimo (vsebuje veliko tehničnih detajlov). Bralec si ga lahko ogle
 \textbf{Primer 8}: Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z |D| elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v 1-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmožic (število elementov v $\mathcal{A}_{D^n}$).
 \newline
 \newline
-\textbf{Primer 9}  Oglejmo si enostaven primer diferencirano zasebnega odzivnega mehanizma: \textit{Laplaceov odzivni mehanizem za numerične podatke}. Naj bodo naši podatki elementi $D \subset \mathbb{R}$. Predpostavimo tudi, da je D omejen A NE RABIMO ŠE ZAPROSTI ZA KOMPAKTNOST, kar v nadaljevanju potrebujemo za obstoj diam(D). $L: \Omega \rightarrow \mathbb{R}$ naj bo Laplacovo porazdeljena slučajna spremenljivka s parametroma $(0,b), b > 0$.  
+\textbf{Primer 9}  Oglejmo si enostaven primer diferencirano zasebnega odzivnega mehanizma: \textit{Laplaceov odzivni mehanizem za numerične podatke}. Naj bodo naši podatki elementi $D \subset \mathbb{R}$. Predpostavimo tudi, da je D omejen, kar v nadaljevanju potrebujemo za obstoj diam(D). $L: \Omega \rightarrow \mathbb{R}$ naj bo Laplacovo porazdeljena slučajna spremenljivka s parametroma $(0,b), b > 0$.  
 Verjetnostna gostota ima potem obliko $f(x)=\frac{1}{2b}e^{-\frac{|x|}{b}}$.  Za vsak $d \in D$ potem definirajmo 1-dimenzionalni mehanizem kot  $Y_{d}(\omega) = d + L(\omega)$. Parameter b izberimo tako, da 
 $$b\geq \frac{diam(D)}{\epsilon - \log(1-\delta)}.$$
-Potem sledi, da je vsak n-dimenzionalen mehanizem oblike \eqref{product} $(\epsilon, \delta)$ diferencirano zaseben za vsako n-dimenzionalno podatkovno bazo $D^n$ in vsako poizvedbo. ALI RES ZA VSAKO POIZVEDBO? To lahko enostavno pokažemo. 
+Potem sledi, da je vsak n-dimenzionalen mehanizem oblike \eqref{product} $(\epsilon, \delta)$ diferencirano zaseben za vsako n-dimenzionalno podatkovno bazo $D^n$ in vsako poizvedbo. To lahko enostavno pokažemo. 
 \newline
 \newline
 Najprej vemo, da $\mathbb{P}(Y_{d}(\omega) \in A) = \mathbb{P}(d + L(\omega) \in A) = \int_{A}\frac{1}{2b}e^{\frac{-|x-d|}{b}}dx$. Kot posledica izrekov 2 in 3 potem vemo, da bo zgornja trditev veljala natanko tedaj, ko bo veljajo 
 $$\int_{A}\frac{e^{\frac{-|x-d|}{b}}}{2b}dx \leq e^{\epsilon}\int_{A}\frac{e^{\frac{-|x-d'|}{b}}}{2b}dx + \delta$$
 za vse $d,d' \in D, A \in \mathcal{B}(\mathbb{R})$. Zgornja neenakost pa bo veljala natanko tedaj, ko velja $1 \leq e^{\epsilon - \frac{|d-d'|}{b}} + \delta$ (uporabimo trikotniško neenakost $|x-d'| \leq |x-d| + |d -d'|$ in dejstvo, da nam neenakost porodi najstrožji pogoj v primeru $A=\mathbb{R})$. Po preureditvi sledi rezultat. 
-\newline
-\newline
-NE RAZUMEM KOMENTARJA GLEDE '$l_1$ SENSITIVITY OF IDENTITY QUERY ' V ČLANKU NA KONCU TEGA PRIMERA
 \section{Natančnost diferencirano zasebnih mehanizmov}
 Zaenkrat smo se posvetili vprašanju zasebnosti odzivnih mehanizmov, v tem poglavju pa se bomo vprašali še o njihovi natančnosti. Delali bomo z mehanizmi oblike \eqref{product}. Ker so slednji zgrajeni iz 1-dimenzionalnih mehanizmov, se bomo tu osredotočili na njihovo natančnost. Te rezulate lahko potem uporabimo za izpeljavo napake v n-dimenzionalnem primeru, torej na $D^n$, točna oblika pa bo odvisna od metrike $\rho_n$.
 \newline
@@ -361,9 +362,12 @@ Naj bo D diskreten metričen prostor z $|D| = m + 1$ in $\kappa = min_{d,d' \in 
 \newline
 \newline
 \textit{Dokaz:} Najprej definiramo $t := \frac{\kappa}{\gamma}$. Opazimo, da je $m + 1$ odprtih krogel $B_{t\gamma}(u), u \in D$ disjunktnih. Sedaj izberemo točno določen $u \in D$ in po enakem razmisleku kot v zgornjem izreku po uporabi neenakosti Markova sledi $$\mathbb{P}(X_u \in B_{t\gamma}(u)) \geq 1 - \frac{\gamma}{\kappa}.$$
-Dodatno mora obstajati tak $v \neq u$, da velja $$\mathbb{P}(X_u \in B_{t\gamma}(v)) \leq \frac{\gamma}{\kappa m}.$$ TEGALE ZGORAJ NE RAZUMEM POVSEM, ZAKAJ MORA OBSTAJATI TAK $v$? Izberemo tak $v$ in uporabimo pogoj diferencirane zasebnosti (enako kot v zgornjem dokazu), kar nam po uporabi obeh zgornjih neenakosti, da $$\frac{\gamma}{\kappa m} \geq e^{-\epsilon}(1 - \frac{\gamma}{\kappa} - \delta). $$ Sedaj izrazimo $\gamma$ in dobimo željeno spodnjo mejo.
-
-POINT TEGA IZREKA? A NE DA ITAK SLABŠO (TOREJ VIŠJO) OCENO SPODNJE MEJE? TOREJ JE ITAK BOLJ SMISELNO DELAT Z IZREKOM 4?
+Dodatno mora obstajati tak $v \neq u$, da velja $$\mathbb{P}(X_u \in B_{t\gamma}(v)) \leq \frac{\gamma}{\kappa m}.$$  Izberemo tak $v$ in uporabimo pogoj diferencirane zasebnosti (enako kot v zgornjem dokazu), kar nam po uporabi obeh zgornjih neenakosti, da $$\frac{\gamma}{\kappa m} \geq e^{-\epsilon}(1 - \frac{\gamma}{\kappa} - \delta). $$ Sedaj izrazimo $\gamma$ in dobimo željeno spodnjo mejo.
+\newline
+\qed
+\newline
+\newline
+\textit{Opomba:} Vidimo, da po tem izreku za velike $m$-je dobimo oceno spodnje meje približno $(1-\delta)\kappa$. Spodnja meja po tem izreku je tako boljša (torej nižja), v primeru ko velja $min_{d,d' \in D}\rho(d,d') = \kappa < \frac{diam(D)}{2(1+e^\epsilon)} =  \frac{max_{d,d' \in D}\rho(d,d')}{2(1+e^\epsilon)}$. Primer takega prostora je npr. prostor prvih 100 naravnih števil opremljen z evklidsko metriko.
 \newline
 \newline
 

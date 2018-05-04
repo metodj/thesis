@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definicija}
+
+\begin{document}
+\textit{Differetnial privacy: mathematical framework for analysing \textbf{privacy-preserving data publishing and mining}}
+
+
+\section{Vprašanja}
+\begin{itemize}
+\item $\sigma$-algebri v primerih 1 in 2.a. Sem jih uredu definiral?
+\item Primer 6. A je tu v ozadju ubistvu Dynkinova lema? A je izrek o monotonih razredih ekvivalenten Dynkinovi lemi?
+\item Primer 6.  $ \pi _{t_1,\ldots,t_k}: C([0,1]) \rightarrow \mathbb{R}^k$ Kako pokazati, da so te preslikave merljive?
+\item Opomba nad izrekom 3. Ali prav razumem eno-dimenzionalne mehanizme (perturbacije podatkovne baze)?
+\item Primer 9. Predpostavimo samo, da je $D$ omejen. A ne rabi biti še zaprt, da dobimo kompaktnost?  Tudi ali res sledi, da je podan mehanizem zaseben za vsako poizvedbo? V članku na koncu namreč navedejo \textit{this example can be seen as an application of the Laplacian mechanism to the identity query}. Tega komentarja o $l_1$ sensitivity of identity query tudi ne razumem povsem.
+\item Izrek 5. Ne razumem dela dokaza, kjer trdimo, da mora obstaja tak $v \neq u$, da velja $\mathbb{P}(X_u \in B_{t\gamma}(v)) \leq \frac{\gamma}{\kappa m}.$ 
+\end{itemize}
+
+\section{Predlogi za dopolnitev teoretičnega dela}
+Lahko dodam še Example 6 in Example 7 iz izhodiščnega članka.
+\newline
+\newline
+Pri izreku o monotonih razredih lahko dodam, da je to ekvivalentno Dynkinovi lemi in razložim zakaj (Bernik swag).
+\newline
+\url{https://math.stackexchange.com/questions/1193970/monotone-class-theorem-vs-dynkin-pi-lambda-theorem}
+\newline
+\newline
+Pri definiciji diferencirane zasebnosti lahko pod opombe dodam še naslednji alineji:
+\begin{itemize}
+\item zakaj $e^\epsilon$ in ne $(1+\epsilon)$; computational convenience 
+\item morda omenim in pojasnim katero od naslednjih lastnosti: composability, group privacy, robustness to auxiliary information (glej uvodni del drugega članka) 
+\end{itemize}
+
+
+
+\end{document}
