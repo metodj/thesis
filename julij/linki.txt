@@ -1,0 +1,27 @@
+MAL SPLOŠNO
+http://theconversation.com/explainer-what-is-differential-privacy-and-how-can-it-protect-your-data-90686
+
+APPLE
+https://www.apple.com/privacy/docs/Differential_Privacy_Overview.pdf
+https://machinelearning.apple.com/2017/12/06/learning-with-privacy-at-scale.html
+https://machinelearning.apple.com/docs/learning-with-privacy-at-scale/appledifferentialprivacysystem.pdf
+KRITIKA APPLA: https://arxiv.org/pdf/1709.02753.pdf
+
+GOOGLE: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42852.pdf
+
+3 PART ARTICLE ON DIFFERENTIAL PRIVACY:
+https://www.accessnow.org/understanding-differential-privacy-matters-digital-rights/ 
+
+DIFFERENTIAL PRIVACY AND FUNCTIONAL DATA:
+http://www.jmlr.org/papers/volume14/hall13a/hall13a.pdf
+
+HARVARD DIFFERENTIAL PRIVACY TOOL:
+https://privacytools.seas.harvard.edu/differential-privacy
+
+
+
+DIFFERENTIAL PRIVACY IS A DEFINITION, NOT AN ALGORIHTM!!
+
+HUD CLANEK, MORDA BI LAHKO VEN VZEL PAR PRIMEROV IN IZ NJIH DOBIL 5 STRANI
+(MORDA DOKAŽEM TUDI COMPOSITION THEOREM):
+http://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf
