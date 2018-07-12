@@ -193,6 +193,53 @@ Definirajmo še metriko $\rho_H$, t.i. \textit{Hammingovo razdaljo}, ki jo bomo 
 Naj bo $D$ poljubna množica in $a , b \in D^n$. Potem je  \textit{Hammingova razdalja} $\rho_H(a,b)$ enaka številu mest, na katerih se vektorja $a$ in $b$ razlikujeta.
 \end{definicija}
 Opazimo, da je v 1-dimenzionalnem primeru  ta metrika ekvivalentna diskretni. Morda se bralcu zastavi vprašanje, kako deluje taka metrika na vektorju npr. funkcij. Če želimo enakost skoraj povsod, lahko za $D$ vzamemo npr. prostor $L^2$, torej primerjamo med seboj ekvivalenčne razrede funkcij.  Metrika na prvi pogled tudi ni najbolj uporabna, saj pove le, ali sta elementa danega metričnega prostora različna in ne 'koliko' sta različna. Zanimivo je, da je to v primeru diferencirane zasebnosti primerna stvar, saj tu med sabo primerjamo podatkovne baze in ne vnosov znotraj posamezne baze. 
+\newline
+\newline
+V zadnjem poglavju bomo za izpeljavo nekaterih rezultatov potrebovali še osnovno teorijo jedrnih funkcij v statistični analizi, Gaussovih procesov ter Hilbertovih prostorov z reprodukcijskim jedrom. 
+\begin{definicija}
+Funkcija $K$ je jedrna funkcija (angl. kernel function), če je nenegativna, integrabilna ter slika v prostor realnih števil.
+\end{definicija}
+\begin{opomba}
+Zgoraj podana definicija je najbolj splošna, ponavadi pa zahtevamo še dva dodatna pogoja in sicer simetričnost, torej $K(x) = K(-x)$, ter normalizacijo
+$$
+\int_{-\infty}^{\infty} K(u)du=1.
+$$
+Enostaven primer je eno-dimenzionalno Gaussovo jedro, ki ima obliko $K(u)=\frac{1}{\sqrt{2\pi}}e^{-\frac{u^2}{2}}$ (vidimo, da gre kar za gostoto standarno normalne porazdelitve).
+\end{opomba}
+\begin{definicija}
+Gaussov proces, parametriziran z indeksno množico $T$, je slučajni proces $\{X_t : t \in T\}$, za katerega velja, da je za vsak končni nabor točk $t_1,...,t_n \in T$ slučajni vektor
+$$
+(X_{t_1},...,X_{t_n})
+$$
+porazdeljen multivariatno normalno.
+\end{definicija}
+\begin{opomba}
+Gaussov proces je kot slučajni proces definiran na nekem verjetnostnem prostoru  $(\Omega, \mathcal{F}, \mathbb{P})$. Pri fiksnem $\omega \in \Omega$ je preslikava $T \rightarrow \mathbb{R}$ (oz. $t \rightarrow X_t(\omega)$) realizacija ali trajektorija Gaussovega procesa $X_t$. Gaussov proces je popolnoma določen s funkcijama povprečja  in kovariance: 
+$$m(t) = \mathbb{E}X_t, K(s,t) = Cov(X_s,X_t).$$
+\end{opomba}
+
+Spomnimo se, da je Hilbertov prostor $\mathcal{H}$ poln metrični prostor (vsako Cauchyjevo zaporedje ima limito vsebovano v tem prostoru), kjer je metrika podana prek skalarnega produkta, torej za $f,g \in \mathcal{H}$ velja $d(f,g) = \sqrt{<f-g,f-g>}$.
+\begin{definicija}
+Naj bo $H$ Hilbertov prostor, katerega elementi so funkcije oblike $f: X \rightarrow \mathbb{R}$ (pri tem je $X$ poljubna množica). Označimo z $L_x$ linearen funkcional, ki vsako funkcijo $f \in \mathcal{H}$ izvrednoti v x, torej $$L_x : f \rightarrow f(x).$$ Potem je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom natanko tedaj, ko je $L_x$ zvezen operator nad $\mathcal{H}$ za vsak $x \in X$. 
+\end{definicija}
+\begin{opomba}
+Opišimo podano definicijo ter reprodukcijsko lastnost na še bolj intiutiven način. Z uporabo Rieszovega reprezentacijskega izreka o funkcionalih opazimo, da za vsak $x \in X$ obstaja natanko en $K_x \in H$ z lastnostjo
+$$
+f(x) = L_x(f) = \langle f, K_x \rangle_{\mathcal{H}}, \forall f \in H.
+$$
+Če sedaj namesto $f$ vzamemo $K_x \in H$, sledi, da za vsak $y \in X$ obstaja $K_y \in H$, da velja
+$$
+K_x(y) = L_y(K_x) = \langle K_y, K_x \rangle_{\mathcal{H}}.
+$$
+To nam omogoča, da definiramo reprodukcijsko jedro Hilbertovega prostora $\mathcal{H}$ kot funckijo $K: X \times X \rightarrow \mathbb{R}$, kjer je $K(x,y)=\langle K_y, K_x \rangle_{\mathcal{H}}.$
+\newline
+\newline
+Alternativno si lahko Hilbertov prostor $\mathcal{H}$ predstavljamo kot zaprtje linearne ogrinjače funckij oblike $K_x, x \in X$. Za dve funkciji oblike $f = \sum_{i=1}^{n}\theta_i K_{x_i}$ in $ g = \sum_{j=1}^{m}\xi_j K_{y_j}$ ($\xi_i, \theta_i \in \mathbb{R} \forall i, x_1,...,x_n,y_1,...,y_m \in X$) ima tako njun skalarani produkt obliko
+$$
+\langle f, g\rangle_{\mathcal{H}} = \sum_{i=1}^{n}\sum_{j=1}^{m}\theta_i \xi_j K(x_i,y_j).
+$$
+
+\end{opomba}
 
 \section{Splošni podatkovni model in definicija diferencirane zasebnosti}
 
@@ -513,10 +560,126 @@ Vrnimo se na primer 4.10, kjer $D$ predstavlja množico hobijev (diskreten prime
 $$\gamma = \mathbb{E}[\rho(Y_d,d)] = \sum_{d \neq d'}p=mp=(1-\delta)\frac{m}{m+e^{\epsilon}}.$$ Vidimo, da je v tem primeru ocena za spodnjo mejo napake, ki jo dobimo iz izreka 5.5 optimalna.
 \end{primer}
 
+\section{Dodatno o funkcijskih podatkih}
+Dosedaj smo že navedli primera mehanizmov za diskretne in numerične podatke (glej primera 4.9 ter 4.10). V tem poglavju bomo opisali mehanizem še  za funkcijske podatke. Pri tem se bomo sklicali na v uvodu omenjeno teorijo Gaussovih procesov ter reprodukcijskih jeder Hilbertovih prostorov.
+\newline
+\newline
+Obstajata dve glavni motivaciji za obravnavo funckijskih podatkov v okviru diferencirane zasebnosti. Prvo smo že omenili in sicer to, da je naša podatkovna baza $D$ sestavljena iz funkcij (primer 3.3). Druga nastopi, ko želimo kot odgovor na poizvedbo $Q$ podati funkcijo (torej je $E_Q$ funkcijski prostor). Tak primer bi bil, ko imamo numerične podatke $d_1, ..., d_n \in \mathbb{R}^d$, ki so dobljeni iz porazdelitve z gostoto $f$, naš cilj pa je oceniti gostoto s ti. jedrno cenilko za gostoto (angl. kernel density estimator) $$\hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W(\frac{||x-d_i||}{h}), x \in \mathbb{R}^d,$$  
+kjer je $W$ jedrna funkcija in $h$ njen parameter dosega (angl. bandwith parameter). Na kratko, gre za parameter, ki vpliva na to, kako blizu si morata biti dani točki, da imata znaten vpliv druga na drugo. Oblika $\hat{f}$ je močno odvisna od izbire tega parametra in obstajajo načini za optimalen izbor, ki pa se jih v tem delu ne bomo dotaknili. S pomočjo mehanizma, ki ga bomo podali v nadaljevanju, lahko potem cenilko gostote $\hat{f}$ naredimo diferencirano zasebno. Koristnost takega pristopa je večplastna. Ne samo, da smo dobili zasebno cenilko za gostoto, ampak lahko sedaj le-to uporabimo tudi za vzorčenje novih podatkov. To je alternativen pristop k objavi celotne podatkovne baze kot tisti, ki smo ga obravnali pri primeru Laplacovega mehanizma za numerične podatke (primer 4.9). Na tako privatizirani bazi lahko potem izvajamo vse poizvedbe in pogojem diferencirane zasebnosti bo še vedno zadoščeno. Primer, ko je odgovor na statistično poizvedbo oz. analizo funkcija, so tudi razni modeli iz strojnega učenja (linearna regresija, metoda podpornih vektorjev itd.). Opisan postopek v tem poglavju se lahko uporabi tudi za ohranitev zasebnosti pri učenju takih modelov. Na ta način preprečimo, da bi prek naučenih parametrov modela izdali preveč podrobnosti o učni podatkovni množici.
+\newline
+\newline
+Podan mehanizem ne bo pokril prve motivacije pri funkcijsih podatkih, torej primera, ko je naša podatkovna baza $D$ sestavljena iz funkcij. Pri pregledu literature s področja diferencirane zasebnosti takih mehanizmov nisem zasledil.
+\newline
+\newline
+Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q = \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} \subset \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo \eqref{odzivni3}. 
+
+\begin{izrek}
+Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...x_n \in D$. Označimo z $M$ Grammovo matriko
+$$
+M(x_1,...,x_n) = 
+ \begin{pmatrix}
+  K(x_1,x_1) & \cdots & K(x_1,x_n) \\
+  \vdots    & \ddots & \vdots  \\
+  K(x_n,x_1) & \cdots & K(x_n,x_n) 
+ \end{pmatrix}
+.$$
+Potem bo odzivni mehanizem 
+$$
+\widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
+$$
+$(\epsilon, \delta)$ diferencirano zaseben, ko bo veljajo
+\begin{equation}\label{meja}
+\sup_{\textbf{d} \sim \textbf{d'}} \sup_{n < \infty} \sup_{(x_1,...,x_n) \in D^n} 
+\|M^{-1/2}(x_1,...x_n)
+\begin{pmatrix}
+  f_{\textbf{d}}(x_1)-f_{\textbf{d'}}(x_1)  \\
+  \vdots     \\
+  f_{\textbf{d}}(x_n)-f_{\textbf{d'}}(x_n)
+ \end{pmatrix}
+\|_2 \leq \Delta. \tag{6}
+\end{equation}
+\end{izrek}
+
+\proof 
+TODO
+\qed
+\newline
+\newline
+Izkaže se, da se da pogoju $(6)$ enostavno zadostiti, če funkcije $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom, ki je enak kovariančni funkciji Gaussovega procesa. To pokažeta naslednji izrek in pomembna posledica.
+
+\begin{izrek}
+Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom $K$. Potem za vsako $x_1, ..., x_n$ končno zaporedje točk v $\mathbb{R}^m$ velja:
+$$
+\|M^{-1/2}(x_1,...x_n)
+\begin{pmatrix}
+  f_{\textbf{d}}(x_1)  \\
+  \vdots     \\
+  f_{\textbf{d}}(x_n)
+ \end{pmatrix}
+\|_2 \leq \|f\|_{\mathcal{H}}.
+$$
+\end{izrek}
+\proof 
+Definirajmo operator $P: \mathcal{H} \rightarrow \mathcal{H}$ kot 
+$$
+P = \sum_{i=1}^n K_{x_i} \sum_{j=1}^n (M^{-1})_{i,j} \langle K_{x_j}, \cdot \rangle_{\mathcal{H}}
+$$
+Najprej opazimo, da je ta operator idempotenten, torej $P = P^2$:
+\begin{gather*}
+P^2 = \sum_{i=1}^n K_{x_i} \sum_{j=1}^n (M^{-1})_{i,j} \langle K_{x_j}, \sum_{k=1}^n K_{x_k} \sum_{l=1}^n (M^{-1})_{k,l} \langle K_{x_l}, \cdot \rangle_{\mathcal{H}} \rangle_{\mathcal{H}} \\
+=  \sum_{i=1}^n K_{x_i} \sum_{j=1}^n (M^{-1})_{i,j} \sum_{k=1}^{n}  \langle K_{x_j}, K_{x_k} \rangle_{\mathcal{H}} \sum_{l=1}^n (M^{-1})_{k,l} \langle K_{x_l}, \cdot \rangle_{\mathcal{H}} \\
+=  \sum_{i=1}^n K_{x_i} \sum_{j=1}^n (M^{-1})_{i,j}  \sum_{k=1}^n M_{j,k}  \sum_{l=1}^n (M^{-1})_{k,l} \langle K_{x_l}, \cdot \rangle_{\mathcal{H}} 
+\\
+= \sum_{i=1}^n K_{x_i} \sum_{l=1}^n (M^{-1})_{i,l}  \langle K_{x_l}, \cdot \rangle_{\mathcal{H}}  = P
+\end{gather*}
+Pri drugem enačaju smo uporabili linearnost skalarnega produkta, pri tretjem pa definicijo Grammove matrike. Zlahka tudi preverimo, da je P sebi-adjungiran operator $\langle Pf, g\rangle_{\mathcal{H}} = \langle f, Pg\rangle_{\mathcal{H}}$ (posledica simetrije matrike $M$). Dalje sledi 
+\begin{gather*}
+\|f\|_{\mathcal{H}}^2 = \langle f, f\rangle_{\mathcal{H}} = \langle Pf + (f - Pf), Pf + (f - Pf) \rangle_{\mathcal{H}} \\
+= \langle Pf, Pf\rangle_{\mathcal{H}} + 2 \langle Pf,f -  Pf\rangle_{\mathcal{H}} + \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
+= \langle Pf, Pf\rangle_{\mathcal{H}} + 2 \langle f,Pf -  P^2 f\rangle_{\mathcal{H}} + \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
+= \langle Pf, Pf\rangle_{\mathcal{H}} +  \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
+\geq \langle Pf, Pf\rangle_{\mathcal{H}} = \langle f, Pf\rangle_{\mathcal{H}}
+\end{gather*}
+\qed
+\begin{posledica}
+Naj $E_Q$ (prostor možnih odgovorov, torej funkcij, na poizvedbo) podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa. Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
+$$
+\widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
+$$
+$(\epsilon,\delta)$ diferencirano zaseben, ko bo veljajo 
+$$
+\sup_{\textbf{d} \sim \textbf{d'}} \| f_{\textbf{d}} -  f_{\textbf{d'}} \|_{\mathcal{H}} \leq \Delta.
+$$
+\end{posledica}
+ 
+\begin{primer}
+Uporabimo zgoraj omenjeni mehanizem na konkretnem primeru. Recimo, da naši podatki $(d_1,...,d_n) = \textbf{d}, d_i \in \mathbb{R}^d$ prihajajo iz porazdelitve z gostoto $f$. Za oceno te gostote uporabimo cenilko z Gaussovim jedrom
+$$
+f_{\textbf{d}}(x) = \frac{1}{n(2\pi h^2)^{d/2}} \sum_{i=1}^{n} exp\{\frac{-\|x-d_i\|_{2}^{2}}{2h^2}\},  x \in \mathbb{R}^d,
+$$
+kjer je $h$ parameter dosega. Naj bosta $\textbf{d} \sim \textbf{d'}$ sosednji bazi, ki se razlikujeta le na zadnjem elementu (brez izgube za splošnost), torej $\textbf{d'} = (d_1,...,d_{n-1},d_{n}^{\prime}) $. Sledi
+$$
+(f_{\textbf{d}} - f_{\textbf{d'}})(x) = \frac{1}{n(2\pi h^2)^{d/2}} (exp\{\frac{-\|x-d_n\|_{2}^{2}}{2h^2}\}-exp\{\frac{-\|x-d_{n}^{\prime}\|_{2}^{2}}{2h^2}\}).
+$$
+Za kovariančno funkicjo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussovo jedro $K(x,y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$. Hkrati opazimo, da funkcije oblike $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom $K$. Torej $f_{\textbf{d}} - f_{\textbf{d'}} = \frac{1}{n(2\pi h^2)^{d/2}} (K_{d_n}-K_{d_{n}^{\prime}})$ in velja 
+\begin{gather*}
+\|f_{\textbf{d}} - f_{\textbf{d'}}\|_{\mathcal{H}}^{2} = \langle f_{\textbf{d}} - f_{\textbf{d'}}, f_{\textbf{d}} - f_{\textbf{d'}} \rangle_{\mathcal{H}}  \\ 
+= (\frac{1}{n(2\pi h^2)^{d/2}})^2 \langle K_{d_n}-K_{d_{n}^{\prime}}, K_{d_n}-K_{d_{n}^{\prime}} \rangle_{\mathcal{H}}  \\
+= (\frac{1}{n(2\pi h^2)^{d/2}})^2 (K(d_n, d_n)+K(d_{n}^{\prime}, d_{n}^{\prime})-2K(d_n, d_{n}^{\prime})) \\ 
+\leq 2 (\frac{1}{n(2\pi h^2)^{d/2}})^2
+\end{gather*}
+
+Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, potem iz posledice 6.3 sledi, da je mehanizem 
+\begin{gather*}
+\widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{\log{\frac{2}{\delta}}} \frac{1}{\epsilon n (2\pi h^2)^{(d/2)}}G
+\end{gather*}
+$(\epsilon, \delta)$ diferencirano zaseben.
+\end{primer}
+
 % slovar
 \section*{Slovar strokovnih izrazov}
 
-\geslo{glide reflection}{zrcalni zdrs ali zrcalni pomik -- tip ravninske evklidske izometrije, ki je kompozitum zrcaljenja in translacije vzdol"z iste premice}
+\geslo{primer}{opis primera}
 
 
 
