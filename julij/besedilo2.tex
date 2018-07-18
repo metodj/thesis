@@ -571,7 +571,7 @@ kjer je $W$ jedrna funkcija in $h$ njen parameter dosega (angl. bandwith paramet
 Podan mehanizem ne bo pokril prve motivacije pri funkcijsih podatkih, torej primera, ko je naša podatkovna baza $D$ sestavljena iz funkcij. Pri pregledu literature s področja diferencirane zasebnosti takih mehanizmov nisem zasledil.
 \newline
 \newline
-Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q = \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} \subset \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo \eqref{odzivni3}. 
+Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q = \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} \subset \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo \eqref{odzivni3}. V naslednjem izreku podamo mehanizem, kjer diferencirano zasebnost dosežemo z uporabo Gaussovih procesov.
 
 \begin{izrek}
 Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...x_n \in D$. Označimo z $M$ Grammovo matriko
@@ -599,9 +599,71 @@ $(\epsilon, \delta)$ diferencirano zaseben, ko bo veljajo
 \|_2 \leq \Delta. \tag{6}
 \end{equation}
 \end{izrek}
-
+Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.2 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer je npr. ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
+\begin{izrek}
+Naj bo podana poizvedba $Q: \mathbb{R}^d \rightarrow \mathbb{R}^d$. Naj bo $M \in \mathbb{R}^{d \times d}$ pozitivno definitna simetrična matrika. Dalje naj za poizvedbo $Q$ velja 
+\begin{equation}\label{mejagauss}
+\sup_{\textbf{d} \sim \textbf{d'}} \| M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})\|_{2} \leq \Delta. \tag{7}
+\end{equation}
+Dodatno predpostavimo še $\epsilon \leq 1$. Potem je odzivni mehanizem 
+\begin{gather*}
+X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = Q(\textbf{d}) + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon} z, z \sim \mathcal{N}_d (0,M)
+\end{gather*}
+$(\epsilon, \delta)$ diferencirano zaseben.
+\end{izrek}
+Za dokaz izreka 6.2 potrebujemo naslednjo lemo, ki pove, da je za dosego $(\epsilon, \delta)$ diferencirane zasebnosti dovolj, da dosežemo $(\epsilon, 0)$ zasebnost na dovolj veliki množici (v smislu verjetnostne mere $\mathbb{P}$).
+\begin{lema}
+Naj za vse sosednje podatkovne baze $\textbf{d} \sim \textbf{d'}$ obstaja množica $A_{\textbf{d}, \textbf{d'}}^{\star} \in \mathcal{A}_Q$, za katero velja
+\begin{equation}\label{lemagauss}
+S \subseteq A_{\textbf{d}, \textbf{d'}}^{\star} \Rightarrow \mathbb{P}(X_{Q, \textbf{d}} \in S) \leq e^{\epsilon} \mathbb{P}(X_{Q, \textbf{d'}} \in S) \tag{8}
+\end{equation}
+in 
+\begin{equation}\label{lemagauss2}
+\mathbb{P}(X_{Q, \textbf{d}} \in A_{\textbf{d}, \textbf{d'}}^{\star}) \geq 1 - \delta. \tag{9}
+\end{equation}
+Potem je mehanizem $X_{Q, \textbf{d}}$ $(\epsilon, \delta)$ diferencirano zaseben.
+\end{lema}
 \proof 
-TODO
+Vzemimo poljubno množico $S \in \mathcal{A}_Q$. Sledi
+\begin{gather*}
+\mathbb{P}(X_{Q, \textbf{d}} \in S)  = \mathbb{P}(X_{Q, \textbf{d}} \in (S \bigcap A_{\textbf{d}, \textbf{d'}}^{\star}) )  + \mathbb{P}(X_{Q, \textbf{d}} \in ( S \bigcap A_{\textbf{d}, \textbf{d'}}^{\star C} ) ) \\ \leq \mathbb{P}(X_{Q, \textbf{d}} \in (S \bigcap A_{\textbf{d}, \textbf{d'}}^{\star}) )  + \delta \leq e^{\epsilon} \mathbb{P}(X_{Q, \textbf{d'}} \in (S \bigcap A_{\textbf{d}, \textbf{d'}}^{\star}) )  + \delta \leq \\ e^{\epsilon} \mathbb{P}(X_{Q, \textbf{d}} \in S )  + \delta.
+\end{gather*}
+Prva neenakost sledi iz \eqref{lemagauss2}, druga iz \eqref{lemagauss} in tretja iz monotonosti verjetnostne mere.
+\qed
+\newline
+\begin{opomba}
+Če je $X_{Q, \textbf{d}}$ absolutno zvezna slučajna spremenljivka, lahko govorimo o njeni gostoti (v Radon-Nikodymjevem smislu) z ozirom na Lebesgueovo mero $\lambda$. Označimo jo z $g_{\textbf{d}} = \frac{dF_{X_{Q, \textbf{d}}}}{d \lambda}$, kjer je $F_{X_{Q, \textbf{d}}}$ porazdelitveni zakon (v splošnem ni nujno da vzamemo Lebesguovo mero $\lambda$, zadostuje že, da vzamemo $\sigma$-končno mero, glede na katero je mera $dF_{X_{Q, \textbf{d}}}$ absolutno zvezna). V tem primeru je zadosten pogoj za \eqref{lemagauss} to, da je razmerje gostot omejeno na dani množici $A_{\textbf{d}, \textbf{d'}}^{\star}$:
+\begin{gather*}
+\forall a \in A_{\textbf{d}, \textbf{d'}}^{\star} : g_{\textbf{d}} (a) \leq e^{\epsilon} g_{\textbf{d'}} (a).
+\end{gather*}
+To sledi iz Radon-Nikodymjevega izreka in monotonosti integrala:
+\begin{gather*}
+\mathbb{P}(X_{Q, \textbf{d}} \in S) = \int_{S} g_{\textbf{d}}(a) d\lambda(a) \leq \int_{S} e^{\epsilon} g_{\textbf{d'}}(a) d\lambda(a) = e^{\epsilon} \mathbb{P}(X_{Q, \textbf{d'}} \in S).
+\end{gather*}
+\end{opomba}
+\proof[Dokaz izreka 6.2]
+Za večjo preglednost označimo v izreku definiran mehanizem $X_{Q, \textbf{d}}$ z $\tilde{Q}(\textbf{d})$ in  $\sqrt{2\log{\frac{2}{\delta}}}$ s $c(\delta)$. Ker je $z$ multivariatno normalno porazdeljena slučajna spremenljivka, je absolutno zvezna. Posledično enako velja za slučajno spremenljivko/odzivni mehanizem $\tilde{Q}(\textbf{d})$ in torej imamo gostoto. Sledi
+\begin{gather*}
+\frac{dF_{\tilde{Q}(\textbf{d})}(x)/d \lambda (x)}{dF_{\tilde{Q}(\textbf{d'})}(x)/d \lambda (x)} = \frac{g_{\textbf{d} (x)}}{g_{\textbf{d'} (x)}} \\ 
+=  exp \{ \frac{\epsilon^2}{2c(\delta)^2 \Delta^2} [ (x-Q(\textbf{d'}))^T M^{-1} (x-Q(\textbf{d'})) - (x-Q(\textbf{d}))^T M^{-1} (x-Q(\textbf{d}))]\ \}.
+\end{gather*}
+Razmerje gostot bo večje od $e^{\epsilon}$ le v primeru
+\begin{gather*}
+2x^T M^{-1}(Q(\textbf{d})-Q(\textbf{d'})) + Q(\textbf{d'})^T M^{-1} Q(\textbf{d'}) - Q(\textbf{d})^T M^{-1} Q(\textbf{d}) \geq 2 \frac{c(\delta)^2 \Delta^2}{\epsilon}.
+\end{gather*}
+Pokažimo sedaj, da je verjetnost (oz. mera) te množice manjša od $\delta$, iz česar bo nato po lemi 6.3 sledila $(\epsilon, \delta)$  diferencirana zasebnost $\tilde{Q}(\textbf{d})$ in izrek bo dokazan.
+\newline
+\newline
+Ker delamo z mehanizmom oblike $\tilde{Q}(\textbf{d})$ vzamemo $x = Q(\textbf{d}) + c(\delta) \frac{\Delta}{\epsilon} M^{-1/2}u, u \sim \mathcal{N}_d (0,I)$. Dodatno še množimo obe strani neenakosti z $\frac{\epsilon}{c(\delta)\Delta}$ in upoštevamo \eqref{mejagauss}, kar nam da
+\begin{gather*}
+u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}.
+\end{gather*}
+Opazimo, da na levi strani neenakosti dobimo normalno porazdeljeno slučajno spremenljivko s povprečjem 0 in varianco manjšo od $\Delta^2$ (sledi iz \eqref{mejagauss}). Označimo $y \sim \mathcal{N}(0,1)$. Sledi 
+\begin{gather*}
+\mathbb{P}(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \\
+\mathbb{P}(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \mathbb{P}(y \geq c(\delta) - \frac{1}{2 c(\delta)}) \leq \delta.
+\end{gather*}
+Prva neenakost...
 \qed
 \newline
 \newline
@@ -612,9 +674,9 @@ Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukci
 $$
 \|M^{-1/2}(x_1,...x_n)
 \begin{pmatrix}
-  f_{\textbf{d}}(x_1)  \\
+  f(x_1)  \\
   \vdots     \\
-  f_{\textbf{d}}(x_n)
+  f(x_n)
  \end{pmatrix}
 \|_2 \leq \|f\|_{\mathcal{H}}.
 $$
