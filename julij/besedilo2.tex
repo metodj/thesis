@@ -318,9 +318,6 @@ X_{Q,\textbf{d}}=Z_{Q(\textbf{d})}\tag{3}
 \end{equation} 
 \end{itemize}
 
-\begin{opomba}Na tem mestu se nam naravno postavi vprašanje, kako postopamo pri konstrukciji odzivnega mehanizma v primeru funkcijskih podatkov. Dodajmo le, da bi tak opis presegal obseg tega diplomskega dela, saj je teorija zadaj precej zahtevna in obsežna. Tu je poudarek bolj na opisu modela, ki omogoča enotno obravnavo različnih vrst podatkov, ne na sami konstrukciji odzivnih mehanizmov (čeprav bo v nadaljevanju podan primer za numerične podatke).
-\end{opomba}
-
 \subsection{Definicija diferencirane zasebnosti}
 Sedaj smo pripravili vse potrebno in lahko definiramo pojem diferencirane zasebnosti.
 
@@ -383,7 +380,7 @@ Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \ldots \
 \end{equation*}
 
 
-Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (dokaz tega na tem mestu izpustimo). Po uporabi zgornjega izreka sedaj sledi rezultat.
+Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (NAVEDI VIR). Po uporabi zgornjega izreka sedaj sledi rezultat.
 \newline
 \newline
 V tem zgledu smo problem preverjanja diferencirane zasebnosti za 'neskončno'-dimenzionalen mehanizem s pomočjo izreka prevedli na končno-dimenzionalen mehanizem. Rezultat je iz teoretičnega vidika zanimiv, nima pa pravega praktičnega pomena, saj je preverjanja pogoja na Borelovi $\sigma$-algebri $\mathbb{R}^k$ še vedno v praksi neizvedljiva naloga.
@@ -663,11 +660,42 @@ Opazimo, da na levi strani neenakosti dobimo normalno porazdeljeno slučajno spr
 \mathbb{P}(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \\
 \mathbb{P}(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \mathbb{P}(y \geq c(\delta) - \frac{1}{2 c(\delta)}) \leq \delta.
 \end{gather*}
-Prva neenakost...
+Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja TODO
 \qed
 \newline
 \newline
-Izkaže se, da se da pogoju $(6)$ enostavno zadostiti, če funkcije $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom, ki je enak kovariančni funkciji Gaussovega procesa. To pokažeta naslednji izrek in pomembna posledica.
+Dotaknimo se še $\sigma$-algebre v primeru, ko je prostor odgovorov na poizvedbe funkcijski, torej $E_Q = \{f | f : D \rightarrow \mathbb{R}\} = \mathbb{R}^D$ (pri čemer je $D=\mathbb{R}^m$). Definirajmo najprej ti. cilindrične množice funkcij 
+\begin{gather*}
+C_{S,B} = \{ f \in \mathbb{R}^D : (f(x_1), ..., f(x_n)) \in B \},
+\end{gather*}
+kjer je $S = (x_1,...,x_n)$ končen nabor točk iz $D$ in $B \in \mathcal{B}(\mathbb{R}^n)$. Vidimo, da gre za množice funkcij, ki če jih izvrednotimo v točkah iz $S$, zavzamejo vrednosti v Borelovi množici $B$. Za izbrani $S$ označimo $\mathcal{C}_S = \{ C_{S,B} : B \in \mathcal{B}(\mathbb{R}^n) \}$. Unija po vseh končnih množicah $S$
+\begin{gather*}
+\bigcup_{S : |S| < \infty} \mathcal{C}_S =: \mathcal{F}_0
+\end{gather*}
+je algebra (NAVEDI VIR), ni pa $\sigma$-algebra, saj nimamo zaprtosti za števne unije. Označimo še $\mathcal{F} = \sigma(\mathcal{F}_0)$. Podajmo sedaj izrek, ki pokaže, da je dovolj, da pogoj diferencirane zasebnosti preverimo le na algebri $\mathcal{F}_0$. 
+\begin{izrek}
+Naj bo $X_{Q,\textbf{d}}$ odzivni mehanizem z $E_Q = \mathbb{R}^D$ (ponovno $D = \mathbb{R}^m$) in $\mathcal{A}_Q = \mathcal{F}$. Če velja pogoj diferencirane zasebnosti 
+\begin{gather*}
+\mathbb{P}(X_{Q,\textbf{d}} \in A) \leq e^\epsilon \mathbb{P}(X_{Q,\textbf{d'}} \in A) + \delta
+\end{gather*}
+za vsaki $\textbf{d} \sim \textbf{d'}$ in za vsako $A \in \mathcal{F}_0$, potem je dan mehanizem $(\epsilon, \delta)$ diferencirano zaseben (torej velja pogoj za vsak $A \in \mathcal{F}$).
+\end{izrek}
+\proof 
+\qed
+\newline
+\begin{opomba}
+Izrek 6.5 bi lahko dokazali tudi drugače in sicer z uporabo izreka 4.1 o zadostnih testnih množicah. Velja namreč $\mathcal{F} = \sigma(\mathcal{F}_0).$
+\end{opomba}
+\begin{opomba}
+Če je $E_Q = C ([0,1])$ in za normo vzamemo $\|f\|_{\infty} = sup\{|f(x)| : x \in [0,1]\}$ se zgoraj omenjena teorija o cilindrični $\sigma$-algebri $\mathcal{F}$ navezuje na primer 4.2.
+\end{opomba}
+Sedaj smo pripravili vse potrebno in lahko dokažemo uvodni izrek v tem poglavju.
+\proof[Dokaz izreka 6.1]
+kkkk
+\qed
+\newline
+\newline
+Izkaže se, da se da pogoju $(6)$ iz izreka 6.1 enostavno zadostiti, če funkcije $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom, ki je enak kovariančni funkciji Gaussovega procesa. To pokažeta naslednji izrek in pomembna posledica.
 
 \begin{izrek}
 Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom $K$. Potem za vsako $x_1, ..., x_n$ končno zaporedje točk v $\mathbb{R}^m$ velja:
