@@ -195,7 +195,7 @@ Naj bo $D$ poljubna množica in $a , b \in D^n$. Potem je  \textit{Hammingova ra
 Opazimo, da je v 1-dimenzionalnem primeru  ta metrika ekvivalentna diskretni. Morda se bralcu zastavi vprašanje, kako deluje taka metrika na vektorju npr. funkcij. Če želimo enakost skoraj povsod, lahko za $D$ vzamemo npr. prostor $L^2$, torej primerjamo med seboj ekvivalenčne razrede funkcij.  Metrika na prvi pogled tudi ni najbolj uporabna, saj pove le, ali sta elementa danega metričnega prostora različna in ne 'koliko' sta različna. Zanimivo je, da je to v primeru diferencirane zasebnosti primerna stvar, saj tu med sabo primerjamo podatkovne baze in ne vnosov znotraj posamezne baze. 
 \newline
 \newline
-V zadnjem poglavju bomo za izpeljavo nekaterih rezultatov potrebovali še osnovno teorijo jedrnih funkcij v statistični analizi, Gaussovih procesov ter Hilbertovih prostorov z reprodukcijskim jedrom. 
+V zadnjem poglavju bomo za izpeljavo nekaterih rezultatov potrebovali še osnovno teorijo jedrnih funkcij v statistični analizi, Gaussovih procesov ter Hilbertovih prostorov z reprodukcijskim jedrom. Z namenom večje preglednosti navedemo še izrek Radon-Nikodym.
 \begin{definicija}
 Funkcija $K$ je jedrna funkcija (angl. kernel function), če je nenegativna, integrabilna ter slika v prostor realnih števil.
 \end{definicija}
@@ -238,7 +238,23 @@ Alternativno si lahko Hilbertov prostor $\mathcal{H}$ predstavljamo kot zaprtje 
 $$
 \langle f, g\rangle_{\mathcal{H}} = \sum_{i=1}^{n}\sum_{j=1}^{m}\theta_i \xi_j K(x_i,y_j).
 $$
+\end{opomba}
+\begin{definicija} 
+Naj bosta $\mu$ in $\nu$ meri definirani na istem merljivem prostoru $(X, \Sigma)$. Rečemo, da je $\mu$ absolutno zvezna glede ne $\nu$ (tudi da $\nu$ dominira $\mu$), če velja $\mu(A) = 0$ za vse merljive množice $A$, za katere velja $\nu(A)=0$. Označimo $\mu \ll \nu$.
+\end{definicija}
 
+\begin{izrek} [Radon-Nikodym]
+Naj bosta $\mu$ in $\nu$ meri definirani na istem merljivem prostoru $(X, \Sigma)$. Dodatno naj velja, da sta $\mu$ in $\nu$ $\sigma$-končni meri. Če velja  $\mu \ll \nu$, potem obstaja merlijva funkcija $f : X \rightarrow [0,\infty)$, da za vsako merljivo množico $A \subseteq X$ velja
+\begin{gather*}
+\mu(A) = \int_A f d \nu = \int_A \frac{d \mu}{d \nu} d \nu
+\end{gather*}
+Funkcija f se imenuje Radon-Nikodymjev odvod.
+\end{izrek}
+
+
+
+\begin{opomba}
+V verjetnosti je gostota slučajne spremenljivke $X$ s porazdelitvenim zakonom $F_X$ ravno Radon-Nikodymjev odvod inducirane mere $dF_X$ glede na neko osnovno mero (v primeru zveznih slučajnih spremenljivk ponavadi vzamemo Lebesgueovo mero $\lambda$, torej dobimo $f=\frac{dF_X}{d \lambda}$. Včasih rečemo, da je slučajna spremenljivka $X$ absolutno zvezna, če ima gostoto (v Radon-Nikodymjevem smislu).
 \end{opomba}
 
 \section{Splošni podatkovni model in definicija diferencirane zasebnosti}
@@ -660,7 +676,7 @@ Opazimo, da na levi strani neenakosti dobimo normalno porazdeljeno slučajno spr
 \mathbb{P}(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \\
 \mathbb{P}(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \mathbb{P}(y \geq c(\delta) - \frac{1}{2 c(\delta)}) \leq \delta.
 \end{gather*}
-Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja TODO
+Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja iz neenakosti za repe porazdelitve standarne normalne slučajne spremenljivke $\mathbb{P}(Y \geq y) \leq \frac{\exp(-y^2 / 2)}{y \sqrt{2\pi}}$ (NAVEDI VIR).
 \qed
 \newline
 \newline
@@ -680,7 +696,23 @@ Naj bo $X_{Q,\textbf{d}}$ odzivni mehanizem z $E_Q = \mathbb{R}^D$ (ponovno $D =
 \end{gather*}
 za vsaki $\textbf{d} \sim \textbf{d'}$ in za vsako $A \in \mathcal{F}_0$, potem je dan mehanizem $(\epsilon, \delta)$ diferencirano zaseben (torej velja pogoj za vsak $A \in \mathcal{F}$).
 \end{izrek}
-\proof 
+\proof Za števno množico $S$ cilindrična $\sigma$-algebra zavzame obliko
+\begin{gather*}
+C_{S,B} = \{ f \in \mathbb{R}^D : f(x_i) \in B_i, i = 1,2,... \} = \bigcap_{i=1}^{\infty}C_{\{x_i\},B_i},
+\end{gather*}
+kjer so $B_i$ Borelove množice na $\mathbb{R}$. Definirajmo $C_{S,B,n} = \bigcap_{i=1}^{n}C_{\{x_i\},B_i}$ in $C_{S,B} = \bigcap_{n=1}^{\infty}C_{S,B,n}$. Ker je zaporedje množic $C_{S,B,n}$ padajoče iz zveznosti verjetnoste mere sledi
+\begin{gather*}
+\mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B}) = \mathbb{P}(X_{Q,\textbf{d}} \in  \bigcap_{n=1}^{\infty}C_{S,B,n}) = \lim_{n \rightarrow \infty} \mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B,n}).
+\end{gather*}
+Posledično za vsaki sosednji bazi $\textbf{d} \sim \textbf{d'}$ in za vsak $\alpha > 0$ obstaja $n_0$, tako da za vsak $n \geq n_0$ velja
+\begin{gather*}
+|\mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B}) - \mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B,n})| \leq  \alpha, \\ |\mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B}) - \mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B,n})| \leq \alpha.
+\end{gather*}
+Nadalje dobimo
+\begin{gather*}
+\mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B})  \leq \mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B, n_0}) + \alpha \\ \leq e^{\epsilon} \mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B,n_0})  + \alpha + \delta \\ \leq e^{\epsilon} \mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B})  + \alpha(1 + e^{\epsilon}) + \delta \\ \leq e^{\epsilon} \mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B})  + b \alpha + \delta,
+\end{gather*}
+pri čemer smo privzeli $(1+e^{\epsilon}) < b$. V kontekstu diferencirane zasebnosti je $\epsilon$ navadno majhen (med 0 in 1), zato ta privzetek ni omejujoč. Ker zgornje velja za vsak $\alpha > 0$, dobimo $\mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B}) \leq e^{\epsilon} \mathbb{P}(X_{Q,\textbf{d'}} \in C_{S,B}) + \delta$ in izrek sledi.
 \qed
 \newline
 \begin{opomba}
@@ -691,7 +723,15 @@ Izrek 6.5 bi lahko dokazali tudi drugače in sicer z uporabo izreka 4.1 o zadost
 \end{opomba}
 Sedaj smo pripravili vse potrebno in lahko dokažemo uvodni izrek v tem poglavju.
 \proof[Dokaz izreka 6.1]
-kkkk
+Dokazali bomo, da je podan mehanizem $X_{Q,\textbf{d}} = \tilde{f}_{\textbf{d}}$ diferencirano zaseben glede na $\mathcal{A}_Q = \mathcal{F}$, torej cilindrično $\sigma$-algebro. Za končen nabor točk $(x_1,...,x_n) \in D^n$ je vektor $(G(x_1),...,G(x_2))$ porazdeljen multivariatno normalno s povprečjem 0 in kovariančno matriko enako M (lastnost Gaussovih procesov). Torej za končno dimenzionalen vektor, ki ga dobimo, ko mehanizem oz. funkcijo $\tilde{f}_{\textbf{d}}$ izvrednotimo v točkah $(x_1,...,x_n) $, nam diferencirano zasebnost zagotavlja izrek 6.2, saj pogoj \eqref{meja} implira omejitev občutljivosti poizvedbe \eqref{mejagauss}. Torej za vsak $n < \infty$, $(x_1,...,x_n) \in D^n$, $B \in \mathcal{B}(\mathbb{R}^n)$ velja
+\begin{gather*}
+\mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B) \leq e^{\epsilon}\mathbb{P}((\tilde{f}_{\textbf{d'}}(x_1),...,\tilde{f}_{\textbf{d'}}(x_n)) \in B) + \delta,
+\end{gather*}
+za vsaki $\textbf{d} \sim \textbf{d'}$. Dalje opazimo, da lahko vsako množico $A \in \mathcal{F}_0$ zapišemo kot $A = C_{X_n,B}$ za nek končnen $n$, $(x_1,...,x_n) \in D^n$ in Borelovo množico $B$. Potem 
+\begin{gather*}
+\mathbb{P}(X_{Q,\textbf{d}} \in A) = \mathbb{P}(\tilde{f}_{\textbf{d}}\in A)= \mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B).
+\end{gather*}
+S tem smo pokazali, da pogoj velja za vse $A \in \mathcal{F}_0$. Izrek 6.5 razširi diferencirano zasebnost na celotno $\mathcal{F}$.
 \qed
 \newline
 \newline
