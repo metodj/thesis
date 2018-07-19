@@ -113,10 +113,10 @@ Prevod zgornjega povzetka v angleščino.
 
 % tu se zacne tekst seminarja
 \section{Uvod}
-Dandanes živimo v dobi podatkov. Podjetja ter ustanove zbirajo podatke o svojih uporabnikih in jih nato uporabijo za izboljšanje algoritmov oz. tehnologije. Posledično postaja vse bolj pomembno  vprašanje  varovanja podatkov. Kako omogočiti strokovnjakom in inženirjem dostop do velikih podatkovnih baz, hkrati pa ohraniti zasebnost posameznikov? Kako lahko podjetja uporabijo vse podatke, ki jih zbirajo o svojih uporabnikih, ne da bi s tem ogrozili njihove privatnosti? Obstaja veliko različnih pristopov (najbolj pogoste so t. i. 'metode anonimizacije'), vendar se je izkazalo, da je veliko od teh neprimernih in so izpostavljeni raznim napadom. Še posebej velja izpostaviti t. i. 'background/auxiliary' napad, pri katerem napadalec uporabi dodatno podatkovno bazo za razkritje identite posameznikov v prvotni bazi (Netflix, American health records).  V ta namen se je v zadnjih 15 letih pojavil koncept diferencirane zasebnosti, ki postavlja vprašanje varovanja podatkov v okvir matematične teorije. Vnaša 'naključnost' v podatkovno bazo; odgovori na poizvedbe tako niso več deterministični, ampak so probabilstični. Osnovna ideja je, da se odgovor na poizvedbo ne bo spremenil, če podatki o enem konkretnem posamezniku so ali niso v bazi. Na ta način omogočimo dostop do globalnih lastnosti celotne populacije, zaščitimo pa konkretne informacije o posameznikih. Mnogi vidijo diferencirano zasebnost kot odlično rešitev, uporabljajo jo tudi podjetja kot so Apple in Uber. Na drugi strani pa obstaja tudi precej kritik; ena glavnih izmed njih je, da koncept diferencirane zasebnosti sicer ponuja lepe matematične in teoretične temelje, ni pa zares uporaben v praksi. 
+Dandanes živimo v dobi podatkov. Podjetja ter ustanove zbirajo podatke o svojih uporabnikih in jih nato uporabijo za izboljšanje algoritmov oz. tehnologije. Posledično postaja vse bolj pomembno  vprašanje  varovanja podatkov. Kako omogočiti strokovnjakom in inženirjem dostop do velikih podatkovnih baz, hkrati pa ohraniti zasebnost posameznikov? Kako lahko podjetja uporabijo vse podatke, ki jih zbirajo o svojih uporabnikih, ne da bi s tem ogrozili njihove zasebnosti? Obstaja veliko različnih pristopov (najbolj pogoste so t. i. 'metode anonimizacije'), vendar se je izkazalo, da je veliko od teh neprimernih in so izpostavljeni raznim napadom. Še posebej velja izpostaviti t. i. 'background/auxiliary' napad, pri katerem napadalec uporabi dodatno podatkovno bazo za razkritje identite posameznikov v prvotni bazi (Netflix, American health records).  V ta namen se je v zadnjih 15 letih pojavil koncept diferencirane zasebnosti, ki postavlja vprašanje varovanja podatkov v okvir matematične teorije. Vnaša 'naključnost' v podatkovno bazo; odgovori na poizvedbe tako niso več deterministični, ampak so probabilistični. Osnovna ideja je, da se odgovor na poizvedbo ne bo spremenil, če podatki o enem konkretnem posamezniku so ali niso v bazi. Na ta način omogočimo dostop do globalnih lastnosti celotne populacije, zaščitimo pa konkretne informacije o posameznikih. Mnogi vidijo diferencirano zasebnost kot odlično rešitev, uporabljajo jo tudi podjetja kot so Apple in Uber. Na drugi strani pa obstaja tudi precej kritik; ena glavnih izmed njih je, da koncept diferencirane zasebnosti sicer ponuja lepe matematične in teoretične temelje, ni pa zares uporaben v praksi. 
 \newline
 \newline
-Pomembno je razumevanje, da se diferencirana zasebnost ne ukvarja z zaščito podatkov samih. Npr. ne ponuja odgovora na problem, kako podatke varno shraniti na nekem serverju (da jih zaščitimo pred hekerskemi vdori ipd.). Ukvarja se s tem, kako ohraniti zasebnost pri procesu objavljanja (angl. data publishing) in pridobivanja podatkov (angl. data mining). Za lažje razumevanje pred nadaljevanjem navedimo še dva primera. Prvi se je pojavil leta 2000, ko so raziskovalci ugotovili, da ameriške bolnišnice niso zaščitile javno dostopnih podatkov na primeren način. Kar so naredili (bolnišnice) je, da so uporabili metodo anonimizacije, to pomeni, da so iz podatkov odstranili vse eksplicitne indikatorje (npr. ime in EMŠO). Podatki so tako vsebovali le npr. spol pacienta, rojstni datum, poštno številko (ZIP) in zdravstveno stanje (poenostavljen primer). Izkazalo se je, da lahko te podatke združimo (angl. cross-reference) s podatki iz volilnega sistema, in na ta način razkrijemo identiteto pacientov. En možen način kako se lahko reši tak problem bi bil, da bolnišnice sploh ne bi javno objavile baze podatkov, ampak bi dostop do baze raziskovalcem omogočile le prek dovoljenih poizvedb. Npr. znanstveniki bi lahko 'vprašali' koliko odstotkov oseb ženskega spola ima to in to bolezen, ne bi pa smeli povprašati po diagnozi konkretnega posameznika. Pri takem pristopu se naravno pojavi vprašanje, točno katere poizvedbe dovolimo. Po eni strani izbire nočemo preveč omejiti (znanstvenikom želimo omogočiti kvalitetne podatke), po drugi strani ne želimo izpostaviti nobenih konkretnih informacij o posamezniku. Hkrati se tudi izkaže, da lahko v primeru determinističnih poizvedb napadalec samo na podlagi odgovorov na poizvedbe sklepa o lastnostnih posameznika. Ponazorimo to s preprostim zgledom na podatkih iz tabele 1. Recimo, da bi napadalec rad izvedel Edijevo diagnozo. Privzemimo, da ima na voljo poizvedbo $Q_i$, ki kot odgovor vrne vsoto prvih i vrstic. Dodatno tudi ve, da se Edi nahaja na 5. mestu v tabeli. Tako bi lahko izvedel poizvedbi $Q_4$ in $Q_5$ in iz razlike obeh sklepal, da Edi ima diabetes.  Odgovor na to problematiko ponuja diferencirana zasebnost, pri kateri poizvedbe postanje probabilistične in napadalec kljub dodatnim informacijam ne more priti do gotovih sklepov o Edijevi diagnozi.
+Pomembno je razumevanje, da se diferencirana zasebnost ne ukvarja z zaščito podatkov samih. Npr. ne ponuja odgovora na problem, kako podatke varno shraniti na nekem serverju (da jih zaščitimo pred hekerskemi vdori ipd.). Ukvarja se s tem, kako ohraniti zasebnost pri procesu objavljanja (angl. data publishing) in pridobivanja podatkov (angl. data mining). Za lažje razumevanje pred nadaljevanjem navedimo še dva primera. Prvi se je pojavil leta 2000, ko so raziskovalci ugotovili, da ameriške bolnišnice niso zaščitile javno dostopnih podatkov na primeren način. Kar so naredili (bolnišnice) je, da so uporabili metodo anonimizacije, to pomeni, da so iz podatkov odstranili vse eksplicitne indikatorje (npr. ime in EMŠO). Podatki so tako vsebovali le npr. spol pacienta, rojstni datum, poštno številko (ZIP) in zdravstveno stanje (poenostavljen primer). Izkazalo se je, da lahko te podatke združimo (angl. cross-reference) s podatki iz volilnega sistema, in na ta način razkrijemo identiteto pacientov. En možen način kako se lahko reši tak problem bi bil, da bolnišnice sploh ne bi javno objavile baze podatkov, ampak bi dostop do baze raziskovalcem omogočile le prek dovoljenih poizvedb. Npr. znanstveniki bi lahko 'vprašali' koliko odstotkov oseb ženskega spola ima to in to bolezen, ne bi pa smeli povprašati po diagnozi konkretnega posameznika. Pri takem pristopu se naravno pojavi vprašanje, točno katere poizvedbe dovolimo. Po eni strani izbire nočemo preveč omejiti (znanstvenikom želimo omogočiti kvalitetne podatke), po drugi strani ne želimo izpostaviti nobenih konkretnih informacij o posamezniku. Hkrati se tudi izkaže, da lahko v primeru determinističnih poizvedb napadalec samo na podlagi odgovorov na poizvedbe sklepa o lastnostnih posameznika. Ponazorimo to s preprostim zgledom na podatkih iz tabele 1. Recimo, da bi napadalec rad izvedel Edijevo diagnozo. Privzemimo, da ima na voljo poizvedbo $Q_i$, ki kot odgovor vrne vsoto prvih i vrstic. Dodatno tudi ve, da se Edi nahaja na 5. mestu v tabeli. Tako bi lahko izvedel poizvedbi $Q_4$ in $Q_5$ in iz razlike obeh sklepal, da Edi ima diabetes.  Odgovor na to problematiko ponuja diferencirana zasebnost, pri kateri poizvedbe postanejo probabilistične in napadalec kljub dodatnim informacijam ne more priti do gotovih sklepov o Edijevi diagnozi.
 \begin{table}
 \begin{center}
  \begin{tabular}{| c | c |} 
@@ -139,14 +139,14 @@ Pomembno je razumevanje, da se diferencirana zasebnost ne ukvarja z zaščito po
 \end{table}
 \newline
 \newline
-Drugi primer, ki je pogost dandanes, pa se pojavi pri procesu rudarjenja podatkov (angl. data mining). Podjetja za izboljšanje svoje programske opreme, beležijo skoraj vsako našo potezo na pametnem telefonu ali računalniku. Rezultat so potem npr. sistemi za priporočanje in 'auto-correct' sistem pri tipkanju; torej algoritmi, ki za svoje delovanje potrebujejo velike količine podatkov (da se iz njih "učijo"). Podjetja zajemanje podatkov opravičujejo z izboljšanjem tehnologije. Uporabnikom je tako rečeno, da morajo žrtvovati del zasebnosti za izboljšanje tehnologije, ki jo uporabljajo. Diferencirana zasebnost ponuja možnost, da temu ni tako (v primeru, da se izkaže, da je 'skalabilna'). Tak pristop npr. že uporablja Apple, ki nekatere podatke še preden jih iz naprave (npr. iz iphona) pošlje na centralni server, 'zamaskira' s pomočjo algoritmom, ki slonijo na diferencirani zasebnosti (to so uporabili pri sistemu za predloge 'emojiev' in sistemu za pomoč pri tipkanju). 
+Drugi primer, ki je pogost dandanes, pa se pojavi pri procesu rudarjenja podatkov (angl. data mining). Podjetja za izboljšanje svoje programske opreme, beležijo skoraj vsako našo potezo na pametnem telefonu ali računalniku. Rezultat so potem npr. sistemi za priporočanje in 'auto-correct' sistem pri tipkanju; torej algoritmi, ki za svoje delovanje potrebujejo velike količine podatkov (da se iz njih "učijo"). Podjetja zajemanje podatkov opravičujejo z izboljšanjem tehnologije. Uporabnikom je tako rečeno, da morajo žrtvovati del zasebnosti za izboljšanje tehnologije, ki jo uporabljajo. Diferencirana zasebnost ponuja možnost, da temu ni tako (v primeru, da se izkaže, da je 'skalabilna'). Tak pristop npr. že uporablja Apple, ki nekatere podatke še preden jih iz naprave (npr. iz iphona) pošlje na centralni server, 'zamaskira' s pomočjo algoritmov, ki slonijo na diferencirani zasebnosti (to so uporabili pri sistemu za predloge 'emojiev' in sistemu za pomoč pri tipkanju). 
 \newline
 \newline
 V prvem delu diplomske naloge se bom posvetil teoretičnemu ozadju. V praksi imamo opravka z različnimi vrstami podatkov, v literaturi pa se diferencirana zasebnost (kot matematični koncept) pogosto definira le za posamezno vrsto podatkov (npr. številske). Predstavil bom model, ki omogoča, da se koncept diferencirane zasebnosti definira v splošnem, tj. za vse vrste podatkov hkrati. V nadaljevanju bo podanih tudi nekaj osnovnih rezultatov, ki izhajajo iz tega modela. V drugem delu bom...
 
 \section{Matematična priprava}
 
-Naj bo $\Omega$ neprazna množica s pripadajočo algebro $\mathcal{S}$. Označimo s $\sigma(\mathcal{S})$ najmanjšo $\sigma$-algebro, ki vsebuje $\mathcal{S}$ (rečemo da $S$ generira $\sigma(\mathcal{S})$).
+Naj bo $\Omega$ neprazna množica s pripadajočo algebro $\mathcal{S}$. Označimo s $\sigma(\mathcal{S})$ najmanjšo $\sigma$-algebro, ki vsebuje $\mathcal{S}$ (rečemo da $\mathcal{S}$ generira $\sigma(\mathcal{S})$).
 \begin{definicija}
 Monoton razred $\mathcal{M}$ je družina podmnožic $\Omega$ (torej $\mathcal{M} \subset \mathcal{P(\mathcal{M})}$) z naslednjima lastnostima:
 \begin{itemize}
@@ -163,11 +163,11 @@ Iz definicije takoj sledi, da je vsaka $\sigma$-algebra monoton razred (uporabim
 \newline
 Pokažimo najprej zaprtost za komplemente. Obravnavajmo družino množic $\mathcal{G} = \{ A\hspace{0.1cm}|\hspace{0.1cm} A^c \in m(\mathcal{S})\}$.  Ker je $m(\mathcal{S})$ monoton razred, sledi da je tudi $\mathcal{G}$. Dodatno velja še $\mathcal{S} \subseteq \mathcal{G}$ (sledi iz $\mathcal{S} \subseteq m(\mathcal{S})$ in dejstva, da je $\mathcal{S}$ algebra, torej zaprta za komplement). To nam zagotovi $m(\mathcal{S}) \subseteq \mathcal{G}$, s čimer smo pokazali, da je $m(\mathcal{S})$ zaprt za komplemente.
 \newline
-Pokažimo še zaprtost za končne unije. Definirajmo družino množic $\mathcal{H}_1 = \{ A\hspace{0.1cm}|\hspace{0.1cm} A \cup B \in m(\mathcal{S}), \forall B \in \mathcal{S}\}$. Potem je $\mathcal{H}_1$ monoton razred in $\mathcal{S} \subseteq \mathcal{H}_1$. Iz minimalnosti sledi $m(\mathcal{S}) \subseteq \mathcal{H}_1$. Definirajmo še  $\mathcal{H}_2 = \{ B\hspace{0.1cm}|\hspace{0.1cm} A \cup B \in m(\mathcal{S}), \forall A \in m(\mathcal{S})\}$. Spet velja, da je $\mathcal{H}_2$ monoton razred. Ker je $m(\mathcal{S}) \subseteq \mathcal{H}_1$, sledi da $A \in m(\mathcal{S})$ in $B \in S$ skupaj implicirata $A \cup B \in m(\mathcal{S})$. Povedano drugače, $B \in S$ implicira $B \in \mathcal{H}_2$. Torej je $S \subseteq \mathcal{H}_2$  in iz minimalnosti dobimo $m(\mathcal{S}) \subseteq \mathcal{H}_2$, iz česar sledi, da $A,B \in m(\mathcal{S})$ implicira $A \cup B \in m(\mathcal{S})$. Torej je $m(\mathcal{S})$ res algebra in izrek je dokazan.
+Pokažimo še zaprtost za končne unije. Definirajmo družino množic $\mathcal{H}_1 = \{ A\hspace{0.1cm}|\hspace{0.1cm} A \cup B \in m(\mathcal{S}), \forall B \in \mathcal{S}\}$. Potem je $\mathcal{H}_1$ monoton razred in $\mathcal{S} \subseteq \mathcal{H}_1$. Iz minimalnosti sledi $m(\mathcal{S}) \subseteq \mathcal{H}_1$. Definirajmo še  $\mathcal{H}_2 = \{ B\hspace{0.1cm}|\hspace{0.1cm} A \cup B \in m(\mathcal{S}), \forall A \in m(\mathcal{S})\}$. Spet velja, da je $\mathcal{H}_2$ monoton razred. Ker je $m(\mathcal{S}) \subseteq \mathcal{H}_1$, sledi da $A \in m(\mathcal{S})$ in $B \in \mathcal{S}$ skupaj implicirata $A \cup B \in m(\mathcal{S})$. Povedano drugače, $B \in S$ implicira $B \in \mathcal{H}_2$. Torej je $\mathcal{S} \subseteq \mathcal{H}_2$  in iz minimalnosti dobimo $m(\mathcal{S}) \subseteq \mathcal{H}_2$, iz česar sledi, da $A,B \in m(\mathcal{S})$ implicira $A \cup B \in m(\mathcal{S})$. Torej je $m(\mathcal{S})$ res algebra in izrek je dokazan.
 \qed
 \newline
 \newline
-Na kratko ponovimo še nekaj osnovnih pojmov pri metričnih prostorih.
+Na kratko ponovimo še nekaj osnovnih pojmov o metričnih prostorih.
 \begin{itemize}
 \item Metrični prostor $(D, \rho)$ je \textit{končen} (angl. finite), če ima končno število elementov/točk (torej $|D| < \infty$). Primer je množica hobijev v primeru 3.1.
 \item Metrični prostor $(D, \rho)$ je \textit{končno-dimenzionalen} (angl. finite-dimensional), če ima končno bazo. Primer je $\mathbb{R}^n$.
@@ -177,7 +177,7 @@ Na kratko ponovimo še nekaj osnovnih pojmov pri metričnih prostorih.
 Metrični prostor $(D, \rho)$ je \textit{kompakten}, če ima vsako zaporedje v $D$ konvergetno podzaporedje z limito prav tako v $D$ (povedano drugače, vsako zaporedje v $D$ ima vsaj eno stekališče vsebovano v $D$).
 \end{definicija}
 \begin{opomba}
-Zgoraj podana definicija ne opisuje najbolj splošnega pojma kompaktnosti, ampak gre za ubistvu t. i. zaporedno kompaktnost (angl. sequentially compactness), kar zadostuje za potrebe tega diplomskega dela. Oba pojma kompaktnosti sta namreč ekvivalentna v primeru metričnih prostorov. Se pa pojma razlikujeta, če delamo s topološkimi prostori (kompaktnost tu definiramo drugače, prek pokritij in podpokritij).
+Zgoraj podana definicija ne opisuje najbolj splošnega pojma kompaktnosti, ampak gre za  t. i. kompaktnost glede na zaporedja (angl. sequentially compactness), kar zadostuje za potrebe tega diplomskega dela. Oba pojma kompaktnosti sta namreč ekvivalentna v primeru metričnih prostorov. Se pa pojma razlikujeta, če delamo s topološkimi prostori (kompaktnost tu definiramo drugače, prek pokritij in podpokritij).
 \end{opomba}
 V primeru ko je $D \subset \mathbb{R}^n$ (podmnožica Evklidskega prostora), dodatno vemo, da je D kompakten natanko tedaj, ko je zaprt in omejen.
 \begin{lema}
@@ -192,7 +192,7 @@ Definirajmo še metriko $\rho_H$, t.i. \textit{Hammingovo razdaljo}, ki jo bomo 
 \begin{definicija}
 Naj bo $D$ poljubna množica in $a , b \in D^n$. Potem je  \textit{Hammingova razdalja} $\rho_H(a,b)$ enaka številu mest, na katerih se vektorja $a$ in $b$ razlikujeta.
 \end{definicija}
-Opazimo, da je v 1-dimenzionalnem primeru  ta metrika ekvivalentna diskretni. Morda se bralcu zastavi vprašanje, kako deluje taka metrika na vektorju npr. funkcij. Če želimo enakost skoraj povsod, lahko za $D$ vzamemo npr. prostor $L^2$, torej primerjamo med seboj ekvivalenčne razrede funkcij.  Metrika na prvi pogled tudi ni najbolj uporabna, saj pove le, ali sta elementa danega metričnega prostora različna in ne 'koliko' sta različna. Zanimivo je, da je to v primeru diferencirane zasebnosti primerna stvar, saj tu med sabo primerjamo podatkovne baze in ne vnosov znotraj posamezne baze. 
+Opazimo, da je v 1-dimenzionalnem primeru  ta metrika ekvivalentna diskretni. Morda se bralcu zastavi vprašanje, kako deluje taka metrika na vektorju npr. funkcij. Če želimo enakost skoraj povsod, lahko za $D$ vzamemo npr. prostor $L^2$, torej primerjamo med seboj ekvivalenčne razrede funkcij.  Hammingova metrika na prvi pogled tudi ni najbolj uporabna, saj pove le, ali sta elementa danega metričnega prostora različna in ne 'koliko' sta različna. Zanimivo je, da je to v primeru diferencirane zasebnosti primerna stvar, saj tu med sabo primerjamo podatkovne baze in ne vnosov znotraj posamezne baze. 
 \newline
 \newline
 V zadnjem poglavju bomo za izpeljavo nekaterih rezultatov potrebovali še osnovno teorijo jedrnih funkcij v statistični analizi, Gaussovih procesov ter Hilbertovih prostorov z reprodukcijskim jedrom. Z namenom večje preglednosti navedemo še izrek Radon-Nikodym.
@@ -263,33 +263,31 @@ V verjetnosti je gostota slučajne spremenljivke $X$ s porazdelitvenim zakonom $
 Naj bo $(U, \rho)$ poljuben metrični prostor in $D \subseteq U$. Posamezni vnosi v opazovani podatkovni bazi so elementi množice $D$. Celotno bazo prikažemo z vektorjem \textbf{d} $= (d_{1}, ..., d_{n}) \in D^n$, kjer $d_{i} \in D$ predstavlja i-ti vnos oz. vrstico. 
 \newline
 \newline
-Množico $U$ opremimo z Borelovo $\sigma$ -algebro, oznažimo jo z $\mathcal{A}_{U}$, ki je najmanjša $\sigma$-algebra, ki vsebuje vse odprte množice v $U$. Tako $\sigma$-algebro generiramo preko metrične topologije. Za lažjo predstavo podajmo grob opis tega postopka. S pomočjo metrike $\rho$ na $U$ lahko definiramo odprte krogle  $B_{r}(x) = \{y \in U\hspace{0.1cm}|\hspace{0.1cm}\rho(x,y) < r\}$. To zadošča, da lahko definiramo bazo topologije, ki je oblike $\mathcal{B} = \{B_{r}(x)\hspace{0.1cm}|\hspace{0.1cm}x \in U, r>0\}$ (povedano drugače, vsak metrični prostor je hkrati topološki prostor oz. metrika nam porodi topologijo). Ko enkrat imamo topologijo  (lahko si jo predstavljamo kot podmnožico potenčne množice $U$, ki vsebuje vse odprte množice v $U$), lahko le-to uporabimo za generiranje Borelove $\sigma$-algebre.
+Množico $U$ opremimo z Borelovo $\sigma$-algebro (označimo jo z $\mathcal{A}_{U}$), ki je najmanjša $\sigma$-algebra, ki vsebuje vse odprte množice v $U$. Tako $\sigma$-algebro generiramo preko metrične topologije. Za lažjo predstavo podajmo grob opis tega postopka. S pomočjo metrike $\rho$ na $U$ lahko definiramo odprte krogle  $B_{r}(x) = \{y \in U\hspace{0.1cm}|\hspace{0.1cm}\rho(x,y) < r\}$. To zadošča, da lahko definiramo bazo topologije, ki je oblike $\mathcal{B} = \{B_{r}(x)\hspace{0.1cm}|\hspace{0.1cm}x \in U, r>0\}$ (povedano drugače, vsak metrični prostor je hkrati topološki prostor oz. metrika nam porodi topologijo). Ko enkrat imamo topologijo  (gre za podmnožico potenčne množice $U$, ki vsebuje vse odprte množice v $U$), lahko le-to uporabimo za generiranje Borelove $\sigma$-algebre.
 \newline
 \newline
-$\mathcal{A}_{U}$ nam potem naravno porodi $\mathcal{A}_{D} := \{A \in \mathcal{A}_{U} | A \subset D \}$ na $D$. Predpostavimo tudi, da je $U^n$ (in s tem $D^n$) opremljen s produktno $\sigma$-algebro, ki je generirana prek $\{A_{1} \times ... \times A_{n} | A_{i} \in \mathcal{A}_{U}\}$ in jo označimo z $\mathcal{A}_{U^n}$. 
+$\mathcal{A}_{U}$ nam potem naravno porodi $\mathcal{A}_{D} := \{A \in \mathcal{A}_{U} | A \subset D \}$ na $D$. Predpostavimo tudi, da je $U^n$ (in s tem $D^n$) opremljen s produktno $\sigma$-algebro, ki je najmanjša $\sigma$-algebra, ki vsebuje $\{A_{1} \times ... \times A_{n} | A_{i} \in \mathcal{A}_{U}\}$ in jo označimo z $\mathcal{A}_{U^n}$. 
 \newline
 \newline
 Tak model podatkovne baze je zelo splošen ($U$ je namreč poljubni metrični prostor) in nam omogoča enotno obravnavo različnih vrst podatkov: numeričnih, kategoričnih in funkcijskih.
 \begin{primer}  
-Recimo, da imamo na voljo podatkovno bazo, v kateri so zabeleženi hobiji posameznikov. Množico vseh hobijev lahko označimo s $\mathcal{H}=\{nogomet, kitara,...\}$. Predpostavka o končnosti $\mathcal{H}$ je tu smiselna in neomejujoča. Za $D$ potem lahko vzamemo $2^\mathcal{H}$. Pri izbiri metriki imamo precej proste roke, vzemimo npr. diskretno metriko  $\rho(A,B)=1$ če $A \neq B$ in 0 drugače. Borelova $\sigma$-algebra $\mathcal{A}_{D}$ je tu kar enaka $D$. Opazimo tudi, da ni nujno, da imajo vsi elementi v $D^n$ (torej vnosi v naši podatkovni bazi) enako število elementov, kar odraža dejstvo, da nimamo vsi ljudje enakega števila hobijev.
+Recimo, da imamo na voljo podatkovno bazo, v kateri so zabeleženi hobiji posameznikov. Množico vseh hobijev lahko označimo s $\mathcal{H}=\{nogomet, kitara,...\}$. Predpostavka o končnosti $\mathcal{H}$ je tu smiselna in neomejujoča. Za $D$ potem lahko vzamemo $2^\mathcal{H}$. Pri izbiri metriki imamo precej proste roke, vzemimo npr. diskretno metriko  $\rho(A,B)=1$ če $A \neq B$ in 0 drugače. Borelova $\sigma$-algebra $\mathcal{A}_{D}$ je tu enaka $2^{2^{\mathcal{H}}}$. Opazimo tudi, da ni nujno, da imajo vsi elementi v $D^n$ (torej vnosi v naši podatkovni bazi) enako število elementov, kar odraža dejstvo, da nimamo vsi ljudje enakega števila hobijev.
 \end{primer}
 
-\begin{primer} Kot primer za numerične podatke obravnavajmo barvne slike, torej $D = \mathbb{R}^{n\times m \times 3}$ (RGB slike dimenzije $n \times m)$. Kot metrika se tu naravno ponuja $\rho(A,B)=\sum_{i,j,k}  |a_{i,j,k}-b_{i,j,k}|$. Za Borelovo $\sigma$-algebro $\mathcal{A}_{D}$  vzamemo produtkno $\sigma$-algebro, torej  $\mathcal{A}_{D}=\{A_{1} \times A_{2} \times A_{3} | A_{1} \in \mathcal{B}(\mathbb{R}^n),  A_{2} \in \mathcal{B}(\mathbb{R}^m),  A_{3} \in \mathcal{B}(\mathbb{R}^3) \}$. Ta koncept lahko razširimo na 3-D barvne slike in tudi na video posnetke.
+\begin{primer} Kot primer za numerične podatke obravnavajmo barvne slike, torej $D = \mathbb{R}^{n\times m \times 3}$ (RGB slike dimenzije $n \times m)$. Kot metrika se tu naravno ponuja $\rho(A,B)=\sum_{i,j,k}  |a_{i,j,k}-b_{i,j,k}|$. Za Borelovo $\sigma$-algebro $\mathcal{A}_{D}$  vzamemo produktno $\sigma$-algebro, torej  $\mathcal{A}_{D}=\sigma(\{A_{1} \times A_{2} \times A_{3} | A_{1} \in \mathcal{B}(\mathbb{R}^n),  A_{2} \in \mathcal{B}(\mathbb{R}^m),  A_{3} \in \mathcal{B}(\mathbb{R}^3) \})$. Ta koncept lahko razširimo na 3-D barvne slike in tudi na video posnetke.
 \end{primer}
 
 \begin{primer} Primer mešanih podatkov nam ponuja enostavna baza zdravstvenih podatkov. Recimo, da so elementi naše baze oblike \textit{(kvazi-identifikator pacienta, starost, spol, bolezen, bolezen 1, bolezen 2, ...)}. $D$ potem lahko izberemo takole 
 
-\begin{equation*}
-\begin{split}
+\begin{gather*}
 D=\{1,2,...,st. pacientov\} \times \{1,...,120\} \times \{M,F\} \times \\
 \{Ljubljana, ... , Spodnji Duplek\} \times \{0,1\}^n.
-\end{split}
-\end{equation*}
-Kar pogosto naredimo v praksi je, da najprej kategorične podatke spremenimo v numerične (npr. z uporabo one-hot encodinga). Metrika na $D$ in pripradajoča Borelova algebra potem izgledata podobno kot v prejšnjem primeru.
+\end{gather*}
+Kar pogosto naredimo v praksi je, da najprej kategorične podatke spremenimo v numerične (npr. z uporabo one-hot encodinga). Metrika na $D$ in pripadajoča Borelova algebra potem izgledata podobno kot v prejšnjem primeru.
 \end{primer}
 
 \begin{primer}
-Navedimo še primer, ko imamo opravka s t. i. funkcijskimi podatki. Te se pojavijo npr. pri merjenju porabe elektrike v gospodinjstvih, kar lahko predstavimo kot graf porabe v odvisnosti od časa. Če meritev opravimo le ob določenih časovnih točkah, lahko za $D$ vzamemo npr. prostor zaporedij (angl. sequence space) $l_{\infty}$ ali $l_{2}$. Drugače lahko vzamemo za $D$ npr. $C([0,T])$ ali $L_{2}([0,T])$. Tu T označuje dolžino opazovanega časovnega obdobja. Dodajmo še, da so prostori $l_p$ le posebni primeri prostorov $L_p$, ko delamo na merljivem prostoru $(\mathbb{N}, 2^\mathbb{N})$, za mero pa vzamemo t. i. mero štetja. Vsi ti prostori so Banachovi prostori (t.j. polni normirani metrični prostori), kar pomeni, da imajo naravno podano normo. Le-ta nam inducira metriko $\rho$, prav tako pa lahko prek norme pridemo bo pripadajoče Borelove $\sigma$-algebre (glej izpeljavo zgoraj prek metrične topologije). 
+Navedimo še primer, ko imamo opravka s t. i. funkcijskimi podatki. Ti se pojavijo npr. pri merjenju porabe elektrike v gospodinjstvih, kar lahko predstavimo kot graf porabe v odvisnosti od časa. Če meritev opravimo le ob določenih časovnih točkah, lahko za $D$ vzamemo npr. prostor zaporedij (angl. sequence space) $l_{\infty}$ ali $l_{2}$. Drugače lahko vzamemo za $D$ npr. $C([0,T])$ ali $L_{2}([0,T])$. Tu T označuje dolžino opazovanega časovnega obdobja. Dodajmo še, da so prostori $l_p$ le posebni primeri prostorov $L_p$, ko delamo na merljivem prostoru $(\mathbb{N}, 2^\mathbb{N})$, za mero pa vzamemo t. i. mero štetja. Vsi ti prostori so Banachovi prostori (t.j. polni normirani prostori), kar pomeni, da imajo naravno podano normo. Le-ta nam inducira metriko $\rho$, prav tako pa lahko prek norme pridemo do pripadajoče Borelove $\sigma$-algebre (glej izpeljavo zgoraj prek metrične topologije). 
 \end{primer}
 \newline
 \newline
@@ -298,18 +296,18 @@ Pravimo da sta dve podatkovni bazi, \textbf{d}$= (a_{1},...,a_{n})$ in $\textbf{
 \item obstaja $j\in\{1,...n\}$, da velja $a_{j} \neq b_{j}$,
 \item za vsak $i\in\{1,...,n\} \setminus j$ velja $a_{i} = b_{i}$.
 \end{itemize}
-Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnamo $D^n$ kot metrični prostor s pripadajočo Hammingovo metriko $\rho_{H}$, lahko ekvivalentno rečemo, da mora veljati $\rho_{H}$(\textbf{d},\textbf{d\'})$=1$.
+Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnamo $D^n$ kot metrični prostor s pripadajočo Hammingovo metriko $\rho_{H}$, je \textbf{d} $\sim$ \textbf{d\'} natanko tedaj, ko je $\rho_{H}$(\textbf{d},\textbf{d\'})$=1$.
 \newline
 \newline
 Za izpeljavo nekaterih rezultatov v nadaljevanju, moramo predpostaviti, da je $D$ kompakten metrični prostor. V primeru kompaktnosti nato definiramo še diameter kot $diam(D) = \max\limits_{d,d' \in D}\rho(d,d')$. Obstoj diametra je posledica dejstva, da zvezna funkcija $\rho$ doseže svoj maksimum na kompaktni množici $D$.
 
 \subsection{Modeliranje poizvedb}
-Poizvedba (angl. query) je način pridobitve željenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in Q$.
+Poizvedba (angl. query) je način pridobitve željenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
 \begin{primer} Kot pri konstrukciji podatkovne baze \textbf{d} $\in D^n$, imamo tudi pri izbiri prostora možnih odgovorov precej proste roke. Če se vrnemo na primer podatkovne baze hobijev, bi npr. lahko povprašali po številu ljudi, ki igrajo nogomet. Odgovor na to poizvedbo bi bil numeričen ($E_{Q} = \mathbb{N}$). Lahko pa bi nas zanimalo, kateri so 3 najpogostejši hobiji v bazi. Odgovor tu bi bil verjetno množica hobijev  ($E_{Q} = 2^\mathcal{H}$).
 \end{primer}
 \newline
 \newline
-Dalje lahko definiramo pojem \textit{odzivnega mehanizma} (angl. response mechanism), ki nam omogoča, da v našo podatkovno bazo vnesemo 'naključnost' in na ta način preprečimo, da bi lahko prek poizvedb prišli do konkretnih informacij o posameznikih. Seveda na račun naključnosti povečamo 'zasebnost' podatkov, a izgubimo pri natančnosti poizvedb, gre za ti. 'privacy-accuracy trade-off' (več o tem v nadaljevanju). 
+Dalje lahko definiramo pojem \textit{odzivnega mehanizma} (angl. response mechanism), ki nam omogoča, da v našo podatkovno bazo vnesemo 'naključnost' in na ta način preprečimo, da bi lahko prek poizvedb prišli do konkretnih informacij o posameznikih. Seveda na račun naključnosti povečamo 'zasebnost' podatkov, a izgubimo pri natančnosti poizvedb, gre za t. i. 'privacy-accuracy trade-off' (več o tem v nadaljevanju). 
 \begin{definicija}
 Naj bo $(\Omega , \mathcal{F}, \mathbb {P} )$ verjetnostni prostor, $\textbf{d}\in D^n$ opazovana podatkovna baza in $\mathcal{Q}(n)$ (n se nanaša na dimenzijo podatkovne baze) množica (možnih oz. dovoljenih) poizvedb. \textit{Odzivni mehanizem} (za izbran nabor poizvedb $\mathcal{Q}(n)$) je potem definiran kot družina slučajnih spremenljivk
 \begin{equation}\label{odzivni}
@@ -323,14 +321,14 @@ V nadaljevanju bo pogosto navedeno npr. $\mathbb{P}(X_{Q,\textbf{d}} \in A)$, ka
 \newline
 Ločimo dva glavna primera odzivnih mehanizmov:
 \begin{itemize}
-\item \textit{Perturbacija podatkovne baze} (angl. sanitised response mechanism). Tu vnesemo naključnost v podatke, še preden podamo odgovor na poizvedbo. Za to potrebujemo družino merljivih preslikav (slučajnih vektorjev) $\{ Y_{\textbf{d}}: \Omega \rightarrow U^n | \textbf{d} \in D^n\}$ Če taka družina obstaja, potem ima odzivni mehanizem obliko kompozituma.
+\item \textit{Perturbacija podatkovne baze} (angl. sanitised response mechanism). Tu vnesemo naključnost v podatke, še preden podamo odgovor na poizvedbo. Za to potrebujemo družino merljivih preslikav (slučajnih vektorjev) $\{ Y_{\textbf{d}}: \Omega \rightarrow U^n | \textbf{d} \in D^n\}$ Če taka družina obstaja, potem ima odzivni mehanizem obliko kompozituma
 \begin{equation}\label{odzivni2}
- X_{Q,\textbf{d}} = Q \circ Y_{\textbf{d}} \tag{2}
+ X_{Q,\textbf{d}} = Q \circ Y_{\textbf{d}}. \tag{2}
 \end{equation} 
-V praksi se ponavadi to izvede prek t. i. dodajanja šuma, torej $X_{\textbf{d}} = \textbf{d}+N$, kjer je $N$ slučajni vektor v $U^n$. Za tak pristop (dodajanje šuma) je potrebno, da ima $U^n$ primerno algebraično obliko (npr. vektorski prostor ali monoid, kar nam zagotovi zaprtost za seštevanje).
+V praksi se ponavadi to izvede prek t. i. dodajanja šuma, torej $Y_{\textbf{d}} = \textbf{d}+N$, kjer je $N$ slučajni vektor v $U^n$. Za tak pristop (dodajanje šuma) je potrebno, da ima $U^n$ primerno algebraično obliko (npr. vektorski prostor ali monoid, kar nam zagotovi zaprtost za seštevanje).
 \item \textit{Perturbacija odgovorov na poizvedbo} (angl. output perturbation). Kot sklepamo že iz imena, tokrat podatke perturbiramo šele po poizvedbi. Recimo, da imamo podano poizvedbo $Q: U^n \rightarrow E_{Q}$. V primeru da obstaja družina merljivih preslikav $ \{Z_{q}:\Omega \rightarrow E_{Q} | q  \in E_{Q} \}$, je odzivni mehanizem definiran kot
 \begin{equation}\label{odzivni3}
-X_{Q,\textbf{d}}=Z_{Q(\textbf{d})}\tag{3}
+X_{Q,\textbf{d}}=Z_{Q(\textbf{d})}.\tag{3}
 \end{equation} 
 \end{itemize}
 
@@ -355,7 +353,7 @@ Naj bo $\epsilon > 0$ in $0 \leq \delta \leq 1 $. Odzivni mehanizem je $(\epsilo
 Za boljše razumevanje ponazorimo definicijo še s primerom. Za dano poizvedbo $Q$ izberimo konkretni sosednji bazi \textbf{d}, \textbf{d'} $\in D^n$ in $A\in \mathcal{A}_{Q}$. Označimo $a = \mathbb{P}(X_{Q,\textbf{d}}\in A)$ in $b = \mathbb{P}(X_{Q,\textbf{d'}}\in A)$. Zaradi simetričnosti morata v primeru $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma, veljati obe neenakosti, torej $a \leq e^{\epsilon}b+\delta$ in $b \leq e^{\epsilon}a+\delta$. Obravnavajmo dva primera:
 \begin{itemize}
 \item $a=b$ : Enakost obeh verjetnosti kaže na to, da se odgovor na poizvedbo ni spremenil z dodajanjem oz. odstranitvijo enega posameznika iz baze. Obe neenakosti tu sledita trivialno.
-\item $a>b$ (brez škode za splošnost, zaradi simetričnosti nam ni treba obravnavati še primera $a<b$) : nenakost $b \leq e^{\epsilon}a+\delta$ tu prav tako sledi trivialno, druga neenakost pa nam podaja mejo, za koliko je lahko verjetnost b manjša od a, da bo obravnavani mehanizem še vedno diferencirano zaseben. V primeru $(\epsilon, \delta) = (0.05, 0.05)$ ,mehanizem, pri katerem bo za dan $A \in \mathcal{A}_{Q}$ $a=0.9$ in $b=0.8$, ne bo diferencirano zaseben, saj $0.9 \nleq e^{0.05} 0.8 + 0.05 \doteq 0.89$ (ni izpolnjena druga neenakost).
+\item $a>b$ (brez škode za splošnost, zaradi simetričnosti nam ni treba obravnavati še primera $a<b$) : nenakost $b \leq e^{\epsilon}a+\delta$ tu prav tako sledi trivialno, druga neenakost pa nam podaja mejo, za koliko je lahko verjetnost b manjša od a, da bo obravnavani mehanizem še vedno diferencirano zaseben. V primeru $(\epsilon, \delta) = (0.05, 0.05)$, $(\epsilon, \delta)$-mehanizem, pri katerem bo za dan $A \in \mathcal{A}_{Q}$ $a=0.9$ in $b=0.8$, ne bo diferencirano zaseben, saj $0.9 \nleq e^{0.05} 0.8 + 0.05 \doteq 0.89$ (ni izpolnjena druga neenakost).
 \end{itemize}
 Ta primer nakazuje tudi zahtevnost testiranja $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma; zgornji postopek moramo namreč ponoviti za vse sosednje baze v $D^n$ in za vse elemente $A$ Borelove $\sigma$-algebra $\mathcal{A}_Q$ (teh je pogosto neštevno mnogo)! V praksi je to seveda v večini primerov neizvedljivo. V nadaljevanju bo podanih nekaj rezultatov, ki dane zahteve omilijo.
 \end{primer}
@@ -367,13 +365,13 @@ Odzivni mehanizem je $(\epsilon, \delta)$-diferencirano zaseben glede na $\mathc
 
 \section{Omilitev zahtev definicije diferencirane zasebnosti}
 \subsection{Zadostne testne množice}
-V prejšnjem poglavju smo definirali koncept diferencirane zasebnosti in izpostavili nekatere pomanjkljivosti. Ena izmed njih je bila, da je potrebno pogoj iz definicije \eqref{diferen} preveriti za vse elemente $\mathcal{A}_Q$ ($\sigma$-algebra množice možnih odgovorov na dano poizvedbo $Q$). Naslednji izrek nam pove, da je dovolj, da to preverimo le za vse elemente algebre $\mathcal{S}$, ki $\mathcal{A}_Q$ generira.
+V prejšnjem poglavju smo definirali koncept diferencirane zasebnosti in izpostavili nekatere pomanjkljivosti. Ena izmed njih je bila, da je potrebno pogoj iz definicije \eqref{diferen} preveriti za vse elemente $\mathcal{A}_Q$ ($\sigma$-algebra množice možnih odgovorov na dano poizvedbo $Q$). Naslednji izrek nam pove, da je dovolj, da pogoj (4) preverimo le za vse elemente algebre $\mathcal{S}$, ki $\mathcal{A}_Q$ generira.
 
 \begin{izrek}
  Naj bosta podana odzivni mehanizem \eqref{odzivni} in poizvedba $(E_Q, \mathcal{A}_Q, Q)$. Naj bo $\mathcal{S} \subset \mathcal{A}_Q$ algebra in naj velja $\sigma(\mathcal{S}) = \mathcal{A}_Q$. Če \eqref{diferen} velja za vse $A \in \mathcal{S}$, potem velja za vse $A \in \mathcal{A}_Q$. 
 \end{izrek}
 \proof 
-Označimo z $\mathcal{B} \subset \mathcal{P}(E_Q) $ vse množice za katere je pogoj \eqref{diferen} izpolnjen. Po predpostavki iz izreka velja $\mathcal{S} \subseteq \mathcal{B}$. Naj bo $A_1 \subseteq A_2 \subseteq ... , A_i \in \mathcal{B}$  poljubno monotono naraščajoče zaporedje množic v $\mathcal{B}$. Naj bosta še \textbf{d}, \textbf{d'} $\in D^n$ poljubni sosednji podatkovni bazi. Potem velja 
+Označimo z $\mathcal{B} \subset \mathcal{P}(E_Q) $ vse množice za katere je pogoj \eqref{diferen} izpolnjen. Po predpostavki iz izreka velja $\mathcal{S} \subseteq \mathcal{B}$. Naj bo $A_1 \subseteq A_2 \subseteq ... $, kjer je $A_i \in \mathcal{B}$ za vsak $i \in \mathbb{N}$, poljubno monotono naraščajoče zaporedje množic v $\mathcal{B}$. Naj bosta še \textbf{d}, \textbf{d'} $\in D^n$ poljubni sosednji podatkovni bazi. Potem velja 
 \begin{equation*}
 \begin{split}
 \mathbb{P}(X_{Q,\textbf{d}} \in \bigcup_{i} A_i) = \lim_{i \to\ \infty} \mathbb{P}(X_{Q,\textbf{d}} \in A_i)  \leq \\
@@ -387,13 +385,11 @@ kjer smo pri obeh enakostih uporabili zveznost verjetnostne mere, pri neenakosti
 \begin{primer}
 Uporabimo zgornji izrek na konkretnem zgledu. Vzemimo poizvedbo $Q$ z $E_Q = C([0,1])$, torej zavzema vrednosti v prostoru zveznih funkcij. Kot normo vzemimo $||f||_\infty = sup\{|f(t)| : t \in [0,1]\}$ in pripadajočo $\sigma$-algebro $\mathcal{A}_Q$. Naj bo podan še odzivni mehanizem $X_{Q,\textbf{d}}$. $X_{Q,\textbf{d}}(\omega)$ torej leži v $C([0,1])$ za vsak $\omega \in \Omega$.
 \newline
-Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \ldots \leq t_k \leq 1$ in definirajmo preslikavo $ \pi _{t_1,\ldots,t_k}: C([0,1]) \rightarrow \mathbb{R}^k$ kot $$\pi _{t_1,\ldots,t_k}(f) = (f(t_1),\ldots,f(t_2)).$$ Te preslikave so merljive (natančneje $(\mathcal{A}_Q, \mathcal{B}(\mathbb{R}^k))$ merljive) in zato lahko definiramo $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} = \pi _{t_1,\ldots,t_k} \circ X_{Q,\textbf{d}}$. Opazimo, da je sedaj $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} (\omega) \in \mathbb{R}^k$ za vsak $\omega \in \Omega$. Pokažimo, da če je končno-dimenzionalen mehanizem $X_{Q,\textbf{d}}^{t_1,\ldots,t_k}$ diferencirano zaseben glede na definicijo $\eqref{diferen}$, potem je tudi $X_{Q,\textbf{d}}$ diferencirano zaseben. Najprej opazimo, da iz naše predpostavke sledi, da so opazovani mehanizmi zasebni za množice oblike $A = \pi _{t_1,\ldots,t_k}^{-1}(B)$, kjer je $B$ Borelova množica v $\mathbb{R}^k$: 
-\begin{equation*}
-\begin{split}
+Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \leq \ldots \leq t_k \leq 1$ in definirajmo preslikavo $ \pi _{t_1,\ldots,t_k}: C([0,1]) \rightarrow \mathbb{R}^k$ kot $$\pi _{t_1,\ldots,t_k}(f) = (f(t_1),\ldots,f(t_2)).$$ Te preslikave so merljive (natančneje $(\mathcal{A}_Q, \mathcal{B}(\mathbb{R}^k))$ merljive) in zato lahko definiramo $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} = \pi _{t_1,\ldots,t_k} \circ X_{Q,\textbf{d}}$. Opazimo, da je sedaj $X_{Q,\textbf{d}}^{t_1,\ldots,t_k} (\omega) \in \mathbb{R}^k$ za vsak $\omega \in \Omega$. Pokažimo, da če je končno-dimenzionalen mehanizem $X_{Q,\textbf{d}}^{t_1,\ldots,t_k}$ diferencirano zaseben glede na definicijo $\eqref{diferen}$ za vse k-terice $0 \leq t_1 \leq \ldots \leq t_k \leq 1$, potem je tudi $X_{Q,\textbf{d}}$ diferencirano zaseben. Najprej opazimo, da iz naše predpostavke sledi, da so opazovani mehanizmi zasebni za množice oblike $A = \pi _{t_1,\ldots,t_k}^{-1}(B)$, kjer je $B$ Borelova množica v $\mathbb{R}^k$: 
+\begin{gather*}
 \mathbb{P}(X_{Q,\textbf{d}} \in A) =  \mathbb{P}(X_{Q,\textbf{d}} \in \pi _{t_1,\ldots,t_k}^{-1}(B)) = \mathbb{P}(X_{Q,\textbf{d}}^{t_1,\ldots,t_k} \in B) \leq \\
- \leq e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d}}^{t_1,\ldots,t_k} \in B) + \delta = e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d}} \in A) + \delta
-\end{split}
-\end{equation*}
+ \leq e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d'}}^{t_1,\ldots,t_k} \in B) + \delta = e^{\epsilon}\mathbb{P}(X_{Q,\textbf{d'}} \in A) + \delta, \forall \textbf{d} \sim \textbf{d'} \in D^n
+\end{gather*}
 
 
 Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (NAVEDI VIR). Po uporabi zgornjega izreka sedaj sledi rezultat.
@@ -410,7 +406,7 @@ Ponavadi imamo opravka s sistemom, ki podpira več kot eno možno poizvedbo v po
 \begin{izrek} 
 Naj bo odzivni mehanizem s perturbacijo podatkovne baze  $(\epsilon , \delta)$-diferencirano zaseben glede na identično poizvedbo $(U^n, \mathcal{A}_{U^n}, I_n)$. Potem sledi, da je tak mehanizem $(\epsilon , \delta)$-diferencirano zaseben glede na katerokoli poizvedbo $(E_Q, \mathcal{A}_Q, Q)$.
 \end{izrek}
-\begin{opomba} Velja poudariti pomembnost tega, da v izreku ne postavimo nobenih omejitev na množico možnih odgovorov $E_Q$.  Lahko bi bili naši podatki zelo enostavni, npr. naravna števila $D \in \mathbb{N}$, odgovori na poizvedbo pa bi bile funkcije ali zaporedja, tj. npr. $E_Q = C([0,1])$ ali $E_Q = l_\infty$. Zgornji izrek nam omogoči, da v tem primeru namesto da preverjamo pogoj \eqref{diferen} za vse elemente $\sigma$-algebre $C([0,1])$, moramo pogoj preveriti le za vse elemente $\sigma$-algebre $\mathbb{N}$ (saj je v primeru identične poizvedbe $E_Q=D$), kar je občutno lažje in lahko predstavlja razliko med v praksi izvedljivo in neizvedljivo nalogo!
+\begin{opomba} Velja poudariti pomembnost tega, da v izreku ne postavimo nobenih omejitev na množico možnih odgovorov $E_Q$.  Lahko bi bili naši podatki zelo enostavni, npr. naravna števila $D \in \mathbb{N}$, odgovori na poizvedbo pa bi bile funkcije ali zaporedja, tj. npr. $E_Q = C([0,1])$ ali $E_Q = l_\infty$. Zgornji izrek nam omogoči, da v tem primeru namesto da preverjamo pogoj \eqref{diferen} za vse elemente $\sigma$-algebre $C([0,1])$, moramo pogoj preveriti le za vse elemente $\sigma$-algebre $2^{\mathbb{N}}$ (saj je v primeru identične poizvedbe $E_Q=D$), kar je občutno lažje in lahko predstavlja razliko med v praksi izvedljivo in neizvedljivo nalogo!
 \end{opomba}
 \proof 
 Naj bosta \textbf{d}, \textbf{d'} $\in D^n$ poljubni sosednji podatkovni bazi. Po predpostavki velja 
@@ -418,13 +414,11 @@ Naj bosta \textbf{d}, \textbf{d'} $\in D^n$ poljubni sosednji podatkovni bazi. P
 \mathbb{P}(Y_{\textbf{d}} \in E) \leq e^\epsilon \mathbb{P}(Y_{\textbf{d'}} \in E) + \delta \tag {*}
 \end{equation}
 za vsak $E \in \mathcal{A}_{U^n}$. Vzemimo sedaj poljubno poizvedbo $(E_Q, \mathcal{A}_Q, Q)$. Ker je $Q: U^n \rightarrow E_Q$ merljiva, velja  $Q^{-1}(A)\in \mathcal{A}_{U^n}$ za vsak $A \in \mathcal{A}_Q$. Potem z uporabo \eqref{star} sledi 
-\begin{equation*}
-\begin{split}
-\mathbb{P}(X_{Q, \textbf{d}} \in A) = \mathbb{P}(Q(Y_{ \textbf{d}}) \in A)  = \mathbb{P}(Y_{\textbf{d}} \in Q^{-1}(A)) \\
+\begin{gather*}
+\mathbb{P}(X_{Q, \textbf{d}} \in A) = \mathbb{P}(Q(Y_{ \textbf{d}}) \in A)  \\ = \mathbb{P}(Y_{\textbf{d}} \in Q^{-1}(A)) 
 \leq e^\epsilon \mathbb{P}(Y_{\textbf{d'}} \in Q^{-1}(A)) + \delta \\ 
-= \mathbb{P}(Q(Y_\textbf{d'}) \in A) + \delta
-\end{split}
-\end{equation*}
+= \mathbb{P}(Q(Y_\textbf{d'}) \in A) + \delta = \mathbb{P}(X_{Q,\textbf{d'}} \in A) + \delta
+\end{gather*}
 in vidimo, da je dan mehanizem diferenciano zaseben tudi za poljubno izbrano poizvedbo $Q$.
 \qed
 \newline
@@ -434,7 +428,7 @@ Sedaj lahko izpostavimo pomembno razliko med prej omenjenima vrstama odzivnih me
 Ponazorimo zgoraj povedano še na konkretnem primeru, ki je koristen tudi za boljše razumevanje formalizma opisanega modela ter razlike med posameznimi vrstami odzivnih mehanizmov. Recimo, da poizvedbo $Q$ ponovimo k-krat ($ k \geq 1$). To lahko modeliramo kot eno samo poizvedbo $Q^{(k)}: U^n \rightarrow E_{Q}^{(k)}$, kjer $E_{Q}^{(k)} = E_Q \times ... \times E_Q$. Torej je $Q^{(k)}(\textbf{d}) = (Q(\textbf{d}), ... , Q(\textbf{d}))$. Iz zgornjega izreka vemo, da če je perturbacija podatkovne baze $Y_{\textbf{d}}$ diferencirano zasebna, potem enako velja za poizvedbo $Q^{(k)} \circ Y_{\textbf{d}}$ za poljuben $k$. Res vidimo, da možnost večkratnih poizvedb mehanizme te vrste ne ogroža.
 \newline
 \newline
-Enako pa ne velja za mehanizme, ki perturbirajo odgovore. Večkratne poizvedbe tu namreč lahko vodijo do zloma diferencirano zasebnih sistemov. Vzemimo preprosto poizvedbo $Q: U^n \rightarrow \{0,1\}$, torej $E_Q = \{0,1\}$. Da definiramo odzivni mehanizem odgovorov na to poizvedbo, navedimo porazdelitvi $Z_0$ in $Z_1$. Če nastavimo $\mathbb{P}(Z_i=i)=1-p$ in $\mathbb{P}(Z_i\neq i)=p$ za $i = 0,1$, potem je mehanizem $X_{Q,\textbf{d}} = Z_{Q(\textbf{d})}$ $(\epsilon, \delta)$ diferencirano zaseben natanko tedaj, ko velja $$p \geq \frac{1-\delta}{1+e^{\epsilon}}$$ (brez izgube za splošnost dodatno privzamemo, da je $p < \frac{1}{2}$).  Naravno lahko predpostavimo, da obstajata sosednji podatkovni bazi \textbf{d}, \textbf{d'} v $D^n$ za katere bo odgovor na poizvedbo Q različen, npr. $Q(\textbf{d})=0, Q(\textbf{d'})=1$. Potem za množico $A = \{0\}$ velja  $\mathbb{P}(Z_{Q(\textbf{d})} \in A) = \mathbb{P}(Z_0 = 0) = 1 - p$ in podobno $\mathbb{P}(Z_{Q(\textbf{d'})} \in A) =  p$. Če torej vzamemo $\epsilon = 0.1$ in $\delta = 0.4$ ter nastavimo $p = 0.286$, bo opisan mehanizem diferencirano zaseben za poizvedbo Q.
+Enako pa ne velja za mehanizme, ki perturbirajo odgovore. Večkratne poizvedbe tu namreč lahko vodijo do zloma diferencirano zasebnih sistemov. Vzemimo preprosto poizvedbo $Q: U^n \rightarrow \{0,1\}$, torej $E_Q = \{0,1\}$. Da definiramo odzivni mehanizem odgovorov na to poizvedbo, navedimo porazdelitvi $Z_0$ in $Z_1$. Če nastavimo $\mathbb{P}(Z_i=i)=1-p$ in $\mathbb{P}(Z_i\neq i)=p$ za $i = 0,1$, potem je mehanizem $X_{Q,\textbf{d}} = Z_{Q(\textbf{d})}$ $(\epsilon, \delta)$-diferencirano zaseben natanko tedaj, ko velja $$p \geq \frac{1-\delta}{1+e^{\epsilon}}$$ (brez izgube za splošnost dodatno privzamemo, da je $p < \frac{1}{2}$).  Naravno lahko predpostavimo, da obstajata sosednji podatkovni bazi \textbf{d}, \textbf{d'} v $D^n$ za katere bo odgovor na poizvedbo Q različen, npr. $Q(\textbf{d})=0, Q(\textbf{d'})=1$. Potem za množico $A = \{0\}$ velja  $\mathbb{P}(Z_{Q(\textbf{d})} \in A) = \mathbb{P}(Z_0 = 0) = 1 - p$ in podobno $\mathbb{P}(Z_{Q(\textbf{d'})} \in A) =  p$. Če torej vzamemo $\epsilon = 0.1$ in $\delta = 0.4$ ter nastavimo $p = 0.286$, bo opisan mehanizem diferencirano zaseben za poizvedbo Q.
  \newline
 \newline
 Recimo, da sedaj poizvedbo Q uporabimo dvakrat. Množica možnih odgovorov je torej $E_Q \times E_Q$, oz. konkretno $\{0,1\} \times \{0,1\}$. Slučajne spremenljivke $Z_{(q_1, q_2)}$ za $q_1,q_2 \in E_Q$ najlažje definiramo kot $Z_{(q_1, q_2)} = (Z_1, Z_2)$, kjer sta $Z_i$ neodvisni in enako kot $Z_{q_i}$ porazdeljeni slučajni spremenljivki za $i = 1,2$. Ob isti izbiri $p$ dobimo $$\mathbb{P}(Z_{Q(\textbf{d})}^{(2)} \in A \times A) = (1-p)^2 = 0.5098$$ ter $$\mathbb{P}(Z_{Q(\textbf{d'})}^{(2)} \in A \times A) = p^2 = 0.0817.$$ Očitno velja $$\mathbb{P}(Z_{Q(\textbf{d})}^{(2)} \in A \times A) > e^{\epsilon}\mathbb{P}(Z_{Q(\textbf{d'})}^{(2)} \in A \times A) + \delta.$$ Tako vidimo, da je dvakratna uporaba poizvedbe Q 'zlomila' mehanizem $Z_{Q(\textbf{d})}$.
@@ -448,26 +442,26 @@ Predpostavimo, da obstaja družina slučajnih spremenljivk (merljivih preslikav)
 \begin{equation}\label{product}
 Y_{\textbf{d}} (\omega) = (Y_{d_1} (\omega) , ... , Y_{d_n} (\omega)), \tag{5}
 \end{equation}
-kjer so $Y_{d_i}$ med sabo neodvisne. To nam zagotavlja obstoj marginalnih porazdelitev.  Lahko so $Y_{d_i}$ tudi enako porazdeljene slučajne spremenljivke, ni pa to nujno. Torej je $Y_{\textbf{d}}$ n-dimenzionalen mehanizem, sestavljen po komponentah iz n eno-dimenzionalnih mehanizmov, ki so med seboj neodvisni. 
+kjer so $Y_{d_i}$ med sabo neodvisne. To nam zagotavlja obstoj marginalnih porazdelitev.  Lahko so $Y_{d_i}$ tudi enako porazdeljene slučajne spremenljivke, ni pa to nujno. Torej je $Y_{\textbf{d}}$ n-dimenzionalen mehanizem, sestavljen iz n eno-dimenzionalnih mehanizmov, ki so med seboj neodvisni. 
 \newline
 \newline
 \begin{opomba} Dodajmo še, da je zgoraj definiran mehanizem, le posebna oblika perturbacije podatkovne baze \eqref{odzivni2} (tu dodatno zahtevamo obstoj marginalnih porazdelitev). To nam omogoča, da v spodnjem izreku delamo le z identično poizvedbo, torej $Y_{Q, \textbf{d}}=Y_{\textbf{d}}$. Za vse ostale poizvedbe potem rezultat sledi kot posledica izreka v prejšnjem poglavju. 
 \end{opomba}
 \begin{izrek} Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ Y_d: \Omega \rightarrow U | d \in D\}$. Velja torej
 $$\mathbb{P}(Y_d \in A) \leq e^\epsilon \mathbb{P}(Y_d \in A) + \delta$$ 
-za vse $d,d' \in D, A \in \mathcal{A}_D$. Če definiramo n-dimenzionalni odzivni mehanizem kot \eqref{product}, potem sledi, da je tudi ta diferencirano zaseben:
+za vse $d,d' \in D, A \in \mathcal{A}_D$. Če definiramo n-dimenzionalni odzivni mehanizem kot v \eqref{product}, potem sledi, da je tudi ta diferencirano zaseben:
 $$\mathbb{P}(Y_{\textbf{d}} \in A) \leq e^\epsilon \mathbb{P}(Y_{\textbf{d'}} \in A) + \delta$$
 za vse $\textbf{d} \sim \textbf{d'} \in D^n, A \in D^n$.
 \end{izrek}
 Dokaz tu izpustimo (vsebuje veliko tehničnih detajlov). Bralec si ga lahko ogleda v izhodiščnem članku.
 \newline
 \newline
-\begin{primer}: Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z $|D|$ elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v 1-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmožic (število elementov v $\mathcal{A}_{D^n}$).
+\begin{primer} Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z $|D|$ elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v 1-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmožic (število elementov v $\mathcal{A}_{D^n}$).
 \end{primer}
 \begin{primer}  Oglejmo si enostaven primer diferencirano zasebnega odzivnega mehanizma: \textit{Laplaceov odzivni mehanizem za numerične podatke}. Naj bodo naši podatki elementi $D \subset \mathbb{R}$. Predpostavimo tudi, da je D omejen, kar v nadaljevanju potrebujemo za obstoj diam(D). $L: \Omega \rightarrow \mathbb{R}$ naj bo Laplacovo porazdeljena slučajna spremenljivka s parametroma $(0,b), b > 0$.  
 Verjetnostna gostota ima potem obliko $f(x)=\frac{1}{2b}e^{-\frac{|x|}{b}}$.  Za vsak $d \in D$ potem definirajmo eno-dimenzionalni mehanizem kot  $Y_{d}(\omega) = d + L(\omega)$. Parameter b izberimo tako, da 
 $$b\geq \frac{diam(D)}{\epsilon - \log(1-\delta)}.$$
-Potem sledi, da je vsak n-dimenzionalen mehanizem oblike \eqref{product} $(\epsilon, \delta)$ diferencirano zaseben za vsako n-dimenzionalno podatkovno bazo $D^n$ in vsako poizvedbo. To lahko enostavno pokažemo. 
+Potem sledi, da je vsak n-dimenzionalen mehanizem oblike \eqref{product} $(\epsilon, \delta)$-diferencirano zaseben za vsako n-dimenzionalno podatkovno bazo $D^n$ in vsako poizvedbo. To lahko enostavno pokažemo. 
 \newline
 \newline
 Najprej vemo, da $\mathbb{P}(Y_{d}(\omega) \in A) = \mathbb{P}(d + L(\omega) \in A) = \int_{A}\frac{1}{2b}e^{\frac{-|x-d|}{b}}dx$. Kot posledica izrekov 2 in 3 potem vemo, da bo zgornja trditev veljala natanko tedaj, ko bo veljajo 
@@ -484,7 +478,7 @@ $$\mathbb{P}(Y_d=d) = 1 - pm, \mathbb{P}(Y_d=d') = p.$$
 Tu je $d \neq d' \in D$. Naravno predpostavimo $1 - pm > p$, kar pomeni, da bomo z večjo verjetnostjo podali pravilen odgovor na poizvedbo (v nasprotnem primeru nam tudi še tako močna zasebnost ne koristi, saj izgubimo preveč natančnosti).
 \newline
 \newline
-Da bo podan mehanizem $(\epsilon, \delta)$ diferencirano zaseben mora veljati:
+Da bo podan mehanizem $(\epsilon, \delta)$-diferencirano zaseben mora veljati:
 \begin{equation}
 \mathbb{P}(Y_d \in A) \leq \mathbb{P}(Y_{d'} \in A)e^{\epsilon} + \delta
 \end{equation}
@@ -493,8 +487,8 @@ za vsak $A \subset D$ in $d, d' \in D$.
 \newline
 Pokažimo, da bo dan mehanizem zadoščal pogojem diferencirane zasebnosti natanko tedaj, ko bo $$1 - pm \leq pe^{\epsilon} + \delta.$$ Ta pogoj je zagotov potreben, kar vidimo, če za $A$ vzamemo enostavno množico $\{d\}$. Da pokažemo, da je ta pogoj tudi zadosten, moramo obravnavati 4 različne primere.
 \begin{enumerate}
-\item $d,d' \notin A: $ Velja $\mathbb{P}(Y_d \in A) = \mathbb{P}(Y_d' \in A)= p|A|$ in pogoj diferencirane zasebnosti sledi trivialno.
-\item $d,d' \in A: $ Velja $\mathbb{P}(Y_d \in A) = \mathbb{P}(Y_d' \in A) = p(|A| - 1) + 1 - pm=p(|A| -m -1) + 1$. Tudi tu pogoj diferencirane zasebnosti sledi trivialno.
+\item $d,d' \notin A: $ Velja $\mathbb{P}(Y_d \in A) = \mathbb{P}(Y_{d'} \in A)= p|A|$ in pogoj diferencirane zasebnosti sledi trivialno.
+\item $d,d' \in A: $ Velja $\mathbb{P}(Y_d \in A) = \mathbb{P}(Y_{d'} \in A) = p(|A| - 1) + 1 - pm=p(|A| -m -1) + 1$. Tudi tu pogoj diferencirane zasebnosti sledi trivialno.
 \item $d \notin A,d' \in A: $ Velja $\mathbb{P}(Y_d \in A) \leq \mathbb{P}(Y_d' \in A)$ in pogoj sledi iz predpostavke $1 - pm > p$.
 \item  $d \in A, d' \notin A: $ Velja:
 \begin{equation*}
@@ -508,7 +502,7 @@ $$1-pm\leq pe^{\epsilon} + \delta = e^{\epsilon}(p|A|-p|A|+p)+\delta \leq e^{\ep
 kar po preureditvi da 
 $$p(|A| -m -1) + 1 \leq e^{\epsilon}p|A| + \delta.$$
 \end{enumerate}
-Torej vidimo, da bo naš mehanizem $(\epsilon, \delta)$ diferencirano zaseben natanko tedaj, ko bo $p \geq \frac{1-\delta}{m+e^{\epsilon}}$.
+Torej vidimo, da bo naš mehanizem $(\epsilon, \delta)$-diferencirano zaseben natanko tedaj, ko bo $p \geq \frac{1-\delta}{m+e^{\epsilon}}$.
 
 \end{primer}
 
@@ -799,7 +793,7 @@ Za kovariančno funkicjo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussov
 \leq 2 (\frac{1}{n(2\pi h^2)^{d/2}})^2
 \end{gather*}
 
-Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, potem iz posledice 6.3 sledi, da je mehanizem 
+Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, potem iz posledice 6.9 sledi, da je mehanizem 
 \begin{gather*}
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{\log{\frac{2}{\delta}}} \frac{1}{\epsilon n (2\pi h^2)^{(d/2)}}G
 \end{gather*}
