@@ -8,6 +8,8 @@
 \usepackage{url}
 %\usepackage[normalem]{ulem}
 \usepackage[dvipsnames,usenames]{color}
+\usepackage{array}
+\usepackage[pdftex]{graphicx}
 
 % ne spreminjaj podatkov, ki vplivajo na obliko strani
 \textwidth 15cm
@@ -800,12 +802,148 @@ Za kovariančno funkicjo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussov
 $(\epsilon, \delta)$ diferencirano zaseben.
 \end{primer}
 
-% slovar
-\section*{Slovar strokovnih izrazov}
+\section{Komentar praktičnega dela}
 
-\geslo{primer}{opis primera}
+Za konec si poglejmo še, kako se do zdaj omenjeni mehanizmi obnesejo v praksi. V ta namen bomo uporabili umetno zgenerirane podatke o 1000 prebivalcih ZDA, ki vsebujejo informacije o njihovi plači, telesni višini in zvezni državi, v kateri živijo. Vsa koda s komentarji je dostopna na naslovu: \url{https://github.com/metodj/thesis} .
+\subsection{Numerični podatki}
+Najprej uporabimo Laplacov mehanizem iz primera 4.9 za podatke o plači. Višina plača je bila dobljena iz vzorčenja enakomerne porazdelitve na intervalu $[1500\$,4500\$]$. Za metriko vzamemo absolutno razdaljo. Diameter naših podatkov, ki je v tem primeru kar enak razliki maksimalne in minimalne vrednosti plače v bazi, potem znaša 2996\$. Rezultati so prikazani v spodnjih dveh tabelah.
 
+\begin{table}[h]
+\begin{center}
+ \begin{tabular}{| c | c | c | c |} 
+ \hline
+ \textbf{$\epsilon$} & \textbf{$\delta$} & b & povprečna razlika  \\ [0.5ex] 
+ \hline
+ 0.1 & 0.1 & 14589 & 14935  \\ 
+ \hline
+ 2 & 0.5 & 1112 & 1075\\
+ \hline
+ 11 & 0.5 & 245 & 249 \\
+ \hline
+\end{tabular}
+\caption{b predstavlja parameter Laplacove porazdelitve, povprečna razlika pa povprečje odstopanj diferencirano zasebnih podatkov od prvotnih. }
+\end{center}
+\end{table}
+Vidimo, da moramo za dosego zasebnosti pri običajnih vrednostih parametrov ($\epsilon = 0.1, \delta = 0.1$) uporabiti zelo `razpršeno' Laplacovo spremenljivko (visoka vrednost parametra b pomeni veliko varianco). Uporabnost podatkov se zaradi tega skoraj povsem izgubi, kar se vidi tudi iz tabele 3. Minimalna vrednost plače v podatkovni bazi tako znaša -111499\$, kar je seveda povsem nesmiselno. Približno smiselne rezultate dobimo pri zelo visokih vrednostih $\epsilon$ in $\delta$. Če izvzamemo dejstvo, da $\delta = 0.7$ pomeni, da se bo naš mehanizem zlomil s kar 70\% verjetnostjo, parameter $\epsilon = 11$ pove to, da se lahko verjetnosti iz definicije diferencirane zasebnosti razlikujeta za faktor približno 60000. To seveda pomeni, da čeprav se natančnost zdi približno smiselna, je tak mehanizem za zaščito zasebnosti neuporaben.
+\begin{table}[h]
+\begin{center}
+ \begin{tabular}{| c | c | c | c |} 
+ \hline
+ & povprečje & min & max  \\ [0.5ex] 
+ \hline
+ prvotni podatki & 2995 & 1504 & 4500  \\ 
+ \hline
+ (0.1 , 0.1) & 3402 & -111499 & 109729\\
+ \hline
+ (2, 0.5) & 2999 & -6110 & 11411 \\
+ \hline
+ (11, 0.7) & 2990 & 765 & 5360 \\
+ \hline
+\end{tabular}
+\caption{Vrednosti nekaterih osnovih poizvedb pri različnih vrednostih parametrov $(\epsilon, \delta)$. }
+\end{center}
+\end{table}
+Na tem mestu lahko uporabimo še izrek 5.3, ki nam da spodnjo mejo za največjo napako obravnavanega mehanizma. Rezultati se nahajajo v tabeli 4. Opazimo, da je sicer res, da so dejanske največje napake večje od spodnjih mejih, ki nam jih da izrek, vendar so te meje precej neoptimalne in posledično neinformativne.
+\begin{table}[h]
+\begin{center}
+ \begin{tabular}{| c | c | c | c |} 
+ \hline
+($\epsilon, \delta$) & (0.1, 0.1) & (2, 0.5) & (11, 0.7)  \\ [0.5ex] 
+ \hline
+ $\gamma$ & 640 & 89 & 0.0075  \\ 
+ \hline
+ dejanska največja napaka & 110600 & 7203 & 1803\\
+ \hline
+\end{tabular}
+\caption{Spodnja meja največje napake $\gamma$ in dejansko opažena največja napaka pri različnih vrednostih parametrov $(\epsilon, \delta)$. }
+\end{center}
+\end{table}
+\begin{opomba}
+Razlog za slabe rezultate zgoraj obravnavanega mehanizma leži v veliki občutljivosti identične poizvedbe. Občutljivost (angl. sensitivity) nam pove, kako močno se odgovor na dano poizvedbo spremeni glede na prisotnost konkretnega posameznika v podatkovni bazi. Matematično se definira na različne načine, v primeru numeričnih podatkov ($D = \mathbb{R}, E_Q = \mathbb{R}$) pa se pogosto definira kot
+\begin{gather*}
+\Delta Q = \max_{\textbf{d} \sim \textbf{d'}} \| Q(\textbf{d}) - Q(\textbf{d'}) \|_1 ,
+\end{gather*}
+kjer $\| \cdot \|_1$ predsavlja $l_1$ normo. V primeru identične poizvedbe je občutljivost enaka kar $diam(D)$. Logično je, da gre za najbolj občutljivo poizvebo, saj `izdamo' največ informacij o naši podatkovni bazi in posledično moramo dodati veliko šuma za dosego diferencirane zasebnosti. V praksi se zato tak pristop uporablja le redko.
+\end{opomba}
+\begin{opomba}
+Dober primer večje implementacije diferencirane zasebnosti v praksi je sistem za zaščito SQL-poizvedb, ki so ga razvili pri podjetju Uber (NAVEDI VIR). Sistem za vsako poizvedbo (SQL-stavek) najprej izračuna občutljivost in glede na to doda potem kalibriran šum odgovoru na poizvedbo (gre torej za mehanizem oblike \eqref{odzivni3}). Na ta način so dosegli dobro razmerje med uporabnostjo in zasebnostjo mehanizmov.
+\end{opomba}
+\subsection{Diskretni podatki}
+Uporabimo mehanizem iz primera 4.10 na podatkih o zveznih državah, v katerih živijo posamezniki v naši podatkovni bazi. Rezultati so prikazani v tabelah 5 in 6. Spodnjo mejo za največjo napako nam tu poda izrek 5.5. Vidimo, da so ocene za spodnjo mejo precej bolj optimalne kot v primeru numeričnih podatkov (sledi iz opombe 5.7). Dodajmo še, da če bi delali na podatkih o spolu, bi imel naš mehanizem preprosto obliko Bernoullijeve slučajne spremenljivke.
+\begin{table}[!htb]
+\begin{center}
+ \begin{tabular}{| c | c | } 
+ \hline
+($\epsilon, \delta$) & verjetnost, s katero podamo pravi odgovor  \\ [0.5ex] 
+ \hline
+(0.1, 0.1) & 0.12  \\ 
+ \hline
+(0.1, 0.1) & 0.12  \\ 
+ \hline
+ (2, 0.5) & 0.57  \\ 
+ \hline
+ (7, 0.6) & 0.98  \\ 
+ \hline
+\end{tabular}
+\caption{Rezultati mehanizma za diskretne podatke. }
+\end{center}
+\end{table}
 
+\begin{table}[!htb]
+\begin{center}
+ \begin{tabular}{| c | c | c | c|} 
+ \hline
+($\epsilon, \delta$) & & &  \\ [0.5ex] 
+ \hline
+prvotni podatki & TX (114) & CA (102) & NY (63)  \\ 
+ \hline
+(0.1, 0.1) & TX (35) & OH (31) & CA (30)  \\ 
+ \hline
+(2, 0.5) & TX (68) & CA (62) & FL (45)  \\ 
+ \hline
+(7, 0.6) & TX (113) & CA (102) & NY (62)  \\ 
+ \hline
+\end{tabular}
+\caption{Najpogostejše tri zvezne države v prvotnih podatkih in pri različnih vrednostih parametrov $(\epsilon, \delta)$. }
+\end{center}
+\end{table}
+
+\begin{table}[!htb]
+\begin{center}
+ \begin{tabular}{| c | c | c | c|} 
+ \hline
+($\epsilon, \delta$) & (0.1, 0.1) & (2, 0.5) & (7, 0.6)  \\ [0.5ex] 
+ \hline
+ $\gamma$ & 0.879 & 0.432 & 0.016  \\ 
+ \hline
+ dejanska največja napaka & 0.880 & 0.437 & 0.018\\
+ \hline
+\end{tabular}
+\caption{Podatki o spodnjih mejah pri diskretnih podatkih. Dejanska največja napaka je tu izračunana kot razmerje med številom nepravilnih odgovorov ter številom posameznikov v bazi. }
+\end{center}
+\end{table}
+
+\subsection{Funkcijski podatki}
+
+Na tem mestu smo implementirali mehanizem, ki vrne diferencirano zasebno jedrno cenilko za gostoto po vzoru primera 6.10. Rezultati so prikazani na slikah 1-3. Prvotni podatki so generirani iz mešanice dveh normalnih porazdelitev in sicer $\mathcal{N}(1,1)$ ter $\mathcal{N}(5,1)$. Pri vseh slikah je $\delta = 0.1$, spreminja se le parameter $\epsilon$. Diferencirano zasebna cenilka za gostoto je prikazana z modro barvo.
+
+\begin{figure}[!htb]
+\centering
+\caption{$\epsilon = 0.1$}
+\includegraphics[width = 12cm, height = 6cm]{prva}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\caption{$\epsilon = 1$}
+\includegraphics[width = 12cm, height = 6cm]{druga}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\caption{$\epsilon = 3$}
+\includegraphics[width = 12cm, height = 6cm]{tretja}
+\end{figure}
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}

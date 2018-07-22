@@ -1,0 +1,108 @@
+\documentclass[12pt,a4paper]{amsart}
+% ukazi za delo s slovenscino -- izberi kodiranje, ki ti ustreza
+\usepackage[slovene]{babel}
+%\usepackage[cp1250]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[dvipsnames,usenames]{color}
+
+\usepackage{hyperref}
+
+% ne spreminjaj podatkov, ki vplivajo na obliko strani
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+%\overfullrule=15pt % oznaci predlogo vrstico
+\overfullrule=0pt
+
+
+% ukazi za matematicna okolja
+\theoremstyle{definition} % tekst napisan pokoncno
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{primer}[definicija]{Primer}
+\newtheorem{opomba}[definicija]{Opomba}
+
+\renewcommand\endprimer{\hfill$\diamondsuit$}
+
+
+\theoremstyle{plain} % tekst napisan posevno
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+
+% za stevilske mnozice uporabi naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% ukaz za slovarsko geslo
+\newlength{\odstavek}
+\setlength{\odstavek}{\parindent}
+\newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2}
+
+% naslednje ukaze ustrezno popravi
+\newcommand{\program}{Finančna matematika} % ime studijskega programa: Matematika/Finan"cna matematika
+\newcommand{\imeavtorja}{Metod Jazbec} % ime avtorja
+\newcommand{\imementorja}{doc. dr. Aljoša Peperko} % akademski naziv in ime mentorja
+\newcommand{\naslovdela}{Splošna definicija diferencirane zasebnosti}
+\newcommand{\letnica}{2018} %letnica diplome
+
+
+% vstavi svoje definicije ...
+
+
+
+
+\begin{document}
+Vprašanja se navezujejo na članek Differential Privacy for Functions and Functional Data: \url{http://www.jmlr.org/papers/volume14/hall13a/hall13a.pdf}
+\newline
+\begin{itemize}
+\item Proposition 7 (v diplomi izrek 6.1): kaj nam zagotavlja pozitivno definitnost Grammove matrike $M$? To da je $K$ kovariančna funkcija Gaussovega procesa, nam zagotavlja samo pozitivno semi-definitnost. Pozitivno definitnost pa verjetno potrebujemo, saj se v dokazu skličemo na Proposition 3 (v diplomi izrek 6.2), kjer je pozitivna definitnost matrike M ena od predpostavk izreka. Vprašanje na to temo sem zastavil tudi na matematičnem forumu: \url{https://stats.stackexchange.com/questions/357969/positive-definiteness-of-grammian-with-respect-to-gaussian-process-covariance-f/357981?noredirect=1#comment673146_357981}
+\newline
+\newline
+Tudi ali je M sploh Grammova matrika. K(x,y) namreč ni skalarni produkt... V nadaljevanju, ko delamo z RKHS, postane predstavitev s skalarnim produktom logična, saj imamo $\langle K_x, K_y \rangle_{\mathcal{H}} = K(x,y)$, na tem mestu pa mi poimenovanje matrike M kot Grammove matrike ni najbolj logično.
+\newline
+\item Proposition 8  (v diplomi izrek 6.8): obrnljivost matrike M, ki naj bi sledila iz Mercerjevega izreka, mi še vedno ni jasna. Kar sem sicer razmišljal je to, da iz lastnosti Grammove matrike sledi 
+\begin{gather*}
+M(x_1,...,x_n) = 
+ \begin{pmatrix}
+  K(x_1,x_1) & \cdots & K(x_1,x_n) \\
+  \vdots    & \ddots & \vdots  \\
+  K(x_n,x_1) & \cdots & K(x_n,x_n) 
+ \end{pmatrix} \\ = 
+  \begin{pmatrix}
+  K_{x_1} & \cdots & K_{x_1} \\
+  \vdots    & \ddots & \vdots  \\
+  K_{x_n} & \cdots & K_{x_n} 
+ \end{pmatrix}^T 
+  \begin{pmatrix}
+  K_{x_1} & \cdots & K_{x_1} \\
+  \vdots    & \ddots & \vdots  \\
+  K_{x_n} & \cdots & K_{x_n} 
+ \end{pmatrix}.
+\end{gather*}
+Če matriki na desni strani označimo z $A^T$ in $A$, velja $\det{M} = det {A^2}$. $\det{A}$ pa bo različna od 0, natanko tedaj, ko bodo stolpci ali vrstice linearno neodvisni, to pa bo natanko tedaj, ko bodo funkcije $K_{x_i}$ med samo linearno neodvisne. Lahko iz tega, da so $x_i$ različne točke (predpostavke izreka), sklepamo na linearno neodvisnost funkcij $K_{x_i}$? 
+\newline
+\item Proposition 8 (v diplomi izrek 6.8): Ne vidim enakosti 
+$$\langle f, Pf\rangle_{\mathcal{H}} = \|M^{-1/2}(x_1,...x_n)
+\begin{pmatrix}
+  f(x_1)  \\
+  \vdots     \\
+  f(x_n)
+ \end{pmatrix}
+\|_2^2  
+$$
+Sem si razpisal na dolgo za matriko dimenzije $2 \times 2$,  vendar vseeno nisem dobil enakega rezultata na obeh straneh enačaja.
+\end{itemize}
+\end{document}
