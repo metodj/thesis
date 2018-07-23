@@ -96,26 +96,26 @@ Ljubljana, \letnica}
 {\sc Povzetek}
 \end{center}
 % tekst povzetka v slovenscini
-V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
+V delu predstavimo diferencirano zasebnost. Gre za matematično definicijo zasebnosti pri javni objavi ter rudarjenju podatkov. Predstavljena je splošna definicija v kontekstu metričnih prostorov in verjetnostne mere, ki omogoča enotno obravnavo različnih vrst podatkov. Pokažemo nekaj osnovnih izrekov, ki omilijo zahteve definicije. Obravnavan je Laplacov mehanizem za numerične podatke. Podana je izpeljava spodnjih mej za največjo napako zasebnih odzivnih mehanizmov. V nadaljevanju se osredotočimo na funkcijske podatke. S pomočjo teorije Gaussovih procesov in Hilbertovih prostorov z reprodukcijskim jedrom pokažemo uporabo diferencirane zasebnosti na primeru jedrne cenilke gostote. Osnovne mehanizme implementiramo in predstavimo rezultate.
 \vfill
 \begin{center}
-{\bf Angleški naslov dela}\\[3mm] % prevod slovenskega naslova dela 
+{\bf General definition of differential privacy}\\[3mm] % prevod slovenskega naslova dela 
 {\sc Abstract}
 \end{center}
 % tekst povzetka v anglescini
-Prevod zgornjega povzetka v angleščino.
+We introduce the concept of differential privacy, mathematical definition for privacy preserving data publishing and data mining. General definition in context of metric spaces and probability measure is given. Further, we present some theorems which help to alleviate the requirements of described definition. Laplace mechanism for numerical data and lower bounds on errors of response mechanisms are presented. We later turn focus to functional data. Using Gaussian process and Reproducing Kernel Hilbert Spaces we present how differential privacy is used for privatization of density kernel estimator. Most of the described mechanism are also implemented and results are presented at the end.
 
 \vfill\noindent
 {\bf Math. Subj. Class. (2010):} navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}  \\[1mm]  
-{\bf Ključne besede:} navedite nekaj ključnih pojmov, ki nastopajo v delu  \\[1mm]  
-{\bf Keywords:} angleški prevod ključnih besed
+{\bf Ključne besede:} diferencirana zasebnost, odzivni mehanizem, metrični prostor, funkcijski podatki, verjetnostna mera  \\[1mm]  
+{\bf Keywords:} differential privacy, response mechanism, metric space, functional data, probability measure
 \pagebreak
 
 
 
 % tu se zacne tekst seminarja
 \section{Uvod}
-Dandanes živimo v dobi podatkov. Podjetja ter ustanove zbirajo podatke o svojih uporabnikih in jih nato uporabijo za izboljšanje algoritmov oz. tehnologije. Posledično postaja vse bolj pomembno  vprašanje  varovanja podatkov. Kako omogočiti strokovnjakom in inženirjem dostop do velikih podatkovnih baz, hkrati pa ohraniti zasebnost posameznikov? Kako lahko podjetja uporabijo vse podatke, ki jih zbirajo o svojih uporabnikih, ne da bi s tem ogrozili njihove zasebnosti? Obstaja veliko različnih pristopov (najbolj pogoste so t. i. 'metode anonimizacije'), vendar se je izkazalo, da je veliko od teh neprimernih in so izpostavljeni raznim napadom. Še posebej velja izpostaviti t. i. 'background/auxiliary' napad, pri katerem napadalec uporabi dodatno podatkovno bazo za razkritje identite posameznikov v prvotni bazi (Netflix, American health records).  V ta namen se je v zadnjih 15 letih pojavil koncept diferencirane zasebnosti, ki postavlja vprašanje varovanja podatkov v okvir matematične teorije. Vnaša 'naključnost' v podatkovno bazo; odgovori na poizvedbe tako niso več deterministični, ampak so probabilistični. Osnovna ideja je, da se odgovor na poizvedbo ne bo spremenil, če podatki o enem konkretnem posamezniku so ali niso v bazi. Na ta način omogočimo dostop do globalnih lastnosti celotne populacije, zaščitimo pa konkretne informacije o posameznikih. Mnogi vidijo diferencirano zasebnost kot odlično rešitev, uporabljajo jo tudi podjetja kot so Apple in Uber. Na drugi strani pa obstaja tudi precej kritik; ena glavnih izmed njih je, da koncept diferencirane zasebnosti sicer ponuja lepe matematične in teoretične temelje, ni pa zares uporaben v praksi. 
+Dandanes živimo v dobi podatkov. Podjetja ter ustanove zbirajo podatke o svojih uporabnikih in jih nato uporabijo za izboljšanje algoritmov oz. tehnologije. Posledično postaja vse bolj pomembno  vprašanje  varovanja podatkov. Kako omogočiti strokovnjakom in inženirjem dostop do velikih podatkovnih baz, hkrati pa ohraniti zasebnost posameznikov? Kako lahko podjetja uporabijo vse podatke, ki jih zbirajo o svojih uporabnikih, ne da bi s tem ogrozili njihove zasebnosti? Obstaja veliko različnih pristopov (najbolj pogoste so t. i. 'metode anonimizacije'), vendar se je izkazalo, da je veliko od teh neprimernih in so izpostavljeni raznim napadom. Še posebej velja izpostaviti t. i. 'background/auxiliary' napad, pri katerem napadalec uporabi dodatno podatkovno bazo za razkritje identite posameznikov v prvotni bazi (Netflix, American health records).  V ta namen se je v zadnjih 15 letih pojavil koncept diferencirane zasebnosti, ki postavlja vprašanje varovanja podatkov v okvir matematične teorije. Vnaša 'naključnost' v podatkovno bazo; odgovori na poizvedbe tako niso več deterministični, ampak so probabilistični. Osnovna ideja je, da se odgovor na poizvedbo ne bo spremenil, če podatki o enem konkretnem posamezniku so ali niso v bazi. Na ta način omogočimo dostop do globalnih lastnosti celotne populacije, zaščitimo pa konkretne informacije o posameznikih. Mnogi vidijo diferencirano zasebnost kot odlično rešitev, uporabljajo jo tudi podjetja kot so Apple in Uber [3,4]. Na drugi strani pa obstaja tudi precej kritik; ena glavnih izmed njih je, da koncept diferencirane zasebnosti sicer ponuja lepe matematične in teoretične temelje, ni pa zares uporaben v praksi. 
 \newline
 \newline
 Pomembno je razumevanje, da se diferencirana zasebnost ne ukvarja z zaščito podatkov samih. Npr. ne ponuja odgovora na problem, kako podatke varno shraniti na nekem serverju (da jih zaščitimo pred hekerskemi vdori ipd.). Ukvarja se s tem, kako ohraniti zasebnost pri procesu objavljanja (angl. data publishing) in pridobivanja podatkov (angl. data mining). Za lažje razumevanje pred nadaljevanjem navedimo še dva primera. Prvi se je pojavil leta 2000, ko so raziskovalci ugotovili, da ameriške bolnišnice niso zaščitile javno dostopnih podatkov na primeren način. Kar so naredili (bolnišnice) je, da so uporabili metodo anonimizacije, to pomeni, da so iz podatkov odstranili vse eksplicitne indikatorje (npr. ime in EMŠO). Podatki so tako vsebovali le npr. spol pacienta, rojstni datum, poštno številko (ZIP) in zdravstveno stanje (poenostavljen primer). Izkazalo se je, da lahko te podatke združimo (angl. cross-reference) s podatki iz volilnega sistema, in na ta način razkrijemo identiteto pacientov. En možen način kako se lahko reši tak problem bi bil, da bolnišnice sploh ne bi javno objavile baze podatkov, ampak bi dostop do baze raziskovalcem omogočile le prek dovoljenih poizvedb. Npr. znanstveniki bi lahko 'vprašali' koliko odstotkov oseb ženskega spola ima to in to bolezen, ne bi pa smeli povprašati po diagnozi konkretnega posameznika. Pri takem pristopu se naravno pojavi vprašanje, točno katere poizvedbe dovolimo. Po eni strani izbire nočemo preveč omejiti (znanstvenikom želimo omogočiti kvalitetne podatke), po drugi strani ne želimo izpostaviti nobenih konkretnih informacij o posamezniku. Hkrati se tudi izkaže, da lahko v primeru determinističnih poizvedb napadalec samo na podlagi odgovorov na poizvedbe sklepa o lastnostnih posameznika. Ponazorimo to s preprostim zgledom na podatkih iz tabele 1. Recimo, da bi napadalec rad izvedel Edijevo diagnozo. Privzemimo, da ima na voljo poizvedbo $Q_i$, ki kot odgovor vrne vsoto prvih i vrstic. Dodatno tudi ve, da se Edi nahaja na 5. mestu v tabeli. Tako bi lahko izvedel poizvedbi $Q_4$ in $Q_5$ in iz razlike obeh sklepal, da Edi ima diabetes.  Odgovor na to problematiko ponuja diferencirana zasebnost, pri kateri poizvedbe postanejo probabilistične in napadalec kljub dodatnim informacijam ne more priti do gotovih sklepov o Edijevi diagnozi.
@@ -141,10 +141,10 @@ Pomembno je razumevanje, da se diferencirana zasebnost ne ukvarja z zaščito po
 \end{table}
 \newline
 \newline
-Drugi primer, ki je pogost dandanes, pa se pojavi pri procesu rudarjenja podatkov (angl. data mining). Podjetja za izboljšanje svoje programske opreme, beležijo skoraj vsako našo potezo na pametnem telefonu ali računalniku. Rezultat so potem npr. sistemi za priporočanje in 'auto-correct' sistem pri tipkanju; torej algoritmi, ki za svoje delovanje potrebujejo velike količine podatkov (da se iz njih "učijo"). Podjetja zajemanje podatkov opravičujejo z izboljšanjem tehnologije. Uporabnikom je tako rečeno, da morajo žrtvovati del zasebnosti za izboljšanje tehnologije, ki jo uporabljajo. Diferencirana zasebnost ponuja možnost, da temu ni tako (v primeru, da se izkaže, da je 'skalabilna'). Tak pristop npr. že uporablja Apple, ki nekatere podatke še preden jih iz naprave (npr. iz iphona) pošlje na centralni server, 'zamaskira' s pomočjo algoritmov, ki slonijo na diferencirani zasebnosti (to so uporabili pri sistemu za predloge 'emojiev' in sistemu za pomoč pri tipkanju). 
+Drugi primer, ki je pogost dandanes, pa se pojavi pri procesu rudarjenja podatkov (angl. data mining). Podjetja za izboljšanje svoje programske opreme, beležijo skoraj vsako našo potezo na pametnem telefonu ali računalniku. Rezultat so potem npr. sistemi za priporočanje in 'auto-correct' sistem pri tipkanju; torej algoritmi, ki za svoje delovanje potrebujejo velike količine podatkov (da se iz njih "učijo"). Podjetja zajemanje podatkov opravičujejo z izboljšanjem tehnologije. Uporabnikom je tako rečeno, da morajo žrtvovati del zasebnosti za izboljšanje tehnologije, ki jo uporabljajo. Diferencirana zasebnost ponuja možnost, da temu ni tako (v primeru, da se izkaže, da je 'skalabilna'). Tak pristop npr. že uporablja Apple [3], ki nekatere podatke še preden jih iz naprave (npr. iz iphona) pošlje na centralni server, 'zamaskira' s pomočjo algoritmov, ki slonijo na diferencirani zasebnosti (to so uporabili pri sistemu za predloge 'emojiev' in sistemu za pomoč pri tipkanju). 
 \newline
 \newline
-V prvem delu diplomske naloge se bom posvetil teoretičnemu ozadju. V praksi imamo opravka z različnimi vrstami podatkov, v literaturi pa se diferencirana zasebnost (kot matematični koncept) pogosto definira le za posamezno vrsto podatkov (npr. številske). Predstavil bom model, ki omogoča, da se koncept diferencirane zasebnosti definira v splošnem, tj. za vse vrste podatkov hkrati. V nadaljevanju bo podanih tudi nekaj osnovnih rezultatov, ki izhajajo iz tega modela. V drugem delu bom...
+V prvem delu diplomske naloge se posvetimo teoretičnemu ozadju. V praksi imamo opravka z različnimi vrstami podatkov, v literaturi pa se diferencirana zasebnost (kot matematični koncept) pogosto definira le za posamezno vrsto podatkov (npr. številske). Predstavili bomo model, ki omogoča, da se koncept diferencirane zasebnosti definira v splošnem, tj. za vse vrste podatkov hkrati. V nadaljevanju bo podanih tudi nekaj osnovnih teoretičnih rezultatov, ki izhajajo iz tega modela. V drugem delu se posebej osredotočimo na funkcijske podatke in nazadnje večino obravnavanih mehanizmov še implementiramo ter opišemo rezultate.
 
 \section{Matematična priprava}
 
@@ -217,7 +217,7 @@ porazdeljen multivariatno normalno.
 \end{definicija}
 \begin{opomba}
 Gaussov proces je kot slučajni proces definiran na nekem verjetnostnem prostoru  $(\Omega, \mathcal{F}, \mathbb{P})$. Pri fiksnem $\omega \in \Omega$ je preslikava $T \rightarrow \mathbb{R}$ (oz. $t \rightarrow X_t(\omega)$) realizacija ali trajektorija Gaussovega procesa $X_t$. Gaussov proces je popolnoma določen s funkcijama povprečja  in kovariance: 
-$$m(t) = \mathbb{E}X_t, K(s,t) = Cov(X_s,X_t).$$
+$$m(t) = \mathbb{E}X_t, \quad K(s,t) = Cov(X_s,X_t).$$
 \end{opomba}
 
 Spomnimo se, da je Hilbertov prostor $\mathcal{H}$ poln metrični prostor (vsako Cauchyjevo zaporedje ima limito vsebovano v tem prostoru), kjer je metrika podana prek skalarnega produkta, torej za $f,g \in \mathcal{H}$ velja $d(f,g) = \sqrt{<f-g,f-g>}$.
@@ -227,7 +227,7 @@ Naj bo $H$ Hilbertov prostor, katerega elementi so funkcije oblike $f: X \righta
 \begin{opomba}
 Opišimo podano definicijo ter reprodukcijsko lastnost na še bolj intiutiven način. Z uporabo Rieszovega reprezentacijskega izreka o funkcionalih opazimo, da za vsak $x \in X$ obstaja natanko en $K_x \in H$ z lastnostjo
 $$
-f(x) = L_x(f) = \langle f, K_x \rangle_{\mathcal{H}}, \forall f \in H.
+f(x) = L_x(f) = \langle f, K_x \rangle_{\mathcal{H}}, \quad \forall f \in H.
 $$
 Če sedaj namesto $f$ vzamemo $K_x \in H$, sledi, da za vsak $y \in X$ obstaja $K_y \in H$, da velja
 $$
@@ -301,7 +301,7 @@ Pravimo da sta dve podatkovni bazi, \textbf{d}$= (a_{1},...,a_{n})$ in $\textbf{
 Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnamo $D^n$ kot metrični prostor s pripadajočo Hammingovo metriko $\rho_{H}$, je \textbf{d} $\sim$ \textbf{d\'} natanko tedaj, ko je $\rho_{H}$(\textbf{d},\textbf{d\'})$=1$.
 \newline
 \newline
-Za izpeljavo nekaterih rezultatov v nadaljevanju, moramo predpostaviti, da je $D$ kompakten metrični prostor. V primeru kompaktnosti nato definiramo še diameter kot $diam(D) = \max\limits_{d,d' \in D}\rho(d,d')$. Obstoj diametra je posledica dejstva, da zvezna funkcija $\rho$ doseže svoj maksimum na kompaktni množici $D$.
+Za izpeljavo nekaterih rezultatov v nadaljevanju, moramo predpostaviti, da je $D$ kompakten metrični prostor. V primeru kompaktnosti nato definiramo še diameter kot $diam(D) := \max\limits_{d,d' \in D}\rho(d,d')$. Obstoj maksimuma v tej definiciji je posledica dejstva, da zvezna funkcija $\rho$ doseže svoj maksimum na kompaktni množici $D$.
 
 \subsection{Modeliranje poizvedb}
 Poizvedba (angl. query) je način pridobitve željenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
@@ -374,13 +374,11 @@ V prejšnjem poglavju smo definirali koncept diferencirane zasebnosti in izposta
 \end{izrek}
 \proof 
 Označimo z $\mathcal{B} \subset \mathcal{P}(E_Q) $ vse množice za katere je pogoj \eqref{diferen} izpolnjen. Po predpostavki iz izreka velja $\mathcal{S} \subseteq \mathcal{B}$. Naj bo $A_1 \subseteq A_2 \subseteq ... $, kjer je $A_i \in \mathcal{B}$ za vsak $i \in \mathbb{N}$, poljubno monotono naraščajoče zaporedje množic v $\mathcal{B}$. Naj bosta še \textbf{d}, \textbf{d'} $\in D^n$ poljubni sosednji podatkovni bazi. Potem velja 
-\begin{equation*}
-\begin{split}
+\begin{gather*}
 \mathbb{P}(X_{Q,\textbf{d}} \in \bigcup_{i} A_i) = \lim_{i \to\ \infty} \mathbb{P}(X_{Q,\textbf{d}} \in A_i)  \leq \\
 \leq  e^\epsilon\lim_{i \to\ \infty} \mathbb{P}(X_{Q,\textbf{d'}} \in A_i) + \delta = \\
 =  e^\epsilon \mathbb{P}(X_{Q,\textbf{d}} \in \bigcup_{i} A_i) + \delta
-\end{split}
-\end{equation*}
+\end{gather*}
 kjer smo pri obeh enakostih uporabili zveznost verjetnostne mere, pri neenakosti pa dejstvo, da za vsak i velja $A_i \in \mathcal{B}$. Identičen argument pokaže, da enako velja za monotono padajoča zaporedja množic v $\mathcal{B}$. S tem smo pokazali, da je $\mathcal{B}$ monoton razred. Iz tega in iz dejstva, da je $\mathcal{S} \subseteq \mathcal{B}$ (po uporabi izreka o monotonih razredih), sledi, da je tudi $\sigma(\mathcal{S}) = \mathcal{A}_Q \subseteq \mathcal{B}$.
 \qed
 \newline
@@ -394,7 +392,7 @@ Izberimo še $k \in \mathbb{N}$ in k-terico realnih števil $0 \leq t_1 \leq \ld
 \end{gather*}
 
 
-Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (NAVEDI VIR). Po uporabi zgornjega izreka sedaj sledi rezultat.
+Množice A tvorijo algebro na $C([0,1])$ (posledica lastnosti praslik) in izkaže se, da je $\sigma$-algebra, ki jo te množice generirajo, enaka  Borelovi $\sigma$-algebri na $C([0,1])$, torej $\mathcal{A}_Q$ (glej izrek 7.2.1 v [9]). Po uporabi zgornjega izreka sedaj sledi rezultat.
 \newline
 \newline
 V tem zgledu smo problem preverjanja diferencirane zasebnosti za 'neskončno'-dimenzionalen mehanizem s pomočjo izreka prevedli na končno-dimenzionalen mehanizem. Rezultat je iz teoretičnega vidika zanimiv, nima pa pravega praktičnega pomena, saj je preverjanja pogoja na Borelovi $\sigma$-algebri $\mathbb{R}^k$ še vedno v praksi neizvedljiva naloga.
@@ -455,7 +453,7 @@ za vse $d,d' \in D, A \in \mathcal{A}_D$. Če definiramo n-dimenzionalni odzivni
 $$\mathbb{P}(Y_{\textbf{d}} \in A) \leq e^\epsilon \mathbb{P}(Y_{\textbf{d'}} \in A) + \delta$$
 za vse $\textbf{d} \sim \textbf{d'} \in D^n, A \in D^n$.
 \end{izrek}
-Dokaz tu izpustimo (vsebuje veliko tehničnih detajlov). Bralec si ga lahko ogleda v izhodiščnem članku.
+Dokaz tu izpustimo (vsebuje veliko tehničnih detajlov). Bralec si ga lahko ogleda v izhodiščnem članku [1].
 \newline
 \newline
 \begin{primer} Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z $|D|$ elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v 1-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmožic (število elementov v $\mathcal{A}_{D^n}$).
@@ -493,12 +491,10 @@ Pokažimo, da bo dan mehanizem zadoščal pogojem diferencirane zasebnosti natan
 \item $d,d' \in A: $ Velja $\mathbb{P}(Y_d \in A) = \mathbb{P}(Y_{d'} \in A) = p(|A| - 1) + 1 - pm=p(|A| -m -1) + 1$. Tudi tu pogoj diferencirane zasebnosti sledi trivialno.
 \item $d \notin A,d' \in A: $ Velja $\mathbb{P}(Y_d \in A) \leq \mathbb{P}(Y_d' \in A)$ in pogoj sledi iz predpostavke $1 - pm > p$.
 \item  $d \in A, d' \notin A: $ Velja:
-\begin{equation*}
-\begin{split}
+\begin{gather*}
 \mathbb{P}(Y_d \in A) = p(|A| -m -1) + 1, \\
 \mathbb{P}(Y_d' \in A) = p|A|.
-\end{split}
-\end{equation*}
+\end{gather*}
 Sedaj z uporabo potrebnega pogoja dobimo (hkrati upoštevamo, da je $|A| \geq 1$)
 $$1-pm\leq pe^{\epsilon} + \delta = e^{\epsilon}(p|A|-p|A|+p)+\delta \leq e^{\epsilon}p|A|-p(|A|-1)+\delta,$$
 kar po preureditvi da 
@@ -523,19 +519,17 @@ Za izbrani $d \in D$ vemo, da je metrika $\rho( \cdot , d)$ zvezna funkcija (sle
  \end{opomba}
 \proof
  Ker je D kompakten, lahko izberemo $u,v \in D$ z $\rho(u,v)=diam(D)$. Definirajmo $r=\frac{diam(D)}{2}$. Če obrnemo pogoj diferencirane zasebnosti dobimo $$\mathbb{P}(Y_u \in B_r(v)) \geq e^{-\epsilon}(\mathbb{P}(Y_v \in B_r(v)) -\delta).$$ Ker je $\rho(x,u) \geq r > 0$ za vsak $x \in B_r(v)$, sledi 
-\begin{equation*}
-\begin{split}
+\begin{gather*}
 \mathbb{E}[\rho(Y_u,u)] \geq \mathbb{E}[\rho(Y_u,u) | Y_u \in B_r(v)] \mathbb{P}(Y_u \in B_r(v)) \\
 \geq r e^{-\epsilon}(\mathbb{P}(Y_v \in B_r(v)) -\delta) > 0.
-\end{split}
-\end{equation*}
+\end{gather*}
 Posebej moramo obravanati le še primer, ko je $\delta = \mathbb{P}(Y_v \in B_r(v))$ (brez škode za splošnost namreč lahko privzamemo $\delta \leq \mathbb{P}(Y_v \in B_r(v))$, saj drugače pogoj diferencirane zasebnosti ne bi imel smisla). Rezultat v tem primeru sledi po podobnem premisleku kot zgoraj.
 \qed
 \newline
 \newline
 Spodnja izreka podata spodnjo mejo napake pri $(\epsilon, \delta)$-zasebnih mehanizmih. Pri obeh opazimo, da večja kot je zasebnost (tj. manjša kot sta $\epsilon$ in $\delta$), višja je spodnja meja napake (tj. naš mehanizem je manj natančen). To se sklada z našo definicijo, pri kateri smo omenil t. i. 'privacy-accuracy trade-off'.
 \begin{izrek}
- Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ Y_d: \Omega \rightarrow U | d \in D\}$ (glej definicijo 1). Potem velja $$\gamma  \geq (1-\delta)(\frac{diam(D)}{2(1+e^\epsilon)})$$
+ Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ Y_d: \Omega \rightarrow U | d \in D\}$ (glej definicijo 1). Potem velja $$\gamma  \geq (1-\delta)\Big(\frac{diam(D)}{2(1+e^\epsilon)}\Big)$$
 \end{izrek}
 \proof
 D je tu ponovno kompakten metričen prostor iz česar sledi, da obstajata točki $u, v \in D$ z $\rho(u,v) = diam(D)$. Iz zgornje leme vemo, da je $\gamma > 0$. Tako lahko definiramo $t := \frac{diam(D)}{2\gamma}$. Sedaj opazimo, da sta odprti krogli $B_{t\gamma}(u), B_{t\gamma}(v) $ disjunktni. Z uporabo neenakosti Markova na pozitivni slučajni spremenljivki $\rho(Y_u, u)$ dobimo: $$\mathbb{P}(Y_u \in B_{t\gamma}(u)) = \mathbb{P}(\rho(Y_u,u) < t\gamma) \geq 1 - \frac{\mathbb{E}(\rho(Y_u,u))}{t\gamma} = 1 - \frac{2\gamma}{diam(D)} $$ 
@@ -555,7 +549,7 @@ V zgornji lemi smo navedli implikacijo, čeprav v resnici velja ekvivalenca med 
 \newline
 \newline
 \begin{izrek}
-Naj bo D diskreten metričen prostor z $|D| = m + 1$ in $\kappa = min_{d,d' \in D}\rho(d,d')$.  Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ X_d: \Omega \rightarrow U | d \in D\}$ (glej definicijo 1). Potem velja $$\gamma  \geq (1-\delta)(\frac{\kappa m}{m+e^\epsilon})$$
+Naj bo D diskreten metričen prostor z $|D| = m + 1$ in $\kappa = min_{d,d' \in D}\rho(d,d')$.  Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ X_d: \Omega \rightarrow U | d \in D\}$ (glej definicijo 1). Potem velja $$\gamma  \geq (1-\delta)\Big(\frac{\kappa m}{m+e^\epsilon}\Big)$$
 \end{izrek}
 \proof
 Najprej definiramo $t := \frac{\kappa}{\gamma}$. Opazimo, da je $m + 1$ odprtih krogel $B_{t\gamma}(u), u \in D$ disjunktnih. Sedaj izberemo točno določen $u \in D$ in po enakem razmisleku kot v zgornjem izreku po uporabi neenakosti Markova sledi $$\mathbb{P}(X_u \in B_{t\gamma}(u)) \geq 1 - \frac{\gamma}{\kappa}.$$
@@ -573,7 +567,10 @@ $$\gamma = \mathbb{E}[\rho(Y_d,d)] = \sum_{d \neq d'}p=mp=(1-\delta)\frac{m}{m+e
 Dosedaj smo že navedli primera mehanizmov za diskretne in numerične podatke (glej primera 4.9 ter 4.10). V tem poglavju bomo opisali mehanizem še  za funkcijske podatke. Pri tem se bomo sklicali na v uvodu omenjeno teorijo Gaussovih procesov ter reprodukcijskih jeder Hilbertovih prostorov.
 \newline
 \newline
-Obstajata dve glavni motivaciji za obravnavo funckijskih podatkov v okviru diferencirane zasebnosti. Prvo smo že omenili in sicer to, da je naša podatkovna baza $D$ sestavljena iz funkcij (primer 3.3). Druga nastopi, ko želimo kot odgovor na poizvedbo $Q$ podati funkcijo (torej je $E_Q$ funkcijski prostor). Tak primer bi bil, ko imamo numerične podatke $d_1, ..., d_n \in \mathbb{R}^d$, ki so dobljeni iz porazdelitve z gostoto $f$, naš cilj pa je oceniti gostoto s ti. jedrno cenilko za gostoto (angl. kernel density estimator) $$\hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W(\frac{||x-d_i||}{h}), x \in \mathbb{R}^d,$$  
+Obstajata dve glavni motivaciji za obravnavo funckijskih podatkov v okviru diferencirane zasebnosti. Prvo smo že omenili in sicer to, da je naša podatkovna baza $D$ sestavljena iz funkcij (primer 3.3). Druga nastopi, ko želimo kot odgovor na poizvedbo $Q$ podati funkcijo (torej je $E_Q$ funkcijski prostor). Tak primer bi bil, ko imamo numerične podatke $d_1, ..., d_n \in \mathbb{R}^d$, ki so dobljeni iz porazdelitve z gostoto $f$, naš cilj pa je oceniti gostoto s ti. jedrno cenilko za gostoto (angl. kernel density estimator) 
+\begin{gather*}
+\hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W\Big(\frac{||x-d_i||}{h}\Big), x \in \mathbb{R}^d,
+\end{gather*}
 kjer je $W$ jedrna funkcija in $h$ njen parameter dosega (angl. bandwith parameter). Na kratko, gre za parameter, ki vpliva na to, kako blizu si morata biti dani točki, da imata znaten vpliv druga na drugo. Oblika $\hat{f}$ je močno odvisna od izbire tega parametra in obstajajo načini za optimalen izbor, ki pa se jih v tem delu ne bomo dotaknili. S pomočjo mehanizma, ki ga bomo podali v nadaljevanju, lahko potem cenilko gostote $\hat{f}$ naredimo diferencirano zasebno. Koristnost takega pristopa je večplastna. Ne samo, da smo dobili zasebno cenilko za gostoto, ampak lahko sedaj le-to uporabimo tudi za vzorčenje novih podatkov. To je alternativen pristop k objavi celotne podatkovne baze kot tisti, ki smo ga obravnali pri primeru Laplacovega mehanizma za numerične podatke (primer 4.9). Na tako privatizirani bazi lahko potem izvajamo vse poizvedbe in pogojem diferencirane zasebnosti bo še vedno zadoščeno. Primer, ko je odgovor na statistično poizvedbo oz. analizo funkcija, so tudi razni modeli iz strojnega učenja (linearna regresija, metoda podpornih vektorjev itd.). Opisan postopek v tem poglavju se lahko uporabi tudi za ohranitev zasebnosti pri učenju takih modelov. Na ta način preprečimo, da bi prek naučenih parametrov modela izdali preveč podrobnosti o učni podatkovni množici.
 \newline
 \newline
@@ -599,13 +596,13 @@ $$
 $(\epsilon, \delta)$ diferencirano zaseben, ko bo veljajo
 \begin{equation}\label{meja}
 \sup_{\textbf{d} \sim \textbf{d'}} \sup_{n < \infty} \sup_{(x_1,...,x_n) \in D^n} 
-\|M^{-1/2}(x_1,...x_n)
+\bigg\|M^{-1/2}(x_1,...x_n)
 \begin{pmatrix}
   f_{\textbf{d}}(x_1)-f_{\textbf{d'}}(x_1)  \\
   \vdots     \\
   f_{\textbf{d}}(x_n)-f_{\textbf{d'}}(x_n)
  \end{pmatrix}
-\|_2 \leq \Delta. \tag{6}
+\bigg\|_2 \leq \Delta. \tag{6}
 \end{equation}
 \end{izrek}
 Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.2 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer je npr. ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
@@ -654,7 +651,7 @@ To sledi iz Radon-Nikodymjevega izreka in monotonosti integrala:
 Za večjo preglednost označimo v izreku definiran mehanizem $X_{Q, \textbf{d}}$ z $\tilde{Q}(\textbf{d})$ in  $\sqrt{2\log{\frac{2}{\delta}}}$ s $c(\delta)$. Ker je $z$ multivariatno normalno porazdeljena slučajna spremenljivka, je absolutno zvezna. Posledično enako velja za slučajno spremenljivko/odzivni mehanizem $\tilde{Q}(\textbf{d})$ in torej imamo gostoto. Sledi
 \begin{gather*}
 \frac{dF_{\tilde{Q}(\textbf{d})}(x)/d \lambda (x)}{dF_{\tilde{Q}(\textbf{d'})}(x)/d \lambda (x)} = \frac{g_{\textbf{d} (x)}}{g_{\textbf{d'} (x)}} \\ 
-=  exp \{ \frac{\epsilon^2}{2c(\delta)^2 \Delta^2} [ (x-Q(\textbf{d'}))^T M^{-1} (x-Q(\textbf{d'})) - (x-Q(\textbf{d}))^T M^{-1} (x-Q(\textbf{d}))]\ \}.
+=  exp \bigg\{ \frac{\epsilon^2}{2c(\delta)^2 \Delta^2} \Big[ (x-Q(\textbf{d'}))^T M^{-1} (x-Q(\textbf{d'})) - (x-Q(\textbf{d}))^T M^{-1} (x-Q(\textbf{d}))\Big]\ \bigg\}.
 \end{gather*}
 Razmerje gostot bo večje od $e^{\epsilon}$ le v primeru
 \begin{gather*}
@@ -669,10 +666,10 @@ u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon}
 \end{gather*}
 Opazimo, da na levi strani neenakosti dobimo normalno porazdeljeno slučajno spremenljivko s povprečjem 0 in varianco manjšo od $\Delta^2$ (sledi iz \eqref{mejagauss}). Označimo $y \sim \mathcal{N}(0,1)$. Sledi 
 \begin{gather*}
-\mathbb{P}(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \\
-\mathbb{P}(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}) \leq \mathbb{P}(y \geq c(\delta) - \frac{1}{2 c(\delta)}) \leq \delta.
+\mathbb{P}\Big(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}\Big) \leq \\
+\mathbb{P}\Big(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}\Big) \leq \mathbb{P}\Big(y \geq c(\delta) - \frac{1}{2 c(\delta)}\Big) \leq \delta.
 \end{gather*}
-Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja iz neenakosti za repe porazdelitve standarne normalne slučajne spremenljivke $\mathbb{P}(Y \geq y) \leq \frac{\exp(-y^2 / 2)}{y \sqrt{2\pi}}$ (NAVEDI VIR).
+Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja iz neenakosti za repe porazdelitve standarne normalne slučajne spremenljivke $\mathbb{P}(Y \geq y) \leq \frac{\exp(-y^2 / 2)}{y \sqrt{2\pi}}$ (za dokaz glej [8]).
 \qed
 \newline
 \newline
@@ -684,7 +681,7 @@ kjer je $S = (x_1,...,x_n)$ končen nabor točk iz $D$ in $B \in \mathcal{B}(\ma
 \begin{gather*}
 \bigcup_{S : |S| < \infty} \mathcal{C}_S =: \mathcal{F}_0
 \end{gather*}
-je algebra (NAVEDI VIR), ni pa $\sigma$-algebra, saj nimamo zaprtosti za števne unije. Označimo še $\mathcal{F} = \sigma(\mathcal{F}_0)$. Podajmo sedaj izrek, ki pokaže, da je dovolj, da pogoj diferencirane zasebnosti preverimo le na algebri $\mathcal{F}_0$. 
+je algebra (glej stran 485 v [10]), ni pa $\sigma$-algebra, saj nimamo zaprtosti za števne unije. Označimo še $\mathcal{F} = \sigma(\mathcal{F}_0)$. Podajmo sedaj izrek, ki pokaže, da je dovolj, da pogoj diferencirane zasebnosti preverimo le na algebri $\mathcal{F}_0$. 
 \begin{izrek}
 Naj bo $X_{Q,\textbf{d}}$ odzivni mehanizem z $E_Q = \mathbb{R}^D$ (ponovno $D = \mathbb{R}^m$) in $\mathcal{A}_Q = \mathcal{F}$. Če velja pogoj diferencirane zasebnosti 
 \begin{gather*}
@@ -736,13 +733,13 @@ Izkaže se, da se da pogoju $(6)$ iz izreka 6.1 enostavno zadostiti, če funkcij
 \begin{izrek}
 Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom $K$. Potem za vsako $x_1, ..., x_n$ končno zaporedje točk v $\mathbb{R}^m$ velja:
 $$
-\|M^{-1/2}(x_1,...x_n)
+\bigg\|M^{-1/2}(x_1,...x_n)
 \begin{pmatrix}
   f(x_1)  \\
   \vdots     \\
   f(x_n)
  \end{pmatrix}
-\|_2 \leq \|f\|_{\mathcal{H}}.
+\bigg\|_2 \leq \|f\|_{\mathcal{H}}.
 $$
 \end{izrek}
 \proof 
@@ -781,18 +778,18 @@ $$
 \begin{primer}
 Uporabimo zgoraj omenjeni mehanizem na konkretnem primeru. Recimo, da naši podatki $(d_1,...,d_n) = \textbf{d}, d_i \in \mathbb{R}^d$ prihajajo iz porazdelitve z gostoto $f$. Za oceno te gostote uporabimo cenilko z Gaussovim jedrom
 $$
-f_{\textbf{d}}(x) = \frac{1}{n(2\pi h^2)^{d/2}} \sum_{i=1}^{n} exp\{\frac{-\|x-d_i\|_{2}^{2}}{2h^2}\},  x \in \mathbb{R}^d,
+f_{\textbf{d}}(x) = \frac{1}{n(2\pi h^2)^{d/2}} \sum_{i=1}^{n} exp\Big\{\frac{-\|x-d_i\|_{2}^{2}}{2h^2}\Big\},  x \in \mathbb{R}^d,
 $$
 kjer je $h$ parameter dosega. Naj bosta $\textbf{d} \sim \textbf{d'}$ sosednji bazi, ki se razlikujeta le na zadnjem elementu (brez izgube za splošnost), torej $\textbf{d'} = (d_1,...,d_{n-1},d_{n}^{\prime}) $. Sledi
 $$
-(f_{\textbf{d}} - f_{\textbf{d'}})(x) = \frac{1}{n(2\pi h^2)^{d/2}} (exp\{\frac{-\|x-d_n\|_{2}^{2}}{2h^2}\}-exp\{\frac{-\|x-d_{n}^{\prime}\|_{2}^{2}}{2h^2}\}).
+(f_{\textbf{d}} - f_{\textbf{d'}})(x) = \frac{1}{n(2\pi h^2)^{d/2}} \Big(exp\Big\{\frac{-\|x-d_n\|_{2}^{2}}{2h^2}\Big\}-exp\Big\{\frac{-\|x-d_{n}^{\prime}\|_{2}^{2}}{2h^2}\Big\}\Big).
 $$
 Za kovariančno funkicjo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussovo jedro $K(x,y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$. Hkrati opazimo, da funkcije oblike $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom $K$. Torej $f_{\textbf{d}} - f_{\textbf{d'}} = \frac{1}{n(2\pi h^2)^{d/2}} (K_{d_n}-K_{d_{n}^{\prime}})$ in velja 
 \begin{gather*}
 \|f_{\textbf{d}} - f_{\textbf{d'}}\|_{\mathcal{H}}^{2} = \langle f_{\textbf{d}} - f_{\textbf{d'}}, f_{\textbf{d}} - f_{\textbf{d'}} \rangle_{\mathcal{H}}  \\ 
-= (\frac{1}{n(2\pi h^2)^{d/2}})^2 \langle K_{d_n}-K_{d_{n}^{\prime}}, K_{d_n}-K_{d_{n}^{\prime}} \rangle_{\mathcal{H}}  \\
-= (\frac{1}{n(2\pi h^2)^{d/2}})^2 (K(d_n, d_n)+K(d_{n}^{\prime}, d_{n}^{\prime})-2K(d_n, d_{n}^{\prime})) \\ 
-\leq 2 (\frac{1}{n(2\pi h^2)^{d/2}})^2
+= \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2 \langle K_{d_n}-K_{d_{n}^{\prime}}, K_{d_n}-K_{d_{n}^{\prime}} \rangle_{\mathcal{H}}  \\
+= \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2 (K(d_n, d_n)+K(d_{n}^{\prime}, d_{n}^{\prime})-2K(d_n, d_{n}^{\prime})) \\ 
+\leq 2 \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2
 \end{gather*}
 
 Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, potem iz posledice 6.9 sledi, da je mehanizem 
@@ -804,7 +801,7 @@ $(\epsilon, \delta)$ diferencirano zaseben.
 
 \section{Komentar praktičnega dela}
 
-Za konec si poglejmo še, kako se do zdaj omenjeni mehanizmi obnesejo v praksi. V ta namen bomo uporabili umetno zgenerirane podatke o 1000 prebivalcih ZDA, ki vsebujejo informacije o njihovi plači, telesni višini in zvezni državi, v kateri živijo. Vsa koda s komentarji je dostopna na naslovu: \url{https://github.com/metodj/thesis} .
+Za konec si poglejmo še, kako se do zdaj omenjeni mehanizmi obnesejo v praksi. V ta namen bomo uporabili umetno zgenerirane podatke o 1000 prebivalcih ZDA, ki vsebujejo informacije o njihovi plači, telesni višini in zvezni državi, v kateri živijo. Vsa koda s komentarji je dostopna na naslovu: \url{https://github.com/metodj/thesis/blob/master/dfPython.ipynb} .
 \subsection{Numerični podatki}
 Najprej uporabimo Laplacov mehanizem iz primera 4.9 za podatke o plači. Višina plača je bila dobljena iz vzorčenja enakomerne porazdelitve na intervalu $[1500\$,4500\$]$. Za metriko vzamemo absolutno razdaljo. Diameter naših podatkov, ki je v tem primeru kar enak razliki maksimalne in minimalne vrednosti plače v bazi, potem znaša 2996\$. Rezultati so prikazani v spodnjih dveh tabelah.
 
@@ -866,17 +863,15 @@ Razlog za slabe rezultate zgoraj obravnavanega mehanizma leži v veliki občutlj
 kjer $\| \cdot \|_1$ predsavlja $l_1$ normo. V primeru identične poizvedbe je občutljivost enaka kar $diam(D)$. Logično je, da gre za najbolj občutljivo poizvebo, saj `izdamo' največ informacij o naši podatkovni bazi in posledično moramo dodati veliko šuma za dosego diferencirane zasebnosti. V praksi se zato tak pristop uporablja le redko.
 \end{opomba}
 \begin{opomba}
-Dober primer večje implementacije diferencirane zasebnosti v praksi je sistem za zaščito SQL-poizvedb, ki so ga razvili pri podjetju Uber (NAVEDI VIR). Sistem za vsako poizvedbo (SQL-stavek) najprej izračuna občutljivost in glede na to doda potem kalibriran šum odgovoru na poizvedbo (gre torej za mehanizem oblike \eqref{odzivni3}). Na ta način so dosegli dobro razmerje med uporabnostjo in zasebnostjo mehanizmov.
+Dober primer večje implementacije diferencirane zasebnosti v praksi je sistem za zaščito SQL-poizvedb, ki so ga razvili pri podjetju Uber [4]. Sistem za vsako poizvedbo (SQL-stavek) najprej izračuna občutljivost in glede na to doda potem kalibriran šum odgovoru na poizvedbo (gre torej za mehanizem oblike \eqref{odzivni3}). Na ta način so dosegli dobro razmerje med uporabnostjo in zasebnostjo mehanizmov.
 \end{opomba}
 \subsection{Diskretni podatki}
-Uporabimo mehanizem iz primera 4.10 na podatkih o zveznih državah, v katerih živijo posamezniki v naši podatkovni bazi. Rezultati so prikazani v tabelah 5 in 6. Spodnjo mejo za največjo napako nam tu poda izrek 5.5. Vidimo, da so ocene za spodnjo mejo precej bolj optimalne kot v primeru numeričnih podatkov (sledi iz opombe 5.7). Dodajmo še, da če bi delali na podatkih o spolu, bi imel naš mehanizem preprosto obliko Bernoullijeve slučajne spremenljivke.
+Uporabimo mehanizem iz primera 4.10 na podatkih o zveznih državah, v katerih živijo posamezniki v naši podatkovni bazi. Rezultati so prikazani v tabelah 5 in 6. Spodnjo mejo za največjo napako nam tu poda izrek 5.5. Vidimo, da so ocene za spodnjo mejo precej bolj optimalne kot v primeru numeričnih podatkov (sledi iz opombe 5.7). Dodajmo še, da če bi delali na podatkih o spolu (možna odgovora na poizvedbo sta le dva, moški ali ženski spol), bi imel naš mehanizem preprosto obliko Bernoullijeve slučajne spremenljivke.
 \begin{table}[!htb]
 \begin{center}
  \begin{tabular}{| c | c | } 
  \hline
 ($\epsilon, \delta$) & verjetnost, s katero podamo pravi odgovor  \\ [0.5ex] 
- \hline
-(0.1, 0.1) & 0.12  \\ 
  \hline
 (0.1, 0.1) & 0.12  \\ 
  \hline
@@ -948,8 +943,27 @@ Na tem mestu smo implementirali mehanizem, ki vrne diferencirano zasebno jedrno 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
+\bibitem{referenca-clanek}
+N.~Holohan, D. J.~Leith in O.~Mason \emph{Numerical, categorical and functional data under the one roof}, Information Sciences \textbf{305} (2015) strani 256--268.
+\bibitem{referenca-clanek}
+R.~Hall, A.~Rinaldo in L.~Wasserman \emph{Differential Privacy for Functions and Functional Data}, Journal of M. L. Research \textbf{14} (2013) strani 703--727.
+\bibitem{referenca-clanek}
+Differential Privacy Team, Apple \emph{Learning with Privacy at Scale}, [ogled 22.07.2018], dostopno na \url{https://machinelearning.apple.com/docs/learning-with-privacy-at-scale/appledifferentialprivacysystem.pdf}.
+\bibitem{referenca-clanek}
+N.~Johnson, J. P.~Near in D.~Song \emph{Towards Practical Differential Privacy for SQL Queries
+}, [ogled 22.07.2018], dostopno na \url{https://arxiv.org/abs/1706.09479}.
 \bibitem{wiki}
-\emph{Matrix (mathematics)}, v: Wikipedia: The Free Encyclopedia, [ogled 12.~5.~2011], dostopno na \url{http://en.wikipedia.org/wiki/Matrix_(mathematics)}.
+\emph{Reproducing kernel Hilbert space}, v: Wikipedia: The Free Encyclopedia, [ogled 22.~7.~2018], dostopno na \url{https://en.wikipedia.org/wiki/Reproducing_kernel_Hilbert_space}.
+\bibitem{wiki}
+\emph{Differential Privacy}, v: Wikipedia: The Free Encyclopedia, [ogled 22.~7.~2018], dostopno na \url{https://en.wikipedia.org/wiki/Differential_Privacy}.
+\bibitem{wiki}
+\emph{Gaussian Process}, v: Wikipedia: The Free Encyclopedia, [ogled 22.~7.~2018], dostopno na \url{https://en.wikipedia.org/wiki/Gaussian_process}.
+\bibitem{wiki}
+\emph{Upper-tail inequality for standard normal distribution}, v: Mathematics Stack Exchange, [ogled 22.~7.~2018], dostopno na \url{https://math.stackexchange.com/questions/28751/proof-of-upper-tail-inequality-for-standard-normal-distribution/69417#69417}.
+\bibitem{referenca-knjiga}
+K.~Parthasarathy, \emph{Probability Measures on Metric Spaces}, AMS Chelsea Publishing, 2005 (ponatis).
+\bibitem{referenca-knjiga}
+P.~Billingsley, \emph{Probability and Measure}, Wiley--Interscience, 1995 (3. izdaja); dostopno tudi na naslovu \url{https://www.colorado.edu/amath/sites/default/files/attached-files/billingsley.pdf}.
 
 
 
