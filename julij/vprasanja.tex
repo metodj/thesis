@@ -65,7 +65,18 @@
 
 
 \begin{document}
-Vprašanja se navezujejo na članek Differential Privacy for Functions and Functional Data: \url{http://www.jmlr.org/papers/volume14/hall13a/hall13a.pdf}
+\begin{itemize}
+\item Primer 4.2. Sem uredu definiral $\sigma$-algebro $\mathcal{F}_0$?
+\newline
+\item Poglavje 4.1. Kako pokazati, da je dovolj pogoj preveriti le na nekem $\pi$-sistemu, ki generira $\mathcal{A}_Q$? Če se želi uporabiti Dynkinovo lemo, je treba pokazati, da pogoj diferencirane zasebnosti velja na nekem $\lambda$-sistemu, kjer se pa zatakne pri preverjanju lastnosti za komplemente.
+\newline
+\item Ali je pri primeru 6.10 potrebno utemeljiti, da funkcije $f_{\textbf{D}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom K?
+\newline
+\item Poglavje 7.1. Rezultati prihajajo zelo nesmisleni, ker je diam(D) zelo velik. Vendar kaj pa če namesto absolutne razdalje vzamemo za metriko absolutno razdaljo pomnoženo z recimo $\frac{1}{1000}$? Torej $d(x,y) = \frac{1}{1000} |x-y|$. Dokaz v primeru 4.9 se mi zdi, da še vedno deluje. Potemtakem moramo dodati zelo malo šuma in stvar izgleda, kot da dela super. Vendar ali ne izgubi potem vse skupaj smisel? Vedno namreč lahko izberemo tako metriko, da bo diam(D) poljubno majhen, čeprav bo v praksi razlika med doseženo zasebnostjo velika...
+\newline
+\end{itemize}
+
+Naslednja vprašanja se navezujejo na članek Differential Privacy for Functions and Functional Data: \url{http://www.jmlr.org/papers/volume14/hall13a/hall13a.pdf}
 \newline
 \begin{itemize}
 \item Proposition 7 (v diplomi izrek 6.1): kaj nam zagotavlja pozitivno definitnost Grammove matrike $M$? To da je $K$ kovariančna funkcija Gaussovega procesa, nam zagotavlja samo pozitivno semi-definitnost. Pozitivno definitnost pa verjetno potrebujemo, saj se v dokazu skličemo na Proposition 3 (v diplomi izrek 6.2), kjer je pozitivna definitnost matrike M ena od predpostavk izreka. Vprašanje na to temo sem zastavil tudi na matematičnem forumu: \url{https://stats.stackexchange.com/questions/357969/positive-definiteness-of-grammian-with-respect-to-gaussian-process-covariance-f/357981?noredirect=1#comment673146_357981}
