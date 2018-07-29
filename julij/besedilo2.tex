@@ -222,10 +222,10 @@ $$m(t) = \mathbb{E}X_t, \quad K(s,t) = Cov(X_s,X_t).$$
 
 Spomnimo se, da je Hilbertov prostor $\mathcal{H}$ poln metrični prostor (vsako Cauchyjevo zaporedje ima limito vsebovano v tem prostoru), kjer je metrika podana prek skalarnega produkta, torej za $f,g \in \mathcal{H}$ velja $d(f,g) = \sqrt{<f-g,f-g>}$.
 \begin{definicija}
-Naj bo $H$ Hilbertov prostor, katerega elementi so funkcije oblike $f: X \rightarrow \mathbb{R}$ (pri tem je $X$ poljubna množica). Označimo z $L_x$ linearen funkcional, ki vsako funkcijo $f \in \mathcal{H}$ izvrednoti v x, torej $$L_x : f \rightarrow f(x).$$ Potem je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom natanko tedaj, ko je $L_x$ zvezen operator nad $\mathcal{H}$ za vsak $x \in X$. 
+Naj bo $\mathcal{H}$ Hilbertov prostor, katerega elementi so funkcije oblike $f: X \rightarrow \mathbb{R}$ (pri tem je $X$ poljubna množica). Označimo z $L_x$ linearen funkcional, ki vsako funkcijo $f \in \mathcal{H}$ izvrednoti v x, torej $$L_x : f \rightarrow f(x).$$ Potem je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom natanko tedaj, ko je $L_x$ zvezen operator nad $\mathcal{H}$ za vsak $x \in X$. 
 \end{definicija}
 \begin{opomba}
-Opišimo podano definicijo ter reprodukcijsko lastnost na še bolj intiutiven način. Z uporabo Rieszovega reprezentacijskega izreka o funkcionalih opazimo, da za vsak $x \in X$ obstaja natanko en $K_x \in \mathcal{H}$ z lastnostjo
+Opišimo podano definicijo ter reprodukcijsko lastnost na še bolj intuitiven način. Z uporabo Rieszovega reprezentacijskega izreka o funkcionalih opazimo, da za vsak $x \in X$ obstaja natanko en $K_x \in \mathcal{H}$ z lastnostjo
 $$
 f(x) = L_x(f) = \langle f, K_x \rangle_{\mathcal{H}}, \quad \forall f \in \mathcal{H}.
 $$
@@ -246,7 +246,7 @@ Naj bosta $\mu$ in $\nu$ meri definirani na istem merljivem prostoru $(X, \Sigma
 \end{definicija}
 
 \begin{izrek} [Radon-Nikodym]
-Naj bosta $\mu$ in $\nu$ meri definirani na istem merljivem prostoru $(X, \Sigma)$. Dodatno naj velja, da sta $\mu$ in $\nu$ $\sigma$-končni meri. Če velja  $\mu \ll \nu$, potem obstaja merlijva funkcija $f : X \rightarrow [0,\infty)$, da za vsako merljivo množico $A \subseteq X$ velja
+Naj bosta $\mu$ in $\nu$ meri definirani na istem merljivem prostoru $(X, \Sigma)$. Dodatno naj velja, da sta $\mu$ in $\nu$ $\sigma$-končni meri. Če velja  $\mu \ll \nu$, potem obstaja merljiva funkcija $f : X \rightarrow [0,\infty)$, da za vsako merljivo množico $A \subseteq X$ velja
 \begin{gather*}
 \mu(A) = \int_A f d \nu = \int_A \frac{d \mu}{d \nu} d \nu
 \end{gather*}
@@ -273,7 +273,7 @@ $\mathcal{A}_{U}$ nam potem naravno porodi $\mathcal{A}_{D} := \{A \in \mathcal{
 \newline
 Tak model podatkovne baze je splošen ($U$ je namreč poljubni metrični prostor) in nam omogoča enotno obravnavo različnih vrst podatkov: numeričnih, kategoričnih in funkcijskih.
 \begin{primer}  
-Recimo, da imamo na voljo podatkovno bazo, v kateri so zabeleženi hobiji posameznikov. Množico vseh hobijev lahko označimo s $\mathcal{H}=\{nogomet, kitara,...\}$. Predpostavka o končnosti $\mathcal{H}$ je tu smiselna in neomejujoča. Za $D$ potem lahko vzamemo $2^\mathcal{H}$. Pri izbiri metriki imamo precej proste roke, vzemimo npr. diskretno metriko  $\rho(A,B)=1$ če $A \neq B$ in 0 drugače. Borelova $\sigma$-algebra $\mathcal{A}_{D}$ je tu enaka $2^{2^{\mathcal{H}}}$. Opazimo tudi, da ni nujno, da imajo vsi elementi v $D^n$ (torej vnosi v naši podatkovni bazi) enako število elementov, kar odraža dejstvo, da nimamo vsi ljudje enakega števila hobijev.
+Recimo, da imamo na voljo podatkovno bazo, v kateri so zabeleženi hobiji posameznikov. Množico vseh hobijev lahko označimo s $\mathcal{H}=\{nogomet, kitara,...\}$. Predpostavka o končnosti $\mathcal{H}$ je tu smiselna in ne omejujoča. Za $D$ potem lahko vzamemo $2^\mathcal{H}$. Pri izbiri metriki imamo precej proste roke, vzemimo npr. diskretno metriko  $\rho(A,B)=1$ če $A \neq B$ in 0 drugače. Borelova $\sigma$-algebra $\mathcal{A}_{D}$ je tu enaka $2^{2^{\mathcal{H}}}$. Opazimo tudi, da ni nujno, da imajo vsi elementi v $D^n$ (torej vnosi v naši podatkovni bazi) enako število elementov, kar odraža dejstvo, da nimamo vsi ljudje enakega števila hobijev.
 \end{primer}
 
 \begin{primer} Kot primer za numerične podatke obravnavajmo barvne slike, torej $D = \mathbb{R}^{n\times m \times 3}$ (RGB\footnote{RGB je kratica, ki prihaja iz angleščine in pomeni `red', `green' in `blue'. Opisuje barvni model, ki je pogost pri analizi barvnih slik.}  slike dimenzije $n \times m)$. Kot metrika se tu naravno ponuja $\rho(A,B)=\sum_{i,j,k}  |a_{i,j,k}-b_{i,j,k}|$. Za Borelovo $\sigma$-algebro $\mathcal{A}_{D}$  vzamemo produktno $\sigma$-algebro, torej  $\mathcal{A}_{D}=\sigma(\{A_{1} \times A_{2} \times A_{3} | A_{1} \in \mathcal{B}(\mathbb{R}^n),  A_{2} \in \mathcal{B}(\mathbb{R}^m),  A_{3} \in \mathcal{B}(\mathbb{R}^3) \})$. Ta koncept lahko razširimo na 3-D barvne slike in tudi na video posnetke.
@@ -298,13 +298,13 @@ Pravimo da sta dve podatkovni bazi, \textbf{d}$= (a_{1},...,a_{n})$ in $\textbf{
 \item obstaja $j\in\{1,...n\}$, da velja $a_{j} \neq b_{j}$,
 \item za vsak $i\in\{1,...,n\} \setminus j$ velja $a_{i} = b_{i}$.
 \end{itemize}
-Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnamo $D^n$ kot metrični prostor s pripadajočo Hammingovo metriko $\rho_{H}$, je \textbf{d} $\sim$ \textbf{d\'} natanko tedaj, ko je $\rho_{H}$(\textbf{d},\textbf{d\'})$=1$.
+Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnavamo $D^n$ kot metrični prostor s pripadajočo Hammingovo metriko $\rho_{H}$, je \textbf{d} $\sim$ \textbf{d\'} natanko tedaj, ko je $\rho_{H}$(\textbf{d},\textbf{d\'})$=1$.
 \newline
 \newline
 Za izpeljavo nekaterih rezultatov v nadaljevanju moramo predpostaviti, da je $D$ kompakten metrični prostor. V primeru kompaktnosti definiramo še diameter kot $diam(D) := \max\limits_{d,d' \in D}\rho(d,d')$. Obstoj maksimuma v tej definiciji je posledica dejstva, da zvezna funkcija $\rho$ doseže svoj maksimum na kompaktni množici $D$.
 
 \subsection{Modeliranje poizvedb}
-Poizvedba (angl. query) je način pridobitve željenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
+Poizvedba (angl. query) je način pridobitve želenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
 \begin{primer} Kot pri konstrukciji podatkovne baze \textbf{d} $\in D^n$, imamo tudi pri izbiri prostora možnih odgovorov precej proste roke. Če se vrnemo na primer podatkovne baze hobijev, bi npr. lahko povprašali po številu ljudi, ki igrajo nogomet. Odgovor na to poizvedbo bi bil numeričen ($E_{Q} = \mathbb{N}$). Lahko pa bi nas zanimalo, kateri so 3 najpogostejši hobiji v bazi. Odgovor tu bi bil verjetno množica hobijev  ($E_{Q} = 2^\mathcal{H}$).
 \end{primer}
 \newline
@@ -355,9 +355,9 @@ Naj bo $\epsilon \geq 0$ in $0 \leq \delta \leq 1 $. Odzivni mehanizem je $(\eps
 Za boljše razumevanje ponazorimo definicijo s primerom. Za dano poizvedbo $Q$ izberimo konkretni sosednji bazi \textbf{d}, \textbf{d'} $\in D^n$ in $A\in \mathcal{A}_{Q}$. Označimo $a = \mathbb{P}(X_{Q,\textbf{d}}\in A)$ in $b = \mathbb{P}(X_{Q,\textbf{d'}}\in A)$. Zaradi simetričnosti morata v primeru $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma, veljati obe neenakosti, torej $a \leq e^{\epsilon}b+\delta$ in $b \leq e^{\epsilon}a+\delta$. Obravnavajmo dva primera:
 \begin{itemize}
 \item $a=b$ : Enakost obeh verjetnosti kaže na to, da se odgovor na poizvedbo ni spremenil z dodajanjem oz. odstranitvijo posameznika iz baze. Obe neenakosti tu sledita trivialno.
-\item $a>b$ (brez škode za splošnost, zaradi simetričnosti nam ni treba obravnavati še primera $a<b$) : nenakost $b \leq e^{\epsilon}a+\delta$ tu prav tako sledi trivialno, druga neenakost pa nam podaja mejo, za koliko je lahko verjetnost b manjša od a, da bo obravnavani mehanizem še vedno diferencirano zaseben. V primeru $(\epsilon, \delta) = (0.05, 0.05)$, mehanizem, pri katerem bo za dan $A \in \mathcal{A}_{Q}$ $\; a=0.9$ in $b=0.8$, ne bo diferencirano zaseben, saj $0.9 \nleq e^{0.05} 0.8 + 0.05 \doteq 0.89$ (ni izpolnjena druga neenakost).
+\item $a>b$ (brez škode za splošnost, zaradi simetričnosti nam ni treba obravnavati še primera $a<b$) : neenakost $b \leq e^{\epsilon}a+\delta$ tu prav tako sledi trivialno, druga neenakost pa nam podaja mejo, za koliko je lahko verjetnost b manjša od a, da bo obravnavani mehanizem še vedno diferencirano zaseben. V primeru $(\epsilon, \delta) = (0.05, 0.05)$, mehanizem, pri katerem bo za dan $A \in \mathcal{A}_{Q}$ $\; a=0.9$ in $b=0.8$, ne bo diferencirano zaseben, saj $0.9 \nleq e^{0.05} 0.8 + 0.05 \doteq 0.89$ (ni izpolnjena druga neenakost).
 \end{itemize}
-Ta primer nakazuje  zahtevnost testiranja $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma.Zzgornji postopek moramo namreč ponoviti za vse sosednje baze v $D^n$ in za vse elemente $A$ Borelove $\sigma$-algebra $\mathcal{A}_Q$ (teh je pogosto neštevno mnogo)! V praksi je to seveda v večini primerov neizvedljivo. V nadaljevanju bo podanih nekaj rezultatov, ki dane zahteve omilijo.
+Ta primer nakazuje  zahtevnost testiranja $(\epsilon, \delta)$-diferencirane zasebnosti mehanizma. Zgornji postopek moramo namreč ponoviti za vse sosednje baze v $D^n$ in za vse elemente $A$ Borelove $\sigma$-algebra $\mathcal{A}_Q$ (teh je pogosto neštevno mnogo)! V praksi je to seveda v večini primerov neizvedljivo. V nadaljevanju bo podanih nekaj rezultatov, ki dane zahteve omilijo.
 \end{primer}
 
 
@@ -423,7 +423,7 @@ in vidimo, da je dan mehanizem diferenciano zaseben tudi za poljubno izbrano poi
 \qed
 \newline
 \newline
-Sedaj lahko izpostavimo pomembno razliko med prej omenjenima vrstama odzivnih mehanizmov, perturbacija podatkovne baze \eqref{odzivni2} in perturbacija odgovorov na poizvedbe \eqref{odzivni3}. Pri slednjem načinu gre ponavadi za to, da najprej izvedemo poizvedbo, šele na to pa prek dodajanja šuma zaščitimo podatke. V tem primeru obstaja možnost, da bi napadalec večkrat izvedel identično poizvedbo in bi nato prek povprečja prišel do prave vrednosti iskanih podatkov. Posledično moramo omejiti število možnih poizvedb (oz. vrsto poizvedb, tj. prepovedati npr. identično poizvedbo). V primeru \eqref{odzivni2} tak napad ni mogoč, saj tu še preden podamo odgovor na poizvedbo zaščitimo podatke s primernim diferencirano zasebnim mehanizom. Odgovor na identično poizvedbo je tako vedno enak in napadalec ne more priti do sklepov o pravi vrednosti podatkov v bazi. 
+Sedaj lahko izpostavimo pomembno razliko med prej omenjenima vrstama odzivnih mehanizmov, perturbacija podatkovne baze \eqref{odzivni2} in perturbacija odgovorov na poizvedbe \eqref{odzivni3}. Pri slednjem načinu gre ponavadi za to, da najprej izvedemo poizvedbo, šele na to pa prek dodajanja šuma zaščitimo podatke. V tem primeru obstaja možnost, da bi napadalec večkrat izvedel identično poizvedbo in bi nato prek povprečja prišel do prave vrednosti iskanih podatkov. Posledično moramo omejiti število možnih poizvedb (oz. vrsto poizvedb, tj. prepovedati npr. identično poizvedbo). V primeru \eqref{odzivni2} tak napad ni mogoč, saj tu še preden podamo odgovor na poizvedbo zaščitimo podatke s primernim diferencirano zasebnim mehanizmom. Odgovor na identično poizvedbo je tako vedno enak in napadalec ne more priti do sklepov o pravi vrednosti podatkov v bazi. 
 \begin{primer}
 Ponazorimo zgoraj povedano še na konkretnem primeru, ki je koristen tudi za boljše razumevanje formalizma opisanega modela ter razlike med posameznimi vrstami odzivnih mehanizmov. Recimo, da poizvedbo $Q$ ponovimo k-krat ($ k \geq 1$). To lahko modeliramo kot eno samo poizvedbo $Q^{(k)}: U^n \rightarrow E_{Q}^{(k)}$, kjer $E_{Q}^{(k)} = E_Q \times ... \times E_Q$. Torej je $Q^{(k)}(\textbf{d}) = (Q(\textbf{d}), ... , Q(\textbf{d}))$. Iz zgornjega izreka vemo, da če je perturbacija podatkovne baze $Y_{\textbf{d}}$ diferencirano zasebna, potem enako velja za poizvedbo $Q^{(k)} \circ Y_{\textbf{d}}$ za poljuben $k$. Res vidimo, da možnost večkratnih poizvedb mehanizme te vrste ne ogroža.
 \newline
@@ -456,7 +456,7 @@ za vse $\textbf{d} \sim \textbf{d'} \in D^n, \; A \in D^n$.
 Dokaz tu izpustimo (vsebuje veliko tehničnih detajlov). Bralec si ga lahko ogleda v izhodiščnem članku [1].
 \newline
 \newline
-\begin{primer} Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z $|D|$ elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v eno-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmožic (število elementov v $\mathcal{A}_{D^n}$).
+\begin{primer} Zgornji izrek je še posebej uporaben v primeru, ko je $D$ diskreten metrični prostor. Ponazorimo to s primerom. Naj bo D končen prostor z $|D|$ elementi. Za mehanizme oblike \eqref{product} moramo tako preveriti pogoj diferencirane zasebnosti le za $\binom{|D|}{2}$ elementov D (število sosednjih podatkovnih baz v eno-dimenzionalnem primeru je kar enako številu možnih parov) in za $2^{|D|}$ podmnožic D (število elementov v $\mathcal{A}_D$). To nam že zagotavlja diferencirano zasebnost tudi v primeru $D^n$.  Brez izreka bi morali pogoj testirati za $n\binom{|D|}{2}|D|^{n-1}$ elementov $D^n$ (število sosednjih baz v n-dimenzionalnem primeru) in za $2^{|D|^n}$ podmnožic (število elementov v $\mathcal{A}_{D^n}$).
 \end{primer}
 \begin{primer}  Oglejmo si enostaven primer diferencirano zasebnega odzivnega mehanizma: \textit{Laplaceov odzivni mehanizem za numerične podatke}. Naj bodo naši podatki elementi $D \subset \mathbb{R}$. Predpostavimo tudi, da je D omejen, kar v nadaljevanju potrebujemo za obstoj diam(D). $L: \Omega \rightarrow \mathbb{R}$ naj bo Laplacovo porazdeljena slučajna spremenljivka s parametroma $(0,b), b > 0$.  
 Verjetnostna gostota ima potem obliko $f(x)=\frac{1}{2b}e^{-\frac{|x|}{b}}$.  Za vsak $d \in D$ definirajmo eno-dimenzionalni mehanizem kot  $Y_{d}(\omega) = d + L(\omega)$. Parameter b izberimo tako, da 
@@ -506,7 +506,7 @@ Torej vidimo, da bo naš mehanizem $(\epsilon, \delta)$-diferencirano zaseben na
 
 
 \section{Natančnost diferencirano zasebnih mehanizmov}
-Zaenkrat smo se posvetili vprašanju zasebnosti odzivnih mehanizmov, v tem poglavju pa se bomo vprašali še o njihovi natančnosti. Delali bomo z mehanizmi oblike \eqref{product}. Ker so slednji zgrajeni iz eno-dimenzionalnih mehanizmov, se bomo tu osredotočili na njihovo natančnost. Te rezulate lahko potem uporabimo za izpeljavo napake v n-dimenzionalnem primeru, torej na $D^n$, točna oblika pa bo odvisna od metrike $\rho_n$.
+Zaenkrat smo se posvetili vprašanju zasebnosti odzivnih mehanizmov, v tem poglavju pa se bomo vprašali še o njihovi natančnosti. Delali bomo z mehanizmi oblike \eqref{product}. Ker so slednji zgrajeni iz eno-dimenzionalnih mehanizmov, se bomo tu osredotočili na njihovo natančnost. Te rezultate lahko potem uporabimo za izpeljavo napake v n-dimenzionalnem primeru, torej na $D^n$, točna oblika pa bo odvisna od metrike $\rho_n$.
 \newline
 \newline
 Za izbrani $d \in D$ vemo, da je metrika $\rho( \cdot , d)$ zvezna funkcija (sledi iz trikotniške neenakosti). Torej je taka funkcija tudi Borelovo merljiva (natančneje Borel - Borelovo merljiva) na D.  Sledi, da je $\rho(Y_d,d)$ nenegativna slučajna spremenljivka (kompozitum merljivih funkcij je merljiva funkcija). Sedaj lahko definiramo maksimalno pričakovano napako $\gamma$ danega mehanizma $Y_d$: $$\gamma := max_{d\in D}\mathbb{E}[\rho(Y_d,d)].$$ Za dani $r > 0$ in $x \in D$ označimo z $B_r(x)$ odprto kroglo. 
@@ -523,7 +523,7 @@ Za izbrani $d \in D$ vemo, da je metrika $\rho( \cdot , d)$ zvezna funkcija (sle
 \mathbb{E}[\rho(Y_u,u)] \geq \mathbb{E}[\rho(Y_u,u) | Y_u \in B_r(v)] \mathbb{P}(Y_u \in B_r(v)) \\
 \geq r e^{-\epsilon}(\mathbb{P}(Y_v \in B_r(v)) -\delta) > 0.
 \end{gather*}
-Posebej moramo obravanati le še primer, ko je $\delta = \mathbb{P}(Y_v \in B_r(v))$ (brez škode za splošnost namreč lahko privzamemo $\delta \leq \mathbb{P}(Y_v \in B_r(v))$, saj drugače pogoj diferencirane zasebnosti ne bi imel smisla). Rezultat v tem primeru sledi po podobnem premisleku kot zgoraj.
+Posebej moramo obravnavati le še primer, ko je $\delta = \mathbb{P}(Y_v \in B_r(v))$ (brez škode za splošnost namreč lahko privzamemo $\delta \leq \mathbb{P}(Y_v \in B_r(v))$, saj drugače pogoj diferencirane zasebnosti ne bi imel smisla). Rezultat v tem primeru sledi po podobnem premisleku kot zgoraj.
 \qed
 \newline
 \newline
@@ -568,10 +568,10 @@ Obstajata dve glavni motivaciji za obravnavo funckijskih podatkov v okviru difer
 \begin{gather*}
 \hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W\Big(\frac{||x-d_i||}{h}\Big), x \in \mathbb{R}^d,
 \end{gather*}
-kjer je $W$ jedrna funkcija (definicija 2.7) in $h$ njen parameter dosega (angl. bandwith parameter). Na kratko, gre za parameter, ki vpliva na to, kako blizu si morata biti dani točki, da imata znaten vpliv druga na drugo. Oblika $\hat{f}$ je močno odvisna od izbire tega parametra in obstajajo načini za optimalen izbor, ki pa se jih v tem delu ne bomo dotaknili. S pomočjo mehanizma, ki ga bomo podali v nadaljevanju, lahko potem cenilko gostote $\hat{f}$ naredimo diferencirano zasebno. Koristnost takega pristopa je večplastna. Ne samo, da smo dobili zasebno cenilko za gostoto, ampak lahko sedaj le-to uporabimo tudi za vzorčenje novih podatkov. To je alternativen pristop k objavi celotne podatkovne baze kot tisti, ki smo ga obravnali pri primeru Laplacovega mehanizma za numerične podatke (primer 4.9). Na tako zaščiteni bazi lahko izvajamo vse poizvedbe in pogojem diferencirane zasebnosti bo še vedno zadoščeno. Primer, ko je odgovor na statistično poizvedbo oz. analizo funkcija, so tudi razni modeli iz strojnega učenja (linearna regresija, metoda podpornih vektorjev itd.). Z uporabo postopka opisanega v tem poglavju lahko preprečimo, da bi prek naučenih parametrov modela izdali preveč podrobnosti o učni podatkovni množici.
+kjer je $W$ jedrna funkcija (definicija 2.7) in $h$ njen parameter dosega (angl. bandwith parameter). Na kratko, gre za parameter, ki vpliva na to, kako blizu si morata biti dani točki, da imata znaten vpliv druga na drugo. Oblika $\hat{f}$ je močno odvisna od izbire tega parametra in obstajajo načini za optimalen izbor, ki pa se jih v tem delu ne bomo dotaknili. S pomočjo mehanizma, ki ga bomo podali v nadaljevanju, lahko potem cenilko gostote $\hat{f}$ naredimo diferencirano zasebno. Koristnost takega pristopa je večplastna. Ne samo, da smo dobili zasebno cenilko za gostoto, ampak lahko sedaj le-to uporabimo tudi za vzorčenje novih podatkov. To je alternativen pristop k objavi celotne podatkovne baze kot tisti, ki smo ga obravnavali pri primeru Laplacovega mehanizma za numerične podatke (primer 4.9). Na tako zaščiteni bazi lahko izvajamo vse poizvedbe in pogojem diferencirane zasebnosti bo še vedno zadoščeno. Primer, ko je odgovor na statistično poizvedbo oz. analizo funkcija, so tudi razni modeli iz strojnega učenja (linearna regresija, metoda podpornih vektorjev itd.). Z uporabo postopka opisanega v tem poglavju lahko preprečimo, da bi prek naučenih parametrov modela izdali preveč podrobnosti o učni podatkovni množici.
 \newline
 \newline
-Podan mehanizem ne bo pokril prve motivacije pri funkcijsih podatkih, torej primera, ko je naša podatkovna baza $D$ sestavljena iz funkcij. Pri pregledu literature s področja diferencirane zasebnosti takih mehanizmov nisem zasledil.
+Podan mehanizem ne bo pokril prve motivacije pri funkcijskih podatkih, torej primera, ko je naša podatkovna baza $D$ sestavljena iz funkcij. Pri pregledu literature s področja diferencirane zasebnosti takih mehanizmov nisem zasledil.
 \newline
 \newline
 Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q = \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} \subset \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo \eqref{odzivni3}. V naslednjem izreku podamo mehanizem, kjer diferencirano zasebnost dosežemo z uporabo Gaussovih procesov.
@@ -666,7 +666,7 @@ Opazimo, da na levi strani neenakosti dobimo normalno porazdeljeno slučajno spr
 \mathbb{P}\Big(u^T M^{-1/2}(Q(\textbf{d})-Q(\textbf{d'})) \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}\Big) \leq \\
 \mathbb{P}\Big(\Delta y \geq \frac{c(\delta)\Delta}{\epsilon} - \frac{\epsilon \Delta}{2 c(\delta)}\Big) \leq \mathbb{P}\Big(y \geq c(\delta) - \frac{1}{2 c(\delta)}\Big) \leq \delta.
 \end{gather*}
-Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\Delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja iz neenakosti za repe porazdelitve standarne normalne slučajne spremenljivke $\mathbb{P}(Y \geq y) \leq \frac{\exp(-y^2 / 2)}{y \sqrt{2\pi}}$ (za dokaz glej [8]).
+Prva neenakost sledi iz dejstva, da se verjetnost dogodka povečuje z varianco $\Delta$, druga iz predpostavke $\epsilon \leq 1$ in zadnja iz neenakosti za repe porazdelitve standardne normalne slučajne spremenljivke $\mathbb{P}(Y \geq y) \leq \frac{\exp(-y^2 / 2)}{y \sqrt{2\pi}}$ (za dokaz glej [8]).
 \qed
 \newline
 \newline
@@ -690,7 +690,7 @@ za vsaki $\textbf{d} \sim \textbf{d'}$ in za vsako $A \in \mathcal{F}_0$, potem 
 \begin{gather*}
 C_{S,B} = \{ f \in \mathbb{R}^D : f(x_i) \in B_i, i = 1,2,... \} = \bigcap_{i=1}^{\infty}C_{\{x_i\},B_i},
 \end{gather*}
-kjer so $B_i$ Borelove množice na $\mathbb{R}$. Definirajmo $C_{S,B,n} = \bigcap_{i=1}^{n}C_{\{x_i\},B_i}$ in $C_{S,B} = \bigcap_{n=1}^{\infty}C_{S,B,n}$. Ker je zaporedje množic $C_{S,B,n}$ padajoče iz zveznosti verjetnoste mere sledi
+kjer so $B_i$ Borelove množice na $\mathbb{R}$. Definirajmo $C_{S,B,n} = \bigcap_{i=1}^{n}C_{\{x_i\},B_i}$ in $C_{S,B} = \bigcap_{n=1}^{\infty}C_{S,B,n}$. Ker je zaporedje množic $C_{S,B,n}$ padajoče iz zveznosti verjetnostne mere sledi
 \begin{gather*}
 \mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B}) = \mathbb{P}(X_{Q,\textbf{d}} \in  \bigcap_{n=1}^{\infty}C_{S,B,n}) = \lim_{n \rightarrow \infty} \mathbb{P}(X_{Q,\textbf{d}} \in C_{S,B,n}).
 \end{gather*}
@@ -713,11 +713,11 @@ Izrek 6.5 bi lahko dokazali tudi drugače in sicer z uporabo izreka 4.1 o zadost
 \end{opomba}
 Sedaj smo pripravili vse potrebno in lahko dokažemo uvodni izrek v tem poglavju.
 \proof[Dokaz izreka 6.1]
-Dokazali bomo, da je podan mehanizem $X_{Q,\textbf{d}} = \tilde{f}_{\textbf{d}}$ diferencirano zaseben glede na $\mathcal{A}_Q = \mathcal{F}$, torej cilindrično $\sigma$-algebro. Za končen nabor točk $(x_1,...,x_n) \in D^n$ je vektor $(G(x_1),...,G(x_2))$ porazdeljen multivariatno normalno s povprečjem 0 in kovariančno matriko enako M (lastnost Gaussovih procesov). Torej za končno dimenzionalen vektor, ki ga dobimo, ko mehanizem oz. funkcijo $\tilde{f}_{\textbf{d}}$ izvrednotimo v točkah $(x_1,...,x_n) $, nam diferencirano zasebnost zagotavlja izrek 6.2, saj pogoj \eqref{meja} implira omejitev občutljivosti poizvedbe \eqref{mejagauss}. Torej za vsak $n < \infty$, $(x_1,...,x_n) \in D^n$, $B \in \mathcal{B}(\mathbb{R}^n)$ velja
+Dokazali bomo, da je podan mehanizem $X_{Q,\textbf{d}} = \tilde{f}_{\textbf{d}}$ diferencirano zaseben glede na $\mathcal{A}_Q = \mathcal{F}$, torej cilindrično $\sigma$-algebro. Za končen nabor točk $(x_1,...,x_n) \in D^n$ je vektor $(G(x_1),...,G(x_2))$ porazdeljen multivariatno normalno s povprečjem 0 in kovariančno matriko enako M (lastnost Gaussovih procesov). Torej za končno dimenzionalen vektor, ki ga dobimo, ko mehanizem oz. funkcijo $\tilde{f}_{\textbf{d}}$ izvrednotimo v točkah $(x_1,...,x_n) $, nam diferencirano zasebnost zagotavlja izrek 6.2, saj pogoj \eqref{meja} implicira omejitev občutljivosti poizvedbe \eqref{mejagauss}. Torej za vsak $n < \infty$, $(x_1,...,x_n) \in D^n$, $B \in \mathcal{B}(\mathbb{R}^n)$ velja
 \begin{gather*}
 \mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B) \leq e^{\epsilon}\mathbb{P}((\tilde{f}_{\textbf{d'}}(x_1),...,\tilde{f}_{\textbf{d'}}(x_n)) \in B) + \delta,
 \end{gather*}
-za vsaki $\textbf{d} \sim \textbf{d'}$. Dalje opazimo, da lahko vsako množico $A \in \mathcal{F}_0$ zapišemo kot $A = C_{X_n,B}$ za nek končnen $n$, $(x_1,...,x_n) \in D^n$ in Borelovo množico $B$. Potem 
+za vsaki $\textbf{d} \sim \textbf{d'}$. Dalje opazimo, da lahko vsako množico $A \in \mathcal{F}_0$ zapišemo kot $A = C_{X_n,B}$ za nek končen $n$, $(x_1,...,x_n) \in D^n$ in Borelovo množico $B$. Potem 
 \begin{gather*}
 \mathbb{P}(X_{Q,\textbf{d}} \in A) = \mathbb{P}(\tilde{f}_{\textbf{d}}\in A)= \mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B).
 \end{gather*}
@@ -837,17 +837,17 @@ Vidimo, da moramo za dosego zasebnosti pri običajnih vrednostih parametrov ($\e
  (11, 0.7) & 2990 & 765 & 5360 \\
  \hline
 \end{tabular}
-\caption{Vrednosti nekaterih osnovih poizvedb pri različnih vrednostih parametrov $(\epsilon, \delta)$. }
+\caption{Vrednosti nekaterih osnovnih poizvedb pri različnih vrednostih parametrov $(\epsilon, \delta)$. }
 \end{center}
 \end{table}
-Na tem mestu lahko uporabimo še izrek 5.3, ki nam da spodnjo mejo za največjo napako obravnavanega mehanizma. Rezultati se nahajajo v tabeli 4. Opazimo, da je sicer res, da so dejanske največje napake večje od spodnjih mejih, ki nam jih da izrek, vendar so te meje precej neoptimalne in posledično neinformativne.
+Na tem mestu lahko uporabimo še izrek 5.3, ki nam da spodnjo mejo za največjo napako obravnavanega mehanizma. Rezultati se nahajajo v tabeli 4. Opazimo, da je sicer res, da so dejanske največje napake večje od spodnjih mej, ki nam jih da izrek, vendar so te meje precej neoptimalne in posledično neinformativne.
 \begin{table}[h]
 \begin{center}
  \begin{tabular}{| c | c | c | c |} 
  \hline
 ($\epsilon, \delta$) & (0.1, 0.1) & (2, 0.5) & (11, 0.7)  \\ [0.5ex] 
  \hline
- $spodnja meja za \gamma$ & 640 & 89 & 0.0075  \\ 
+ spodnja meja za $\gamma$ & 640 & 89 & 0.0075  \\ 
  \hline
  dejanska največja napaka & 110600 & 7203 & 1803\\
  \hline
@@ -860,7 +860,7 @@ Razlog za slabe rezultate zgoraj obravnavanega mehanizma leži v veliki občutlj
 \begin{gather*}
 \Delta Q = \max_{\textbf{d} \sim \textbf{d'}} \| Q(\textbf{d}) - Q(\textbf{d'}) \|_1 ,
 \end{gather*}
-kjer $\| \cdot \|_1$ predsavlja $l_1$ normo. V primeru identične poizvedbe je občutljivost enaka kar $diam(D)$. Logično je, da gre za najbolj občutljivo poizvebo, saj `izdamo' največ informacij o naši podatkovni bazi in posledično moramo dodati veliko šuma za dosego diferencirane zasebnosti. V praksi se zato tak pristop uporablja le redko.
+kjer $\| \cdot \|_1$ predsavlja $l_1$ normo. V primeru identične poizvedbe je občutljivost enaka kar $diam(D)$. Logično je, da gre za najbolj občutljivo poizvedbo, saj `izdamo' največ informacij o naši podatkovni bazi in posledično moramo dodati veliko šuma za dosego diferencirane zasebnosti. V praksi se zato tak pristop uporablja le redko.
 \end{opomba}
 \begin{opomba}
 Dober primer večje implementacije diferencirane zasebnosti v praksi je sistem za zaščito SQL-poizvedb, ki so ga razvili pri podjetju Uber [4]. Sistem za vsako poizvedbo (SQL-stavek) najprej izračuna občutljivost in glede na to doda kalibriran šum odgovoru na poizvedbo (gre torej za mehanizem oblike \eqref{odzivni3}). Na ta način so dosegli dobro razmerje med uporabnostjo in zasebnostjo mehanizmov.
@@ -909,7 +909,7 @@ prvotni podatki & TX (114) & CA (102) & NY (63)  \\
  \hline
 ($\epsilon, \delta$) & (0.1, 0.1) & (2, 0.5) & (7, 0.6)  \\ [0.5ex] 
  \hline
- $spodnja meja za  \gamma$ & 0.879 & 0.432 & 0.016  \\ 
+ spodnja meja za  $\gamma$ & 0.879 & 0.432 & 0.016  \\ 
  \hline
  dejanska največja napaka & 0.880 & 0.437 & 0.018\\
  \hline

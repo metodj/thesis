@@ -23,6 +23,7 @@
 \overfullrule=0pt
 
 
+
 % ukazi za matematicna okolja
 \theoremstyle{definition} % tekst napisan pokoncno
 \newtheorem{definicija}{Definicija}[section]
@@ -84,7 +85,7 @@ Naslednja vprašanja se navezujejo na članek Differential Privacy for Functions
 \newline
 Tudi ali je M sploh Grammova matrika. K(x,y) namreč ni skalarni produkt... V nadaljevanju, ko delamo z RKHS, postane predstavitev s skalarnim produktom logična, saj imamo $\langle K_x, K_y \rangle_{\mathcal{H}} = K(x,y)$, na tem mestu pa mi poimenovanje matrike M kot Grammove matrike ni najbolj logično.
 \newline
-\item Proposition 8  (v diplomi izrek 6.8): obrnljivost matrike M, ki naj bi sledila iz Mercerjevega izreka, mi še vedno ni jasna. Kar sem sicer razmišljal je to, da iz lastnosti Grammove matrike sledi 
+\item Proposition 8  (v diplomi izrek 6.8): obrnljivost matrike M, ki naj bi sledila iz Mercerjevega izreka, mi še vedno ni jasna. \textcolor{red}{Kar sem sicer razmišljal je to, da iz lastnosti Grammove matrike sledi 
 \begin{gather*}
 M(x_1,...,x_n) = 
  \begin{pmatrix}
@@ -103,7 +104,9 @@ M(x_1,...,x_n) =
   K_{x_n} & \cdots & K_{x_n} 
  \end{pmatrix}.
 \end{gather*}
-Če matriki na desni strani označimo z $A^T$ in $A$, velja $\det{M} = det {A^2}$. $\det{A}$ pa bo različna od 0, natanko tedaj, ko bodo stolpci ali vrstice linearno neodvisni, to pa bo natanko tedaj, ko bodo funkcije $K_{x_i}$ med samo linearno neodvisne. Lahko iz tega, da so $x_i$ različne točke (predpostavke izreka), sklepamo na linearno neodvisnost funkcij $K_{x_i}$? 
+Če matriki na desni strani označimo z $A^T$ in $A$, velja $\det{M} = det {A^2}$. $\det{A}$ pa bo različna od 0, natanko tedaj, ko bodo stolpci ali vrstice linearno neodvisni, to pa bo natanko tedaj, ko bodo funkcije $K_{x_i}$ med samo linearno neodvisne. Lahko iz tega, da so $x_i$ različne točke (predpostavke izreka), sklepamo na linearno neodvisnost funkcij $K_{x_i}$? }
+\newline
+Kar je napisano zgoraj z rdečo, je napačen razmislek. Nimamo namreč evklidskega skalarnega produkta, zato ne velja $M = A^T A.$ Očitno bo res treba prek Mercerjevega izreka...
 \newline
 \item Proposition 8 (v diplomi izrek 6.8): Ne vidim enakosti 
 $$\langle f, Pf\rangle_{\mathcal{H}} = \|M^{-1/2}(x_1,...x_n)
