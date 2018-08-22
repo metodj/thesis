@@ -222,7 +222,7 @@ Gaussov proces je kot slučajni proces definiran na nekem verjetnostnem prostoru
 $$m(t) = \mathbb{E}X_t, \quad K(s,t) = Cov(X_s,X_t).$$
 \end{opomba}
 
-Spomnimo se, da je Hilbertov prostor $\mathcal{H}$ poln metrični prostor (vsako Cauchyjevo zaporedje ima limito vsebovano v tem prostoru), kjer je metrika podana prek skalarnega produkta, torej za $f,g \in \mathcal{H}$ velja $d(f,g) = \sqrt{<f-g,f-g>} = \|f -g\|$.
+Spomnimo se, da je Hilbertov prostor $\mathcal{H}$ poln metrični prostor (vsako Cauchyjevo zaporedje ima limito vsebovano v tem prostoru), kjer je metrika podana prek skalarnega produkta, torej za $f,g \in \mathcal{H}$ velja $d(f,g) = \sqrt{\langle f-g,f-g\rangle} = \|f -g\|$.
 \begin{definicija}
 Naj bo $\mathcal{H}$ Hilbertov prostor, katerega elementi so funkcije oblike $f: X \rightarrow \mathbb{R}$ (pri tem je $X$ poljubna množica). Označimo z $L_x$ linearen funkcional, ki vsako funkcijo $f \in \mathcal{H}$ izvrednoti v $x$, torej $$L_x : f \rightarrow f(x).$$ Potem je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom natanko tedaj, ko je $L_x$ zvezen operator nad $\mathcal{H}$ za vsak $x \in X$. 
 \end{definicija}
@@ -235,13 +235,17 @@ $$
 $$
 K_x(y) = L_y(K_x) = \langle K_y, K_x \rangle_{\mathcal{H}}.
 $$
-To nam omogoča, da definiramo reprodukcijsko jedro Hilbertovega prostora $\mathcal{H}$ kot merljivo realno funkcijo $K(x,y)=\langle K_y, K_x \rangle_{\mathcal{H}}$ definirano skoraj povsod na $X\times X$.
+To nam omogoča, da definiramo reprodukcijsko jedro Hilbertovega prostora $\mathcal{H}$ kot merljivo realno funkcijo $K(x,y)=\langle K_y, K_x \rangle_{\mathcal{H}}$ definirano na $X\times X$. To jedro je simetrična funkcija (obravnamo samo realen primer) in pozitivno definitna, kar pomeni $$\sum_{i.j=1}^n c_i c_j K(x_i, x_j) \geq 0,$$
+ $\forall n \in \mathbb{N}, \quad \forall c_i, c_j \in \mathbb{R}$ ter za vsak nabor $x_1,...,x_n \in X$ \footnote{Pozitivno definitnost lahko enostavno pokažemo: $\sum_{i=1}^n \sum_{j=1}^n c_i c_j K(x_i, x_j) = \sum_{i=1}^n \sum_{j=1}^n c_i c_j \langle K_{x_i}, K_{x_j} \rangle_{\mathcal{H}} = \big\langle \sum_{i=1}^n c_i K_{x_i}, \sum_{j=1}^n c_j K_{x_j} \big\rangle_{\mathcal{H}} = \big\|\sum_{i=1}^n c_i K_{x_i}\big\|_{\mathcal{H}}^2 \geq 0$}.
 \newline
 \newline
-Alternativno si lahko Hilbertov prostor $\mathcal{H}$ predstavljamo kot zaprtje linearne ogrinjače funkcij oblike $K_x, x \in X$. Za dve funkciji oblike $f = \sum_{i=1}^{n}\theta_i K_{x_i}$ in $ g = \sum_{j=1}^{m}\xi_j K_{y_j}$ ($\xi_i, \theta_i \in \mathbb{R} \; \forall i, \; x_1,...,x_n,y_1,...,y_m \in X$) ima tako njun skalarni produkt obliko
+Alternativno je Hilbertov prostor $\mathcal{H}$ z reprodukcijskim jedrom $K$ zaprtje linearne ogrinjače funkcij oblike $K_x, x \in X$ (glej izrek 2.1 v [13]). Za dve funkciji oblike $f = \sum_{i=1}^{n}\theta_i K_{x_i}$ in $ g = \sum_{j=1}^{m}\xi_j K_{y_j}$ ($\xi_i, \theta_i \in \mathbb{R} \; \forall i, \; x_1,...,x_n,y_1,...,y_m \in X$) ima tako njun skalarni produkt obliko
 $$
 \langle f, g\rangle_{\mathcal{H}} = \sum_{i=1}^{n}\sum_{j=1}^{m}\theta_i \xi_j K(x_i,y_j).
 $$
+\end{opomba}
+\begin{opomba}
+Kanoničen primer Hilbertovih prostorov je $L^2 ([0,1])$, katerega elementi so ekvivalenčni razredi funkcij. Hilbertovi prostori z reprodukcijskim jedrom so tako v splošnem precej drugačni od $L^2-$ prostorov, saj funkcional $L_x$ (izvrednoti elemente prostora v dani točki $x$) v primeru ekvivalenčnih razredov ni dobro definiran.
 \end{opomba}
 \begin{definicija} 
 Naj bosta $\mu$ in $\nu$ pozitivni $\sigma-$končni meri definirani na istem merljivem prostoru $(X, \Sigma)$. Rečemo, da je $\mu$ absolutno zvezna glede ne $\nu$ (tudi da $\nu$ dominira $\mu$), če velja $\mu(A) = 0$ za vse merljive množice $A$, za katere velja $\nu(A)=0$. Označimo $\mu \ll \nu$.
@@ -579,7 +583,7 @@ Podan mehanizem ne bo pokril prve motivacije pri funkcijskih podatkih, torej pri
 Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q \subset \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} = \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem naj ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo oblike \eqref{odzivni3}. V naslednjem izreku podamo mehanizem, kjer diferencirano zasebnost dosežemo z uporabo Gaussovih procesov.
 
 \begin{izrek}
-Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...x_n \in D$. Označimo z $M$ Grammovo matriko
+Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...,x_n \in D$. Označimo z $M$ Grammovo matriko
 $$
 M(x_1,...,x_n) = 
  \begin{pmatrix}
@@ -592,7 +596,7 @@ Potem bo odzivni mehanizem
 $$
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
 $$
-$(\epsilon, \delta)$-diferencirano zaseben, ko bo veljajo
+$(\epsilon, \delta)$-diferencirano zaseben, ko bo veljalo
 \begin{equation}\label{meja}
 \sup_{\textbf{d} \sim \textbf{d'}} \sup_{n < \infty} \sup_{(x_1,...,x_n) \in D^n} 
 \bigg\|M^{-1/2}(x_1,...x_n)
@@ -607,7 +611,7 @@ $(\epsilon, \delta)$-diferencirano zaseben, ko bo veljajo
 \begin{opomba}
 Velja $K(x_i, x_j) = Cov(X_{x_i}, X_{x_j}) = \mathbb{E}[(X_{x_i} - \mu_i)(X_{x_j} - \mu_j)] = \int_{\mathbb{R}} (f_{X_i}(t) - \mu_i)(f_{X_j}(t) - \mu_j)dt = \langle f_{X_i} - \mu_i, f_{X_j} - \mu_j \rangle_{L^2}$, kjer je $\mathbb{E}[X_{x_i}] = \mu_i$ in $f_{X_i}$ gostota slučanje spremenljivke $X_{x_i}$. Torej vidimo, da je matrika $M$ res Grammova.
 \end{opomba}
-Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.2 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer nastopi, ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je  npr. vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
+Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.3 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer nastopi, ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je  npr. vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
 \begin{izrek}
 Naj bo podana poizvedba $Q: \mathbb{R}^d \rightarrow \mathbb{R}^d$. Naj bo $M \in \mathbb{R}^{d \times d}$ pozitivno definitna simetrična matrika. Dalje naj za poizvedbo $Q$ velja 
 \begin{equation}\label{mejagauss}
@@ -871,6 +875,9 @@ kjer $\| \cdot \|_1$ predstavlja $l_1$ normo. V primeru identične poizvedbe je 
 \begin{opomba}
 Dober primer večje implementacije diferencirane zasebnosti v praksi je sistem za zaščito SQL-poizvedb, ki so ga razvili pri podjetju Uber [4]. Sistem za vsako poizvedbo (SQL-stavek) najprej izračuna občutljivost in glede na to doda kalibriran šum odgovoru na poizvedbo (gre torej za mehanizem oblike \eqref{odzivni3}). Na ta način so dosegli dobro razmerje med uporabnostjo in zasebnostjo mehanizmov.
 \end{opomba}
+\begin{opomba}
+V zgornjem primeru opazimo, da je neuporabnost danega mehanizma povezana tudi z izbiro metrike. Le-ta namreč vpliva na diam(D), kar naprej vpliva na varianco Laplaceovega šuma. Nič nam ne preprečuje, da namesto absolutne razdalje za metriko vzamemo skalirano absolutno razdaljo, npr. $d(x,y) = \frac{1}{1000} |x - y|$ (dokaz v 4.9 še vedno deluje). Rezultati v tem primeru pridejo bolj smiselni, vendar pa to pod vprašaj postavlja smiselnost obravnave diferencirane zasebnosti v kontekstu metričnih prostorov. Sledi namreč, da pri obravnavem mehanizmu za dana epsilon in delta s primerno izbiro metrike lahko dosežemo poljubno dobre rezultate (to pa seveda kaže na nesmiselnost mehanizma).
+\end{opomba}
 \subsection{Diskretni podatki}
 Uporabimo mehanizem iz primera 4.10 na podatkih o zveznih državah, v katerih živijo posamezniki v naši podatkovni bazi. Rezultati so prikazani v tabelah 5 in 6. Spodnjo mejo za največjo napako nam tu poda izrek 5.5. Vidimo, da so ocene za spodnjo mejo precej bolj optimalne kot v primeru numeričnih podatkov (sledi iz primera 5.6). Dodajmo še, da če bi delali na podatkih o spolu (možna odgovora na poizvedbo sta le dva, moški ali ženski spol), bi imel naš mehanizem preprosto obliko Bernoullijeve slučajne spremenljivke.
 \begin{table}[!htb]
@@ -976,6 +983,9 @@ functions – with some examples of application (mainly of a
 probabilistic flavor)}, [ogled 22.07.2018], dostopno na \url{https://www.fmf.uni-lj.si/~vidmarm/Dynkin_and_pi_systems.pdf} 
 \bibitem{wiki}
 \emph{Netflix IMDB data}, v: Wired, [ogled 22.~7.~2018], dostopno na \url{https://www.wired.com/2007/12/why-anonymous-data-sometimes-isnt/}.
+\bibitem{referenca-knjiga}
+V. I.~Paulsen, M.~Raghupathi \emph{An Introduction to the Theory of Reproducing Kernel Hilbert Spaces}, Cambridge studies in advanced mathematics, 2016.
+
 
 
 
