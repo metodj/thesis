@@ -784,8 +784,20 @@ Pri drugem enačaju smo uporabili linearnost skalarnega produkta, pri tretjem pa
 = \langle Pf, Pf\rangle_{\mathcal{H}} + 2 \langle Pf,f -  Pf\rangle_{\mathcal{H}} + \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
 = \langle Pf, Pf\rangle_{\mathcal{H}} + 2 \langle f,Pf -  P^2 f\rangle_{\mathcal{H}} + \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
 = \langle Pf, Pf\rangle_{\mathcal{H}} +  \langle f - Pf, f - Pf\rangle_{\mathcal{H}} \\
-\geq \langle Pf, Pf\rangle_{\mathcal{H}} = \langle f, Pf\rangle_{\mathcal{H}}
+\geq \langle Pf, Pf\rangle_{\mathcal{H}} = \langle f, Pf\rangle_{\mathcal{H}}.
 \end{gather*}
+Pokazati moramo še enakost $\langle f, Pf\rangle_{\mathcal{H}} = \bigg\|M^{-1/2}(x_1,...x_n)
+\begin{pmatrix}
+  f(x_1)  \\
+  \vdots     \\
+  f(x_n)
+ \end{pmatrix}
+\bigg\|_2^2 $. Pri tem bomo uporabili dejstvo, da lahko brez izgube za splošnost enakost pokažemo le za funkcije oblike $f = \sum_{i=1}^{n}\theta_i K_{x_i}$ (sledi iz izreka 2.1 v [13] ter zveznosti norm $\|\cdot\|_2$ in $\|\cdot\|_{\mathcal{H}}$). Dalje sledi 
+\begin{gather*}
+\langle f, Pf\rangle_{\mathcal{H}} = \big\langle \sum_{i=1}^{n}\theta_i K_{x_i},  P\sum_{j=1}^{n}\theta_j K_{x_j} \big\rangle_{\mathcal{H}} \\
+= \sum_{i=1}^n \sum_{j=1}^n \theta_i \theta_j \big\langle K_{x_i}, \sum_{l=1}^n K_{x_l} \sum_{k=1}^n \big(M_{l,k}^{-1}\big)\langle K_{x_k}, K_{x_l}\rangle_{\mathcal{H}}\big\rangle_{\mathcal{H}} \\ = \sum_{i=1}^n \sum_{j=1}^n \sum_{l=1}^n \sum_{k=1}^n \theta_i \theta_j \big(M_{l,k}^{-1}\big) K(x_k, x_l) K(x_i, x_l).
+\end{gather*}
+Če poračunamo desno stran enakosti z uporabo definicije $\|\cdot\|_2$ in upoštevamo dejstvo, da je $M^{-1/2}$ prav tako simetrična matrika, dobimo enake 4 vsote. Enakost je s tem dokazana in izrek sledi.
 \qed
 \begin{posledica}
 Naj $E_Q$ (prostor možnih odgovorov, torej funkcij, na poizvedbo) podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa. Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
@@ -798,10 +810,10 @@ $$
 $$
 \end{posledica}
  \begin{lema}
- Naj bodo $a_i \in \mathbb{R}$ in $u_i \in \mathbb{R}^d$ med seboj paroma različni vektorji. Potem velja $\sum_{i=1}^n a_i e^{\|x-u_i \|_2^2} = 0 $ natanko tedaj, ko $a_1 = ... = a_n = 0$. Torej funkcije $f_{u_i}(x) = e^{\|x-u_i \|_2^2}$ so linearno neodvisne.
+ Naj bodo $a_i \in \mathbb{R}$ in $u_i \in \mathbb{R}^d$ med seboj paroma različni vektorji. Potem velja $\sum_{i=1}^n a_i e^{-\|x-u_i \|_2^2} = 0 $ natanko tedaj, ko $a_1 = ... = a_n = 0$. Torej funkcije $f_{u_i}(x) = e^{-\|x-u_i \|_2^2}$ so linearno neodvisne.
  \end{lema}
  \proof
- Računamo $\sum_{i=1}^n a_i e^{\|x-u_i \|_2^2} = e^{-x^Tx}\sum_{i=1}^n a_i e^{-u_i^Tu_i}e^{2u_i^Tx}$. Označimo sedaj $b_i = a_ie^{-u_i^Tu_i}$ ter  $c_i^T = 2u_i^T$ $(b_i \in \mathbb{R}, \quad c_i \in \mathbb{R}^d).$ Za linearno neodvisnost je tako dovolj pokazati, da velja $\sum_{i=1}^n b_i e^{c_i^Tx} = 0$ natanko tedaj, ko $b_1 = ... = b_n = 0$. Uporabimo indukcijo in predpostavimo, da trditev drži za vsoto $n-1$ členov. Vsoto za $n$ členov najprej pomnožimo s koeficientom $c_n$ $$\sum_{i=1}^n b_i c_n e^{c_i^Tx} = 0,$$ nato pa še odvajamo $$\sum_{i=1}^n b_i c_i e^{c_i^Tx} = 0$$ (v obeh primerih dobimo vektorske vsote). Ko zgornji vsoti odštejemo dobimo $$\sum_{i=1}^{n-1} b_i (c_i-c_n) e^{c_i^Tx} = 0.$$ Po indukcijski predpostavki velja $b_i (c_i - c_n) = 0$, torej $b_i = 0$ za $i = 1, ..., n-1$ (sledi iz dejstva, da $c_i \neq c_n$ za $i=1,...,n-1$). Ko to upoštevamo dobimo $0 = \sum_{i=1}^n b_i e^{c_i^Tx} = b_n e^{c_n^Tx}$, iz česar sledi $b_n  = 0$. Indukcijski korak (in s tem lema) je dokazan.
+ Računamo $\sum_{i=1}^n a_i e^{-\|x-u_i \|_2^2} = e^{-x^Tx}\sum_{i=1}^n a_i e^{-u_i^Tu_i}e^{2u_i^Tx}$. Označimo sedaj $b_i = a_ie^{-u_i^Tu_i}$ ter  $c_i^T = 2u_i^T$ $(b_i \in \mathbb{R}, \quad c_i \in \mathbb{R}^d).$ Za linearno neodvisnost je tako dovolj pokazati, da velja $\sum_{i=1}^n b_i e^{c_i^Tx} = 0$ natanko tedaj, ko $b_1 = ... = b_n = 0$. Uporabimo indukcijo in predpostavimo, da trditev drži za vsoto $n-1$ členov. Vsoto za $n$ členov najprej pomnožimo s koeficientom $c_n$ $$\sum_{i=1}^n b_i c_n e^{c_i^Tx} = 0,$$ nato pa še odvajamo $$\sum_{i=1}^n b_i c_i e^{c_i^Tx} = 0$$ (v obeh primerih dobimo vektorske vsote). Ko zgornji vsoti odštejemo dobimo $$\sum_{i=1}^{n-1} b_i (c_i-c_n) e^{c_i^Tx} = 0.$$ Po indukcijski predpostavki velja $b_i (c_i - c_n) = 0$, torej $b_i = 0$ za $i = 1, ..., n-1$ (sledi iz dejstva, da $c_i \neq c_n$ za $i=1,...,n-1$). Ko to upoštevamo dobimo $0 = \sum_{i=1}^n b_i e^{c_i^Tx} = b_n e^{c_n^Tx}$, iz česar sledi $b_n  = 0$. Indukcijski korak (in s tem lema) je dokazan.
  \qed
 \begin{primer}
 Uporabimo zgoraj omenjeni mehanizem na konkretnem primeru. Recimo, da naši podatki $(d_1,...,d_n) = \textbf{d}, d_i \in \mathbb{R}^d$ prihajajo iz porazdelitve z gostoto $f$. Za oceno te gostote uporabimo cenilko z Gaussovim jedrom
