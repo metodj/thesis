@@ -583,7 +583,7 @@ Podan mehanizem ne bo pokril prve motivacije pri funkcijskih podatkih, torej pri
 Podajmo sedaj okvir, znotraj katerega bomo navedli nekaj osnovnih rezultatov. Naši podatki naj bodo numerični, torej $D=\mathbb{R}^m$. Prostor možnih odgovor je funkcijski in sicer se omejimo na funkcije, ki zavzemajo realne vrednosti $E_Q \subset \{f | f : \mathbb{R}^m \rightarrow \mathbb{R}\} = \mathbb{R}^D$. Odgovor na poizvedbo $Q: D^n \rightarrow E_Q$ označimo z $Q(\textbf{d})=f_{\textbf{d}}$, kjer $\textbf{d} = (d_1,...,d_n) \in D^n$ kot prej predstavlja podatkovno bazo. Odzivni mehanizem naj ima obliko $X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = \widetilde{f}_{\textbf{d}} $, torej vidimo, da gre za perturbacijo odgovorov na poizvedbo oblike \eqref{odzivni3}. V naslednjem izreku podamo mehanizem, kjer diferencirano zasebnost dosežemo z uporabo Gaussovih procesov.
 
 \begin{izrek}
-Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...,x_n \in D$. Označimo z $M$ Grammovo matriko
+Naj bo $G$ trajektorija Gaussovega procesa s povprečjem 0 in kovariančno funkcijo $K$. Naj bodo $x_1,...,x_n \in D$. Naj bo matrika
 $$
 M(x_1,...,x_n) = 
  \begin{pmatrix}
@@ -591,8 +591,8 @@ M(x_1,...,x_n) =
   \vdots    & \ddots & \vdots  \\
   K(x_n,x_1) & \cdots & K(x_n,x_n) 
  \end{pmatrix}
-.$$
-Potem bo odzivni mehanizem 
+$$
+pozitivno definitna. Potem bo odzivni mehanizem 
 $$
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
 $$
@@ -608,10 +608,10 @@ $(\epsilon, \delta)$-diferencirano zaseben, ko bo veljalo
 \bigg\|_2 \leq \Delta. \tag{6}
 \end{equation}
 \end{izrek}
-\begin{opomba}
-Velja $K(x_i, x_j) = Cov(X_{x_i}, X_{x_j}) = \mathbb{E}[(X_{x_i} - \mu_i)(X_{x_j} - \mu_j)] = \int_{\mathbb{R}} (f_{X_i}(t) - \mu_i)(f_{X_j}(t) - \mu_j)dt = \langle f_{X_i} - \mu_i, f_{X_j} - \mu_j \rangle_{L^2}$, kjer je $\mathbb{E}[X_{x_i}] = \mu_i$ in $f_{X_i}$ gostota slučanje spremenljivke $X_{x_i}$. Torej vidimo, da je matrika $M$ res Grammova.
-\end{opomba}
-Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.3 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer nastopi, ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je  npr. vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
+%\begin{opomba}
+%Velja $K(x_i, x_j) = Cov(X_{x_i}, X_{x_j}) = \mathbb{E}[(X_{x_i} - \mu_i)(X_{x_j} - \mu_j)] = \int_{\mathbb{R}} (f_{X_i}(t) - \mu_i)(f_{X_j}(t) - \mu_j)dt = \langle f_{X_i} - \mu_i, f_{X_j} - \mu_j \rangle_{L^2}$, kjer je $\mathbb{E}[X_{x_i}] = \mu_i$ in $f_{X_i}$ gostota slučanje spremenljivke $X_{x_i}$. Torej vidimo, da je matrika $M$ res Grammova.
+%\end{opomba}
+Preden dokažemo zgornji izrek, si poglejmo še dve trditvi, ki predstavljata glavni ideji za dokazom. Izrek 6.2 obravnava Gaussov mehanizem v primeru, ko je odgovor na poizvedbo končno dimenzionalen numeričen vektor. Tak primer nastopi, ko so elementi naše podatkovne baze numerični vektorji $d_i \in \mathbb{R}^d$, odgovor na poizvedbo pa je  npr. vektor povprečnih komponent $Q(\textbf{d}) = \frac{1}{n} \sum_{i=1}^{n} d_i \in \mathbb{R}^d$.
 \begin{izrek}
 Naj bo podana poizvedba $Q: \mathbb{R}^d \rightarrow \mathbb{R}^d$. Naj bo $M \in \mathbb{R}^{d \times d}$ pozitivno definitna simetrična matrika. Dalje naj za poizvedbo $Q$ velja 
 \begin{equation}\label{mejagauss}
@@ -623,7 +623,7 @@ X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = Q(\textbf{d}) + \sqrt{2\log{\frac{2}{\del
 \end{gather*}
 $(\epsilon, \delta)$-diferencirano zaseben.
 \end{izrek}
-Za dokaz izreka 6.3 potrebujemo naslednjo lemo, ki pove, da je za dosego $(\epsilon, \delta)$ diferencirane zasebnosti dovolj, da dosežemo $(\epsilon, 0)$ zasebnost na dovolj veliki množici (v smislu verjetnostne mere $\mathbb{P}$).
+Za dokaz izreka 6.2 potrebujemo naslednjo lemo, ki pove, da je za dosego $(\epsilon, \delta)$ diferencirane zasebnosti dovolj, da dosežemo $(\epsilon, 0)$ zasebnost na dovolj veliki množici (v smislu verjetnostne mere $\mathbb{P}$).
 \begin{lema}
 Naj za vse sosednje podatkovne baze $\textbf{d} \sim \textbf{d'}$ obstaja množica $A_{\textbf{d}, \textbf{d'}}^{\star} \in \mathcal{A}_Q$, za katero velja
 \begin{equation}\label{lemagauss}
@@ -654,7 +654,7 @@ To sledi iz Radon-Nikodymovega izreka in monotonosti integrala:
 \mathbb{P}(X_{Q, \textbf{d}} \in S) = \int_{S} g_{\textbf{d}}(a) d\lambda(a) \leq \int_{S} e^{\epsilon} g_{\textbf{d'}}(a) d\lambda(a) = e^{\epsilon} \mathbb{P}(X_{Q, \textbf{d'}} \in S).
 \end{gather*}
 \end{opomba}
-\proof[Dokaz izreka 6.3]
+\proof[Dokaz izreka 6.2]
 Za večjo preglednost označimo v izreku definiran mehanizem $X_{Q, \textbf{d}}$ z $\tilde{Q}(\textbf{d})$ in  $\sqrt{2\log{\frac{2}{\delta}}}$ s $c(\delta)$. Ker je $Z$ normalno porazdeljen slučajni vektor, je absolutno zvezen. Posledično enako velja za slučajni vektor/odzivni mehanizem $\tilde{Q}(\textbf{d})$ in torej imamo gostoto. Sledi
 \begin{gather*}
 \frac{dF_{\tilde{Q}(\textbf{d})}(x)/d \lambda (x)}{dF_{\tilde{Q}(\textbf{d'})}(x)/d \lambda (x)} = \frac{g_{\textbf{d} (x)}}{g_{\textbf{d'} (x)}} \\ 
@@ -664,7 +664,7 @@ Razmerje gostot bo večje od $e^{\epsilon}$ le v primeru
 \begin{gather*}
 2x^T M^{-1}(Q(\textbf{d})-Q(\textbf{d'})) + Q(\textbf{d'})^T M^{-1} Q(\textbf{d'}) - Q(\textbf{d})^T M^{-1} Q(\textbf{d}) \geq 2 \frac{c(\delta)^2 \Delta^2}{\epsilon}.
 \end{gather*}
-Pokažimo sedaj, da je verjetnost (oz. mera) množice, podane z zgornjim pogojem, manjša od $\delta$, iz česar bo nato po lemi 6.4 sledila $(\epsilon, \delta)$ -diferencirana zasebnost $\tilde{Q}(\textbf{d})$ in izrek bo dokazan.
+Pokažimo sedaj, da je verjetnost (oz. mera) množice, podane z zgornjim pogojem, manjša od $\delta$, iz česar bo nato po lemi 6.3 sledila $(\epsilon, \delta)$ -diferencirana zasebnost $\tilde{Q}(\textbf{d})$ in izrek bo dokazan.
 \newline
 \newline
 Ker delamo z mehanizmom oblike $\tilde{Q}(\textbf{d})$ vzamemo $x = Q(\textbf{d}) + c(\delta) \frac{\Delta}{\epsilon} M^{-1/2}u, u \sim \mathcal{N}_d (0,I)$. Dodatno še množimo obe strani zgornje neenakosti z $\frac{\epsilon}{c(\delta)\Delta}$ in upoštevamo \eqref{mejagauss}, kar nam da
@@ -716,14 +716,14 @@ pri čemer smo privzeli $(1+e^{\epsilon}) < b$. V kontekstu diferencirane zasebn
 \qed
 \newline
 \begin{opomba}
-Izrek 6.6 bi lahko dokazali tudi drugače, in sicer sledi iz izreka 4.1 o zadostnih testnih množicah. Velja namreč $\mathcal{F} = \sigma(\mathcal{F}_0).$
+Izrek 6.5 bi lahko dokazali tudi drugače, in sicer sledi iz izreka 4.1 o zadostnih testnih množicah. Velja namreč $\mathcal{F} = \sigma(\mathcal{F}_0).$
 \end{opomba}
 \begin{opomba}
 Če je $E_Q = C ([0,1])$ in za normo vzamemo $\|f\|_{\infty} = sup\{|f(x)| : x \in [0,1]\}$ se zgoraj omenjena teorija o cilindrični $\sigma$-algebri $\mathcal{F}$ navezuje na primer 4.2. Natančneje, velja $C_{S,B} = \pi_{x_1,...,x_n}^{-1} (B).$
 \end{opomba}
 Sedaj smo pripravili vse potrebno in lahko dokažemo uvodni izrek tega poglavja.
 \proof[Dokaz izreka 6.1]
-Dokazali bomo, da je podan mehanizem $X_{Q,\textbf{d}} = \tilde{f}_{\textbf{d}}$ diferencirano zaseben glede na $\mathcal{A}_Q = \mathcal{F}$, torej cilindrično (oz. Borelovo) $\sigma$-algebro. Za končen nabor točk $(x_1,...,x_n) \in D^n$ je vektor $(G(x_1),...,G(x_n))$ porazdeljen večrazsežno normalno s povprečjem 0 in kovariančno matriko enako M (lastnost Gaussovih procesov). Torej za končno dimenzionalen vektor, ki ga dobimo, ko mehanizem oz. funkcijo $\tilde{f}_{\textbf{d}}$ izvrednotimo v točkah $(x_1,...,x_n) $, nam diferencirano zasebnost zagotavlja izrek 6.3, saj pogoj \eqref{meja} implicira omejitev občutljivosti poizvedbe \eqref{mejagauss}. Torej za vsak $n < \infty$, $(x_1,...,x_n) \in D^n$, $B \in \mathcal{B}(\mathbb{R}^n)$ velja
+Dokazali bomo, da je podan mehanizem $X_{Q,\textbf{d}} = \tilde{f}_{\textbf{d}}$ diferencirano zaseben glede na $\mathcal{A}_Q = \mathcal{F}$, torej cilindrično (oz. Borelovo) $\sigma$-algebro. Za končen nabor točk $(x_1,...,x_n) \in D^n$ je vektor $(G(x_1),...,G(x_n))$ porazdeljen večrazsežno normalno s povprečjem 0 in kovariančno matriko enako M (lastnost Gaussovih procesov). Torej za končno dimenzionalen vektor, ki ga dobimo, ko mehanizem oz. funkcijo $\tilde{f}_{\textbf{d}}$ izvrednotimo v točkah $(x_1,...,x_n) $, nam diferencirano zasebnost zagotavlja izrek 6.2, saj pogoj \eqref{meja} implicira omejitev občutljivosti poizvedbe \eqref{mejagauss}. Torej za vsak $n < \infty$, $(x_1,...,x_n) \in D^n$, $B \in \mathcal{B}(\mathbb{R}^n)$ velja
 \begin{gather*}
 \mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B) \leq e^{\epsilon}\mathbb{P}((\tilde{f}_{\textbf{d'}}(x_1),...,\tilde{f}_{\textbf{d'}}(x_n)) \in B) + \delta,
 \end{gather*}
@@ -731,7 +731,7 @@ za vsaki $\textbf{d} \sim \textbf{d'}$. Dalje opazimo, da lahko vsako množico $
 \begin{gather*}
 \mathbb{P}(X_{Q,\textbf{d}} \in A) = \mathbb{P}(\tilde{f}_{\textbf{d}}\in A)= \mathbb{P}((\tilde{f}_{\textbf{d}}(x_1),...,\tilde{f}_{\textbf{d}}(x_n)) \in B).
 \end{gather*}
-S tem smo pokazali, da pogoj velja za vse $A \in \mathcal{F}_0$. Izrek 6.6 razširi diferencirano zasebnost na celotno $\mathcal{F}$.
+S tem smo pokazali, da pogoj velja za vse $A \in \mathcal{F}_0$. Izrek 6.5 razširi diferencirano zasebnost na celotno $\mathcal{F}$.
 \qed
 \newline
 \newline
@@ -741,7 +741,20 @@ Z namenom večje preglednosti se ponovno navežimo na primer 4.2. Če definiramo
 Izkaže se, da se da pogoju $(6)$ iz izreka 6.1 enostavno zadostiti, če funkcije $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom, ki je enak kovariančni funkciji Gaussovega procesa. To pokažeta naslednji izrek in pomembna posledica.
 
 \begin{izrek}
-Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom $K$. Potem za vsako $x_1, ..., x_n$ končno zaporedje različnih točk v $\mathbb{R}^m$ velja:
+Naj bo $f \in \mathcal{H}$, kjer je $\mathcal{H}$ Hilbertov prostor z reprodukcijskim jedrom $K$. Za vsako $x_1, ..., x_n$ končno zaporedje različnih točk v $\mathbb{R}^m$, za katero je matrika
+$$
+M(x_1,...,x_n) = 
+ \begin{pmatrix}
+  K(x_1,x_1) & \cdots & K(x_1,x_n) \\
+  \vdots    & \ddots & \vdots  \\
+  K(x_n,x_1) & \cdots & K(x_n,x_n) 
+ \end{pmatrix}
+$$
+pozitivno definitna \footnote{Dovolj je zahtevati linearno neodvisnost funkcij $K_{x_1},...,K_{x_n}$, pri čemer velja $K_{x_i} \in \mathcal{H}$. Vidimo namreč, da je $ M(x_1,...,x_n) =  \begin{pmatrix}
+  \langle K_{x_1}, K_{x_1} \rangle & \cdots & \langle K_{x_1}, K_{x_n} \rangle \\
+  \vdots    & \ddots & \vdots  \\
+  \langle K_{x_n}, K_{x_1} \rangle& \cdots & \langle K_{x_n}, K_{x_n} \rangle 
+ \end{pmatrix}$ Grammova matrika, pri čemer so $K_{x_i} \in \mathcal{H}$. Taka matrika je vedno pozitivno semidefinitna, v primeru linearne neodvisnosti funkcij $K_{x_i}$ pa je dodatno še pozitivno definitna in posledično obrnljiva (za dokaz glej izrek 2.23 v [13]).}, velja
 $$
 \bigg\|M^{-1/2}(x_1,...x_n)
 \begin{pmatrix}
@@ -784,7 +797,12 @@ $$
 \sup_{\textbf{d} \sim \textbf{d'}} \| f_{\textbf{d}} -  f_{\textbf{d'}} \|_{\mathcal{H}} \leq \Delta.
 $$
 \end{posledica}
- 
+ \begin{lema}
+ Naj bodo $a_i \in \mathbb{R}$ in $u_i \in \mathbb{R}^d$ med seboj paroma različni vektorji. Potem velja $\sum_{i=1}^n a_i e^{\|x-u_i \|_2^2} = 0 $ natanko tedaj, ko $a_1 = ... = a_n = 0$. Torej funkcije $f_{u_i}(x) = e^{\|x-u_i \|_2^2}$ so linearno neodvisne.
+ \end{lema}
+ \proof
+ Računamo $\sum_{i=1}^n a_i e^{\|x-u_i \|_2^2} = e^{-x^Tx}\sum_{i=1}^n a_i e^{-u_i^Tu_i}e^{2u_i^Tx}$. Označimo sedaj $b_i = a_ie^{-u_i^Tu_i}$ ter  $c_i^T = 2u_i^T$ $(b_i \in \mathbb{R}, \quad c_i \in \mathbb{R}^d).$ Za linearno neodvisnost je tako dovolj pokazati, da velja $\sum_{i=1}^n b_i e^{c_i^Tx} = 0$ natanko tedaj, ko $b_1 = ... = b_n = 0$. Uporabimo indukcijo in predpostavimo, da trditev drži za vsoto $n-1$ členov. Vsoto za $n$ členov najprej pomnožimo s koeficientom $c_n$ $$\sum_{i=1}^n b_i c_n e^{c_i^Tx} = 0,$$ nato pa še odvajamo $$\sum_{i=1}^n b_i c_i e^{c_i^Tx} = 0$$ (v obeh primerih dobimo vektorske vsote). Ko zgornji vsoti odštejemo dobimo $$\sum_{i=1}^{n-1} b_i (c_i-c_n) e^{c_i^Tx} = 0.$$ Po indukcijski predpostavki velja $b_i (c_i - c_n) = 0$, torej $b_i = 0$ za $i = 1, ..., n-1$ (sledi iz dejstva, da $c_i \neq c_n$ za $i=1,...,n-1$). Ko to upoštevamo dobimo $0 = \sum_{i=1}^n b_i e^{c_i^Tx} = b_n e^{c_n^Tx}$, iz česar sledi $b_n  = 0$. Indukcijski korak (in s tem lema) je dokazan.
+ \qed
 \begin{primer}
 Uporabimo zgoraj omenjeni mehanizem na konkretnem primeru. Recimo, da naši podatki $(d_1,...,d_n) = \textbf{d}, d_i \in \mathbb{R}^d$ prihajajo iz porazdelitve z gostoto $f$. Za oceno te gostote uporabimo cenilko z Gaussovim jedrom
 $$
@@ -794,7 +812,9 @@ kjer je $h$ parameter dosega. Naj bosta $\textbf{d} \sim \textbf{d'}$ sosednji b
 $$
 (f_{\textbf{d}} - f_{\textbf{d'}})(x) = \frac{1}{n(2\pi h^2)^{d/2}} \Big(exp\Big\{\frac{-\|x-d_n\|_{2}^{2}}{2h^2}\Big\}-exp\Big\{\frac{-\|x-d_{n}^{\prime}\|_{2}^{2}}{2h^2}\Big\}\Big).
 $$
-Za kovariančno funkcijo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussovo jedro $K(x,y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$. Hkrati opazimo, da funkcije oblike $f_{\textbf{d}}$ ležijo v Hilbertovem prostoru z reprodukcijskim jedrom $K$. Torej $f_{\textbf{d}} - f_{\textbf{d'}} = \frac{1}{n(2\pi h^2)^{d/2}} (K_{d_n}-K_{d_{n}^{\prime}})$ in velja 
+Za kovariančno funkcijo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussovo jedro $K(x,y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$. 
+Ker je Gaussovo jedro pozitivno definitno in simetrično (glej [14]), definira Hilbertov prostor kjer nastopa kot reprodukcijsko jedro (glej izrek 2.14 v [13]). Posledično velja $K(x,y) = K_x(y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$ ter $ f_{\textbf{d}}(x) = \frac{1}{n(2\pi h^2)^{d/2}} \sum_{i=1}^{n} K_{d_i}(x)$. Torej $f_{\textbf{d}} - f_{\textbf{d'}} = \frac{1}{n(2\pi h^2)^{d/2}} (K_{d_n}-K_{d_{n}^{\prime}})$ in sledi
+
 \begin{gather*}
 \|f_{\textbf{d}} - f_{\textbf{d'}}\|_{\mathcal{H}}^{2} = \langle f_{\textbf{d}} - f_{\textbf{d'}}, f_{\textbf{d}} - f_{\textbf{d'}} \rangle_{\mathcal{H}}  \\ 
 = \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2 \langle K_{d_n}-K_{d_{n}^{\prime}}, K_{d_n}-K_{d_{n}^{\prime}} \rangle_{\mathcal{H}}  \\
@@ -802,7 +822,7 @@ Za kovariančno funkcijo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussov
 \leq 2 \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2
 \end{gather*}
 
-Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, potem iz posledice 6.11 sledi, da je mehanizem 
+Iz leme 6.11 vidimo, da so funkcije $K_{x_i}$ linearno neodvisne, kar zagotavlja pozitivno definitnost matrike M iz izreka 6.9 in upravičuje uporabo posledice 6.10. Če sedaj z $G$ označimo trajektorijo Gaussovega procesa s povprečjem 0 in kovariančno funkcijo enako Gaussovemu jedru, sledi (iz posledice 6.10), da je mehanizem 
 \begin{gather*}
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{\log{\frac{2}{\delta}}} \frac{1}{\epsilon n (2\pi h^2)^{(d/2)}}G
 \end{gather*}
@@ -985,6 +1005,10 @@ probabilistic flavor)}, [ogled 22.07.2018], dostopno na \url{https://www.fmf.uni
 \emph{Netflix IMDB data}, v: Wired, [ogled 22.~7.~2018], dostopno na \url{https://www.wired.com/2007/12/why-anonymous-data-sometimes-isnt/}.
 \bibitem{referenca-knjiga}
 V. I.~Paulsen, M.~Raghupathi \emph{An Introduction to the Theory of Reproducing Kernel Hilbert Spaces}, Cambridge studies in advanced mathematics, 2016.
+\bibitem{wiki}
+\emph{Gaussian function is a kernel}, v: Mathematics Stack Exchange, [ogled 23.~8.~2018], dostopno na \url{https://stats.stackexchange.com/questions/35634/how-to-prove-that-the-radial-basis-function-is-a-kernel}.
+\bibitem{wiki}
+\emph{Linear independence of Gaussian functions}, v: Mathematics Stack Exchange, [ogled 23.~8.~2018], dostopno na \url{https://math.stackexchange.com/questions/655825/proving-linear-independence-of-gaussian-functions}.
 
 
 
