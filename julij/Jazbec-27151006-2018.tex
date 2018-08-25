@@ -163,7 +163,7 @@ Iz definicije takoj sledi, da je vsaka $\sigma$-algebra monoton razred (uporabim
 \begin{izrek} Naj bo $\mathcal{S}$ algebra in $\mathcal{M}$ monoton razred na množici $\Omega$. Naj velja še $\mathcal{S} \subseteq \mathcal{M}$. Potem sledi $\sigma{(\mathcal{S})} \subseteq \mathcal{M}$.
 \end{izrek}
 \proof
- Označimo z $m(\mathcal{S})$ najmanjši monoton razred, ki vsebuje $\mathcal{S}$ (dobimo ga kot presek vseh monotonih razredov na $\Omega$, ki vsebujejo $\mathcal{S}).$ Ker za vsak $\mathcal{M}$ z lastnostjo $\mathcal{S} \subseteq \mathcal{M}$ velja $m(\mathcal{S}) \subseteq \mathcal{M}$, vidimo, da je dovolj pokazati $\sigma(\mathcal{S}) \subseteq m(\mathcal{S})$. Za dokaz tega je dovolj pokazati, da je $m(\mathcal{S}) $ $\sigma$-algebra (sledi iz dejstva, da je $\sigma(\mathcal{S})$ najmanjša $\sigma$-algebra, ki vsebuje $\mathcal{S}$). Ker je $m(\mathcal{S})$ monoton razred, je dovolj pokazati, da je $m(\mathcal{S})$ algebra. Algebra je $\sigma$-algebra namreč natanko tedaj, ko je monoton razred \footnote{Netrivialna je tu samo zaprtost za števne unije pri prehodu iz monotonega razreda na $\sigma$-algebro: naj bo $\mathcal{A}$ algebra in monoton razred. Za vsak $A_n \in \mathcal{A}$ definirajmo $B_k:=\cup_{n=1}^k A_n \in \mathcal{A}$, Potem $B_k$ tvorijo naraščajoče zaporedje in iz zaprtosti za monotone unije monotonih razredov dobimo $\cup_{k=1}^\infty B_k=\cup_{n=1}^\infty A_n \in \mathcal{A}$. Sledi, da je $\mathcal{A}$ $\sigma$-algebra.}.
+ Označimo z $m(\mathcal{S})$ najmanjši monoton razred, ki vsebuje $\mathcal{S}$ (dobimo ga kot presek vseh monotonih razredov na $\Omega$, ki vsebujejo $\mathcal{S}).$ Ker za vsak $\mathcal{M}$ z lastnostjo $\mathcal{S} \subseteq \mathcal{M}$ velja $m(\mathcal{S}) \subseteq \mathcal{M}$, vidimo, da je dovolj pokazati $\sigma(\mathcal{S}) \subseteq m(\mathcal{S})$. Za dokaz tega je dovolj pokazati, da je $m(\mathcal{S}) $ $\sigma$-algebra (sledi iz dejstva, da je $\sigma(\mathcal{S})$ najmanjša $\sigma$-algebra, ki vsebuje $\mathcal{S}$). Ker je $m(\mathcal{S})$ monoton razred, je dovolj pokazati, da je $m(\mathcal{S})$ algebra. Algebra je $\sigma$-algebra namreč natanko tedaj, ko je monoton razred \footnote{Netrivialna je tu samo zaprtost za števne unije pri prehodu iz monotonega razreda na $\sigma$-algebro: naj bo $\mathcal{A}$ algebra in monoton razred. Za vsak $A_n \in \mathcal{A}$ definirajmo $B_k:=\cup_{n=1}^k A_n \in \mathcal{A}$. Potem $B_k$ tvorijo naraščajoče zaporedje in iz zaprtosti za monotone unije monotonih razredov dobimo $\cup_{k=1}^\infty B_k=\cup_{n=1}^\infty A_n \in \mathcal{A}$. Sledi, da je $\mathcal{A}$ $\sigma$-algebra.}.
 \newline
 Pokažimo najprej zaprtost za komplemente. Obravnavajmo družino množic $\mathcal{G} = \{ A\hspace{0.1cm}|\hspace{0.1cm} A^c \in m(\mathcal{S})\}$.  Ker je $m(\mathcal{S})$ monoton razred, sledi da je tudi $\mathcal{G}$. Dodatno velja še $\mathcal{S} \subseteq \mathcal{G}$ (sledi iz $\mathcal{S} \subseteq m(\mathcal{S})$ in dejstva, da je $\mathcal{S}$ algebra, torej zaprta za komplement). To nam zagotovi $m(\mathcal{S}) \subseteq \mathcal{G}$, s čimer smo pokazali, da je $m(\mathcal{S})$ zaprt za komplemente.
 \newline
@@ -183,7 +183,7 @@ Metrični prostor $(D, \rho)$ je \textit{kompakten}, če ima vsako zaporedje v $
 \begin{opomba}
 Zgoraj podana definicija ne opisuje najbolj splošnega pojma kompaktnosti, ampak gre za  t. i. kompaktnost glede na zaporedja (angl. sequential compactness), kar zadostuje za potrebe tega diplomskega dela. Oba pojma kompaktnosti sta namreč ekvivalentna v primeru metričnih prostorov. Se pa pojma razlikujeta, če delamo s topološkimi prostori (kompaktnost tu definiramo drugače, prek pokritij in podpokritij).
 \end{opomba}
-V primeru ko je $D \subset \mathbb{R}^n$ (podmnožica Evklidskega prostora), dodatno vemo, da je D kompakten natanko tedaj, ko je zaprt in omejen.
+Kadar je $D \subset \mathbb{R}^n$ (podmnožica Evklidskega prostora), dodatno vemo, da je D kompakten natanko tedaj, ko je zaprt in omejen.
 \begin{lema}
 Naj bo $(D, \rho)$ končen metričen prostor. Potem je $D$ kompakten.
 \end{lema}
@@ -310,7 +310,7 @@ Sosednji bazi označimo z \textbf{d} $\sim$ \textbf{d\'}. Če obravnavamo $D^n$ 
 Za izpeljavo nekaterih rezultatov v nadaljevanju moramo predpostaviti, da je $D$ kompakten metrični prostor. V primeru kompaktnosti definiramo še diameter kot $diam(D) := \max\limits_{d,d' \in D}\rho(d,d')$. Obstoj maksimuma v tej definiciji je posledica dejstva, da zvezna funkcija $\rho$ doseže svoj maksimum na kompaktni množici $D$.
 
 \subsection{Modeliranje poizvedb}
-Poizvedba (angl. query) je način pridobitve želenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovor (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
+Poizvedba (angl. query) je način pridobitve želenih informacij iz podatkovne baze. V prejšnjem poglavju smo podatkovno bazo predstavili kot metrični prostor in enako sedaj storimo za množico vseh možnih odgovorov (angl. set of all possible responses) na posamezno poizvedbo. Tak metrični prostor označimo z $(E_{Q}, \rho_{Q})$ in ga ponovno opremimo z Borelovo $\sigma$-algebro $\mathcal{A}_{Q}$ (indeks Q tu ponazarja odvisnost od poizvedbe, kar je naravno, saj različne poizvedbe vodijo do različnih množic možnih odgovorov). Sedaj lahko definiramo poizvedbo kot merljivo funkcijo $Q: U^n \rightarrow E_{Q} $, torej $Q^{-1}(A) \in \mathcal{A}_{U^n}$ za vsako $A \in \mathcal{A}_Q$.
 \begin{primer} Kot pri konstrukciji podatkovne baze \textbf{d} $\in D^n$, imamo tudi pri izbiri prostora možnih odgovorov precej proste roke. Če se vrnemo na primer podatkovne baze hobijev, bi npr. lahko povprašali po številu ljudi, ki igrajo nogomet. Odgovor na to poizvedbo bi bil numeričen ($E_{Q} = \mathbb{N}$). Lahko pa bi nas zanimalo, kateri so 3 najpogostejši hobiji v bazi. Odgovor tu bi bil verjetno množica hobijev  ($E_{Q} = 2^\mathcal{H}$).
 \end{primer}
 \newline
@@ -329,7 +329,7 @@ V nadaljevanju bo pogosto navedeno $\mathbb{P}(X_{Q,\textbf{d}} \in A)$, kar je 
 \newline
 Ločimo dva glavna primera odzivnih mehanizmov:
 \begin{itemize}
-\item \textit{Perturbacija podatkovne baze} (angl. sanitised response mechanism). Tu vnesemo naključnost v podatke, še preden podamo odgovor na poizvedbo. Za to potrebujemo družino merljivih preslikav (slučajnih vektorjev) $\{ Y_{\textbf{d}}: \Omega \rightarrow U^n | \textbf{d} \in D^n\}$ Če taka družina obstaja, ima odzivni mehanizem obliko kompozituma
+\item \textit{Perturbacija podatkovne baze} (angl. sanitised response mechanism). Tu vnesemo naključnost v podatke, še preden podamo odgovor na poizvedbo. Za to potrebujemo družino merljivih preslikav (slučajnih vektorjev) $\{ Y_{\textbf{d}}: \Omega \rightarrow U^n | \textbf{d} \in D^n\}$. Če taka družina obstaja, ima odzivni mehanizem obliko kompozituma
 \begin{equation}\label{odzivni2}
  X_{Q,\textbf{d}} = Q \circ Y_{\textbf{d}}. \tag{2}
 \end{equation} 
@@ -448,7 +448,7 @@ Predpostavimo, da obstaja družina slučajnih spremenljivk (merljivih preslikav)
 \begin{equation}\label{product}
 Y_{\textbf{d}} (\omega) = (Y_{d_1} (\omega) , ... , Y_{d_n} (\omega)), \tag{5}
 \end{equation}
-kjer so $Y_{d_i}$ med sabo neodvisne. To nam zagotavlja obstoj marginalnih porazdelitev.  Lahko so $Y_{d_i}$ tudi enako porazdeljene slučajne spremenljivke, ni pa to nujno. Torej je $Y_{\textbf{d}}$ n-dimenzionalen mehanizem, sestavljen iz n eno-dimenzionalnih mehanizmov, ki so med seboj neodvisni. Primer takega mehanizma je, da so $Y_{d_i}$ neodvisne in enako porazdeljene slučajne spremenljivke.
+kjer so $Y_{d_i}$ med sabo neodvisne. To nam zagotavlja obstoj marginalnih porazdelitev.  Lahko so $Y_{d_i}$ tudi enako porazdeljene slučajne spremenljivke, ni pa to nujno. Torej je $Y_{\textbf{d}}$ n-dimenzionalen mehanizem, sestavljen iz n eno-dimenzionalnih mehanizmov, ki so med seboj neodvisni. Primer takega mehanizma je, ko so $Y_{d_i}$ neodvisne in enako porazdeljene slučajne spremenljivke.
 \newline
 \newline
 \begin{opomba} Dodajmo še, da je zgoraj definiran mehanizem, le posebna oblika perturbacije podatkovne baze \eqref{odzivni2} (tu dodatno zahtevamo obstoj marginalnih porazdelitev). To nam omogoča, da v spodnjem izreku delamo le z identično poizvedbo, torej $Y_{Q, \textbf{d}}=Y_{\textbf{d}}$. Za vse ostale poizvedbe rezultat sledi kot posledica izreka v prejšnjem poglavju. 
@@ -470,7 +470,7 @@ $$b\geq \frac{diam(D)}{\epsilon - \log(1-\delta)}.$$
 Sledi, da je vsak n-dimenzionalen mehanizem oblike \eqref{product} $(\epsilon, \delta)$-diferencirano zaseben za vsako n-dimenzionalno podatkovno bazo $D^n$ in vsako poizvedbo. To lahko enostavno pokažemo. 
 \newline
 \newline
-Najprej vemo, da $\mathbb{P}(Y_{d}(\omega) \in A) = \mathbb{P}(d + L(\omega) \in A) = \int_{A}\frac{1}{2b}e^{\frac{-|x-d|}{b}}dx$. Kot posledica izrekov 2 in 3 potem vemo, da bo zgornja trditev veljala natanko tedaj, ko bo veljajo 
+Najprej vemo, da $\mathbb{P}(Y_{d}(\omega) \in A) = \mathbb{P}(d + L(\omega) \in A) = \int_{A}\frac{1}{2b}e^{\frac{-|x-d|}{b}}dx$. Kot posledica izrekov 4.3 in 4.7 potem vemo, da bo zgornja trditev veljala natanko tedaj, ko bo veljajo 
 $$\int_{A}\frac{e^{\frac{-|x-d|}{b}}}{2b}dx \leq e^{\epsilon}\int_{A}\frac{e^{\frac{-|x-d'|}{b}}}{2b}dx + \delta$$
 za vse $d,d' \in D, \; A \in \mathcal{B}(\mathbb{R})$. Zgornja neenakost pa bo veljala natanko tedaj, ko velja $1 \leq e^{\epsilon - \frac{|d-d'|}{b}} + \delta$ (uporabimo trikotniško neenakost $|x-d'| \leq |x-d| + |d -d'|$ in dejstvo, da nam neenakost porodi najstrožji pogoj v primeru $A=\mathbb{R})$. Po preureditvi sledi rezultat. 
 \end{primer}
@@ -619,7 +619,7 @@ Naj bo podana poizvedba $Q: \mathbb{R}^d \rightarrow \mathbb{R}^d$. Naj bo $M \i
 \end{equation}
 Dodatno predpostavimo še $\epsilon \leq 1$. Potem je odzivni mehanizem 
 \begin{gather*}
-X_{Q,\textbf{d}} = X_{Q(\textbf{d})} = Q(\textbf{d}) + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon} Z, Z \sim \mathcal{N}_d (0,M)
+X_{Q,\textbf{d}} = X_{Q(\textbf{d})}  = Q(\textbf{d}) + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon} Z, Z \sim \mathcal{N}_d (0,M)
 \end{gather*}
 $(\epsilon, \delta)$-diferencirano zaseben.
 \end{izrek}
@@ -800,11 +800,11 @@ Pokazati moramo še enakost $\langle f, Pf\rangle_{\mathcal{H}} = \bigg\|M^{-1/2
 Če poračunamo desno stran enakosti z uporabo definicije $\|\cdot\|_2$ in upoštevamo dejstvo, da je $M^{-1/2}$ prav tako simetrična matrika, dobimo enake 4 vsote. Enakost je s tem dokazana in izrek sledi.
 \qed
 \begin{posledica}
-Naj $E_Q$ (prostor možnih odgovorov, torej funkcij, na poizvedbo) podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa. Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
+Naj $E_Q$  podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa. Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
 $$
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
 $$
-$(\epsilon,\delta)$ diferencirano zaseben, ko bo veljajo 
+$(\epsilon,\delta)-$diferencirano zaseben, ko bo veljajo 
 $$
 \sup_{\textbf{d} \sim \textbf{d'}} \| f_{\textbf{d}} -  f_{\textbf{d'}} \|_{\mathcal{H}} \leq \Delta.
 $$
@@ -965,7 +965,7 @@ prvotni podatki & TX (114) & CA (102) & NY (63)  \\
 
 \subsection{Funkcijski podatki}
 
-Na tem mestu smo implementirali mehanizem, ki vrne diferencirano zasebno jedrno cenilko za gostoto po vzoru primera 6.11. Rezultati so prikazani na slikah 1-3. Prvotni podatki so generirani iz vsote dveh neodvisnih normalnih porazdelitev, in sicer $\mathcal{N}(1,1)$ ter $\mathcal{N}(5,1)$. Pri vseh slikah je $\delta = 0.1$, spreminja se le parameter $\epsilon$. Diferencirano zasebna cenilka za gostoto je prikazana z modro barvo.
+Na tem mestu smo implementirali mehanizem, ki vrne diferencirano zasebno jedrno cenilko za gostoto po vzoru primera 6.11. Rezultati so prikazani na slikah 1 in 2. Prvotni podatki so generirani iz vsote dveh neodvisnih normalnih porazdelitev, in sicer $\mathcal{N}(1,1)$ ter $\mathcal{N}(5,1)$. Pri obeh slikah je $\delta = 0.1$, spreminja se le parameter $\epsilon$. Diferencirano zasebna cenilka za gostoto je prikazana z modro barvo.
 
 \begin{figure}[!htb]
 \centering
@@ -977,12 +977,6 @@ Na tem mestu smo implementirali mehanizem, ki vrne diferencirano zasebno jedrno 
 \centering
 \caption{$\epsilon = 1$}
 \includegraphics[width = 12cm, height = 6cm]{druga}
-\end{figure}
-
-\begin{figure}[!htb]
-\centering
-\caption{$\epsilon = 3$}
-\includegraphics[width = 12cm, height = 6cm]{tretja}
 \end{figure}
 
 % seznam uporabljene literature
