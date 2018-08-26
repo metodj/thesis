@@ -279,7 +279,7 @@ Potem sledi, da je vsak n-dimenzionalen mehanizem oblike $Y_{\textbf{d}} (\omega
 \section{Natančnost odzivnih mehanizmov}
 \begin{frame}{Natančnost odzivnih mehanizmov}
 \begin{itemize}
-\item $\gamma := max_{d\in D}\mathbb{E}[\rho(Y_d,d)].$ maksimalna pričakovana napaka danega mehanizma $X_d$.
+\item $\gamma := max_{d\in D}\mathbb{E}[\rho(Y_d,d)].$ maksimalna pričakovana napaka danega mehanizma $Y_d$.
 \end{itemize}
 \begin{block}{Izrek 4}
 Naj bo podana družina 1-dimenzionalnih diferencirano zasebnih mehanizmov $\{ Y_d: \Omega \rightarrow U | d \in D\}$. Potem velja $$\gamma  \geq (1-\delta)(\frac{diam(D)}{2(1+e^\epsilon)})$$
@@ -293,12 +293,13 @@ Naj bo $D$ diskreten metrični prostor z $|D| = m + 1$ in $\kappa = \min_{d, d' 
 
 \begin{frame}{Dodatno o funkcijskih podatkih}
 \begin{itemize}
+\item $\textbf{d} = (d_1,...,d_n), \quad d_i \in \mathbb{R}^m$ ($d_i$ dobljeni iz porazdelitve z gostoto $f$)
 \item Jedrna cenilka za gostoto:
 $$
-\hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W\Big(\frac{||x-d_i||}{h}\Big), x \in \mathbb{R}^d
+\hat{f}(x)=\frac{1}{n}\sum_{1}^{n}W\Big(\frac{||x-d_i||}{h}\Big), x \in \mathbb{R}^m
 $$
 ($W$ jedrna funkcija, $h$ parameter dosega).
-\item $D = \mathbb{R}^m, \quad E_Q \subseteq \mathbb{R}^D, \quad Q(\textbf{d}) = f_{\textbf{d}}, \quad X_{Q_{\textbf{d}}} = \tilde{f}_{\textbf{d}}.$
+\item $D = \mathbb{R}^m, \quad E_Q \subseteq \mathbb{R}^D, \quad Q(\textbf{d}) = f_{\textbf{d}}, \quad X_{Q({\textbf{d}})} = \tilde{f}_{\textbf{d}}.$
 \end{itemize}
 \end{frame}
 
@@ -381,7 +382,7 @@ $$
 
 \begin{frame}
 \begin{block}{Posledica}
-Naj $E_Q$  podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa. Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
+Naj $E_Q$  podmnožica Hilbertovega prostora $\mathcal{H}$ z reprodukcijskim jedrom $K$, ki je enak kovariančni funkciji Gaussovega procesa (povprečje procesa naj bo enako 0). Če z $G$ označimo trajektorijo tega Gaussovega procesa, potem bo mehanizem 
 $$
 \widetilde{f}_{\textbf{d}} = f_{\textbf{d}} + \sqrt{2\log{\frac{2}{\delta}}} \frac{\Delta}{\epsilon}G
 $$
@@ -393,7 +394,16 @@ $$
 \end{frame}
 
 \begin{frame}{Uporaba na primeru Gaussovega jedra}
-TODO
+\begin{itemize}
+\item $\textbf{d} = (d_1,...,d_n), \quad d_i \in \mathbb{R}^m$ ($d_i$ dobljeni iz porazdelitve z gostoto $f$)
+\item Cenilka za gostoto z Gaussovim jedrom: $f_{\textbf{d}}(x) = \frac{1}{n(2\pi h^2)^{d/2}} \sum_{i=1}^{n} exp\Big\{\frac{-\|x-d_i\|_{2}^{2}}{2h^2}\Big\},  \quad x \in \mathbb{R}^m$
+\item $\textbf{d} \sim \textbf{d'}:$ $
+(f_{\textbf{d}} - f_{\textbf{d'}})(x) = \frac{1}{n(2\pi h^2)^{d/2}} \Big(exp\Big\{\frac{-\|x-d_n\|_{2}^{2}}{2h^2}\Big\}-exp\Big\{\frac{-\|x-d_{n}^{\prime}\|_{2}^{2}}{2h^2}\Big\}\Big).
+$
+\item Za kovariančno funkcijo Gaussovega procesa $\{X_t : t \in T \}$ vzemimo Gaussovo jedro $K(x,y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}$
+\item $K(x,y) = K_x(y) = exp\{\frac{-\|x-y\|_{2}^{2}}{2h^2}\}, \quad f_{\textbf{d}} - f_{\textbf{d'}} = \frac{1}{n(2\pi h^2)^{d/2}} (K_{d_n}-K_{d_{n}^{\prime}})$
+\item $\|f_{\textbf{d}} - f_{\textbf{d'}}\|_{\mathcal{H}}^{2} \leq  2 \Big(\frac{1}{n(2\pi h^2)^{d/2}}\Big)^2$
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Uporaba na primeru Gaussovega jedra}
@@ -419,13 +429,13 @@ TODO
 \begin{center}
  \begin{tabular}{| c | c | c | c |} 
  \hline
- \textbf{$\epsilon$} & \textbf{$\delta$} & b & povprečna razlika  \\ [0.5ex] 
+ \textbf{$\epsilon$} & \textbf{$\delta$} & b   \\ [0.5ex] 
  \hline
- 0.1 & 0.1 & 14589 & 14935  \\ 
+ 0.1 & 0.1 & 14589  \\ 
  \hline
- 2 & 0.5 & 1112 & 1075\\
+ 2 & 0.5 & 1112\\
  \hline
- 11 & 0.7 & 245 & 249 \\
+ 11 & 0.7 & 245 \\
  \hline
 \end{tabular}
 \caption{b predstavlja parameter Laplaceove porazdelitve, povprečna razlika pa povprečje odstopanj diferencirano zasebnih podatkov od prvotnih. }
